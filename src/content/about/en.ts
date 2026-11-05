@@ -50,15 +50,15 @@ export const ABOUT_EN: AboutContent = {
           period: "Apr 2026 – Present",
           details: [
             {
-              text: "Migrated on-premises servers to AWS (EC2, RDS): row counts checked on 10 tables (hundreds of thousands of rows), about 2 min 44 s from stop to login check, automated certificate renewal",
+              text: "Migrated on-premises services to AWS (EC2, RDS) and checked the result by comparing row counts per table (340,000+ rows)",
               evidence: {
-                method: "Stopped the old server → final DB sync → domain cutover → login check. About 2 min 44 s from stop to confirmation (may be longer per user due to DNS TTL); row counts matched on 10 tables",
+                method: "Stopped the old server → final DB sync → domain cutover → service check. About 2 min 44 s from stop to confirmation (from command output timestamps; may be longer per user due to DNS TTL); row counts matched on 10 tables",
                 env: "Production (live cutover)",
                 when: "Aug 2026",
               },
             },
             {
-              text: "Built keyless CI/CD (GitHub Actions + OIDC + SSM) and nginx blue/green zero-downtime deploys at no extra cost; verified 0 failures in 236 external checks on the first dev cutover before rolling out to production",
+              text: "Built keyless CI/CD and nginx blue/green zero-downtime deploys; verified 0 failures in 236 external checks on the first dev cutover before rolling out to production",
               evidence: {
                 method: "Called the login API every 0.5 s during deployment; any non-OK response counted as a failure",
                 env: "Dev server (same setup as production)",
@@ -66,16 +66,16 @@ export const ABOUT_EN: AboutContent = {
               },
             },
             {
-              text: "Cut report queries from 29 to 3",
+              text: "Cut daily report queries from 29 to 3 by removing repeated lookups",
               evidence: {
                 method: "Timed each stage to find the repeated queries, then moved the lookup out of the loop",
                 env: "Local backend + remote DB tunnel (high-latency setup)",
                 when: "Aug 2026",
               },
             },
-            "Found why web and app results differed, raising the match rate from about 40% to 100%",
-            "Built an admin console from scratch (users, devices, permissions) and migrated permission strings to code-based RBAC with zero downtime",
-            "Migrated timestamps to UTC storage with local-time display in React, with zero downtime: 0 rows needing correction in the cutover window and 0 changes to Korean screens in golden tests",
+            "Unified web and app glucose calculation rules, raising the match rate from about 40% to 100%",
+            "Built a user, device, and permission admin console from scratch and moved permissions to a code-based model with zero downtime",
+            "Moved to UTC storage with local-time display in React; jest + jsdom golden tests confirmed identical screens in Korean time",
           ],
         },
         {
@@ -83,7 +83,7 @@ export const ABOUT_EN: AboutContent = {
           period: "Apr 2026 – Present",
           details: [
             {
-              text: "Cut list loading from 20 s to 0.6 s by rewriting correlated subqueries as a CTE",
+              text: "Cut list loading from 20 s to 0.6 s by replacing a per-session subquery with a single aggregate",
               evidence: {
                 method: "Replaced a per-session subquery (52 full scans) with a single per-user aggregate (CTE) and timed the exact production query before and after",
                 env: "Local server + read-only connection to the production DB (not a copy)",
@@ -91,7 +91,7 @@ export const ABOUT_EN: AboutContent = {
               },
             },
             {
-              text: "Built CI/CD with a test gate, health checks, and automatic rollback on failure, plus blue/green zero-downtime deploys; grew tests from 0 to 211",
+              text: "Built zero-downtime deploys with a test gate, health checks, and automatic rollback; grew tests from 0 to 211",
               evidence: {
                 method: "Full pytest run: 211 passed (mostly unit and contract tests with a mocked DB). 0 test files before the first test commit",
                 env: "Local (mock config, no DB access), and on every pipeline run",
@@ -99,25 +99,25 @@ export const ABOUT_EN: AboutContent = {
               },
             },
             {
-              text: "Refactored while keeping output identical under golden master tests (chart functions 6 → 1, SQL variants 7 → 1, 373 lines of dead code removed)",
+              text: "Removed duplicate code while comparing responses with golden master tests (chart functions 6 → 1, SQL variants 7 → 1)",
               evidence: {
                 method: "Saved response summaries for 20 charts + 7 CSVs before the change and compared after: all 27 matched",
                 env: "Local server + dev DB (copy of production data)",
                 when: "Sep 2026, still run on every deploy",
               },
             },
-            "Tightened access control and session security in two phases (monitor, then block); found app calls hit by the first block through logs, rolled back, then fixed those paths",
+            "Introduced access control in two phases (monitor, then block); found app calls hit by the first block through logs, rolled back, then fixed them",
             "Introduced version control and code review to a legacy Flask platform",
-            "Built a sensor data pipeline and ApexCharts comparison views (up to 10 overlaid lines), with a 100% match on chart and CSV output",
+            "Built a sensor data pipeline and comparison charts, verifying that chart and CSV output match",
           ],
         },
         {
           title: "CGM Spin-off Service: solo build, AWS migration, and operations",
           period: "Jun 2026 – Present",
           details: [
-            "Migrated the service from on-premises to AWS solo (DNS cutover); 0 failures in 225 checks on the first blue/green cutover",
-            "Grew unit tests from 15 to 119, finding 8 production defects along the way, and wrote a 45-item test design document",
-            "Implemented single-session login with real-time forced logout within 10 s, Google and Kakao OAuth, and UTC storage with local-time display",
+            "Migrated the service from on-premises to AWS solo; 0 failures in 225 checks on the first zero-downtime cutover",
+            "Expanded unit tests from 15 to 119, finding 8 production code issues along the way",
+            "Implemented single-session login with forced logout within 10 s, plus Google and Kakao login",
             "Prevented duplicate email accounts with fail-closed login and a DB partial unique index",
           ],
         },
@@ -125,16 +125,16 @@ export const ABOUT_EN: AboutContent = {
           title: "Client IoT Device Web Platform: webview and backend development",
           period: "Apr 2026 – Present",
           details: [
-            "Built real-time device ↔ server ↔ webview communication over WebSocket",
-            "Cut inline styles from 167 to 31 (-81%) by moving to Tailwind, fixed 20 accessibility issues (div → button), and added multilingual support",
+            "Built real-time WebSocket communication linking devices, servers, and webviews",
+            "Cut inline styles from 167 to 31 by moving to Tailwind, fixed 20 accessibility issues, and added multilingual support",
           ],
         },
         {
           title: "Sensitivity Table Tool (solo)",
           period: "Apr 2026 – Present",
           details: [
-            "Built the tool solo from repository setup to deployment, with version history, UPSERT saves, and bulk CSV (RFC 4180) and Excel imports",
-            "Made concurrent uploads atomic with PostgreSQL ON CONFLICT to stop duplicate records; resolved 12 QA issues",
+            "Built the tool solo from repository setup to deployment, with version history and bulk CSV and Excel imports",
+            "Blocked duplicate records from concurrent uploads at the DB level; resolved 12 QA issues",
             "Validated bulk updates with ROLLBACK dry runs before committing; added per-electrode sensitivity tables and mobile views",
           ],
         },
@@ -142,7 +142,7 @@ export const ABOUT_EN: AboutContent = {
           title: "Other",
           period: "Apr 2026 – Present",
           details: [
-            "Built an internal meeting-notes tool (FastAPI + React) with 0 failures in 3,298 requests during a zero-downtime swap; set PR conventions and cleaned up 386 PRs",
+            "Built an internal meeting-notes tool from scratch with 0 failures in 3,298 requests during a zero-downtime swap; set PR conventions and cleaned up 386 PRs",
           ],
         },
       ],
@@ -301,7 +301,7 @@ export const ABOUT_EN: AboutContent = {
 
 Full-stack developer at a continuous glucose monitoring (CGM) medical device company, running six projects at once, from React and Next.js frontends to Spring Boot and Flask backends, AWS infrastructure, and deployment.
 
-Built keyless CI/CD with blue/green zero-downtime deploys at no extra cost, and moved two on-premises services to AWS; the glucose service cut over in about 2 min 44 s with row counts checked. On a legacy data platform, grew tests from 0 to 211 and cut a 20-second query to 0.6 seconds.
+Built keyless CI/CD with blue/green zero-downtime deploys, and moved two on-premises services to AWS, comparing row counts per table to check the result. On a legacy data platform, grew tests from 0 to 211 and cut a 20-second query to 0.6 seconds.
 
 Guided by one rule: never lose a row of medical data, and never let the service go down. Backs up, dry-runs, and fully reconciles before changing production data.`,
 };
