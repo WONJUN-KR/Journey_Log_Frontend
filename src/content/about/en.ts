@@ -66,9 +66,9 @@ export const ABOUT_EN: AboutContent = {
               },
             },
             {
-              text: "Cut report queries from 29 to 3 (8.0 s → 3.6 s, measured locally)",
+              text: "Cut report queries from 29 to 3",
               evidence: {
-                method: "Timed each stage (DB 0.8 s + algorithm 0.9 s, yet the API took 8 s) → moved a repeated lookup out of the loop",
+                method: "Timed each stage to find the repeated queries, then moved the lookup out of the loop",
                 env: "Local backend + remote DB tunnel (high-latency setup)",
                 when: "Aug 2026",
               },
