@@ -9,8 +9,8 @@ import { ABOUT_KO } from "./ko";
 // 홈 숫자 카드 - 커밋 수 대신 결과 지표. 아래 careers 문구에 있는 숫자만 씀 (basis = 근거 한 줄)
 export const HOME_HIGHLIGHTS_EN: { label: string; value: string; basis: string }[] = [
   { label: "Built from scratch", value: "3 tools", basis: "Glucose, sensor, notes" },
-  { label: "Zero-downtime", value: "3 services", basis: "0 outages during deploys" },
-  { label: "AWS migrations", value: "2", basis: "Zero data loss" },
+  { label: "Zero-downtime", value: "3 services", basis: "Blue/green cutovers, health checks" },
+  { label: "AWS migrations", value: "2", basis: "Glucose and derived services" },
 ];
 
 // 이력서 데이터 - 홈(/en)과 Resume(/en/resume)이 함께 씀
@@ -32,7 +32,7 @@ export const ABOUT_EN: AboutContent = {
     },
     intro:
       "Full-stack developer at a continuous glucose monitoring (CGM) medical device company, owning healthcare web services and an internal experiment data platform from frontend to backend and infrastructure. " +
-      "Led a lossless AWS migration of on-premises services, built CI/CD with zero-downtime deployment, and hardened security on legacy systems.",
+      "Led the AWS migration of on-premises services, built CI/CD with zero-downtime deployment, and hardened security on legacy systems.",
   },
   careers: [
     {
@@ -50,9 +50,9 @@ export const ABOUT_EN: AboutContent = {
           period: "Apr 2026 – Present",
           details: [
             {
-              text: "Migrated on-premises servers to AWS (EC2, RDS) with about 2.5 minutes of downtime, verifying every table (hundreds of thousands of rows) and automating certificate renewal",
+              text: "Migrated on-premises servers to AWS (EC2, RDS): row counts checked on 10 tables (hundreds of thousands of rows), about 2 min 44 s from stop to login check, automated certificate renewal",
               evidence: {
-                method: "Stopped the old server → final DB sync → domain cutover → login check. About 2 min 44 s from stop to confirmation; row counts matched on every table (0 lost)",
+                method: "Stopped the old server → final DB sync → domain cutover → login check. About 2 min 44 s from stop to confirmation (may be longer per user due to DNS TTL); row counts matched on 10 tables",
                 env: "Production (live cutover)",
                 when: "Aug 2026",
               },
@@ -75,7 +75,7 @@ export const ABOUT_EN: AboutContent = {
             },
             "Found why web and app results differed, raising the match rate from about 40% to 100%",
             "Built an admin console from scratch (users, devices, permissions) and migrated permission strings to code-based RBAC with zero downtime",
-            "Migrated timestamps to UTC storage with local-time display in React, with zero downtime: 0 rows lost and 0 changes to Korean screens in golden tests",
+            "Migrated timestamps to UTC storage with local-time display in React, with zero downtime: 0 rows needing correction in the cutover window and 0 changes to Korean screens in golden tests",
           ],
         },
         {
@@ -106,7 +106,7 @@ export const ABOUT_EN: AboutContent = {
                 when: "Sep 2026, still run on every deploy",
               },
             },
-            "Tightened access control and session security in two phases (monitor, then block) with no disruption to daily work",
+            "Tightened access control and session security in two phases (monitor, then block); found app calls hit by the first block through logs, rolled back, then fixed those paths",
             "Introduced version control and code review to a legacy Flask platform",
             "Built a sensor data pipeline and ApexCharts comparison views (up to 10 overlaid lines), with a 100% match on chart and CSV output",
           ],
@@ -115,7 +115,7 @@ export const ABOUT_EN: AboutContent = {
           title: "CGM Spin-off Service: solo build, AWS migration, and operations",
           period: "Jun 2026 – Present",
           details: [
-            "Migrated the service from on-premises to AWS solo (every table verified, DNS cutover); 0 failures in 225 checks on the first blue/green cutover",
+            "Migrated the service from on-premises to AWS solo (DNS cutover); 0 failures in 225 checks on the first blue/green cutover",
             "Grew unit tests from 15 to 119, finding 8 production defects along the way, and wrote a 45-item test design document",
             "Implemented single-session login with real-time forced logout within 10 s, Google and Kakao OAuth, and UTC storage with local-time display",
             "Prevented duplicate email accounts with fail-closed login and a DB partial unique index",
@@ -301,7 +301,7 @@ export const ABOUT_EN: AboutContent = {
 
 Full-stack developer at a continuous glucose monitoring (CGM) medical device company, running six projects at once, from React and Next.js frontends to Spring Boot and Flask backends, AWS infrastructure, and deployment.
 
-Built keyless CI/CD with blue/green zero-downtime deploys at no extra cost, and moved two on-premises services to AWS with zero data loss and about 2.5 minutes of downtime. On a legacy data platform, grew tests from 0 to 211 and cut a 20-second query to 0.6 seconds.
+Built keyless CI/CD with blue/green zero-downtime deploys at no extra cost, and moved two on-premises services to AWS; the glucose service cut over in about 2 min 44 s with row counts checked. On a legacy data platform, grew tests from 0 to 211 and cut a 20-second query to 0.6 seconds.
 
 Guided by one rule: never lose a row of medical data, and never let the service go down. Backs up, dry-runs, and fully reconciles before changing production data.`,
 };
