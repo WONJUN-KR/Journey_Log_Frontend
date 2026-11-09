@@ -78,7 +78,6 @@ export const ko = {
   },
   projects: {
     title: "포트폴리오",
-    pinnedAria: "대표 프로젝트로 고정",
     pinned: "대표",
     lead: "팀장",
     features: "핵심 기능",

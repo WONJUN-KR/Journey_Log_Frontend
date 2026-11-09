@@ -80,7 +80,6 @@ export const en = {
   },
   projects: {
     title: "Projects",
-    pinnedAria: "Pinned as featured project",
     pinned: "Featured",
     lead: "Team lead",
     features: "Key features",

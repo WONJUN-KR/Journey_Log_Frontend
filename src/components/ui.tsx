@@ -134,14 +134,14 @@ export function SectionHeader({ eyebrow, title, href, linkLabel }: {
 
 // 각 페이지 맨 위 제목 블록
 export function PageHeader({ eyebrow, title, description }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   description?: string;
 }) {
   return (
     <section className="animate-fade-up flex flex-col gap-4 pt-8">
-      <Eyebrow>{eyebrow}</Eyebrow>
-      <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">{title}</h1>
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{title}</h1>
       {description && <p className="text-base sm:text-lg text-muted max-w-2xl">{description}</p>}
     </section>
   );
