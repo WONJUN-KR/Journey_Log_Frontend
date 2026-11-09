@@ -126,12 +126,7 @@
 }
 
 body {
-  /* 위쪽에 은은한 조명 + 코냑 빛 번짐 - 단색 평면 느낌 줄이기 */
-  background:
-    radial-gradient(900px 500px at 15% -5%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 70%),
-    radial-gradient(1100px 600px at 90% 0%, color-mix(in oklab, var(--color-white) 7%, transparent), transparent 70%),
-    var(--background);
-  background-attachment: fixed;
+  background: var(--background);
   color: var(--foreground);
   word-break: keep-all;
   /* 마지막 줄에 한두 단어만 남지 않게 - 윗줄을 꽉 채우고 아랫줄이 짧게 끝남 */

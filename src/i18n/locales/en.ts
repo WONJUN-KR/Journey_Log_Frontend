@@ -20,9 +20,6 @@ export const en = {
       label: "한국어로 보기",
     },
   },
-  footer: {
-    analytics: "This site uses Google Analytics cookies to measure traffic.",
-  },
   meta: {
     resume: {
       title: "Resume",
@@ -51,7 +48,7 @@ export const en = {
   },
   home: {
     taglineFallback: "Full-stack developer",
-    greeting: "Hi, I'm {name}.",
+    greeting: "{name}",
     contact: "Contact",
     stat: {
       career: "Experience",
@@ -73,7 +70,7 @@ export const en = {
       title: "GitHub activity",
     },
     cta: {
-      title: "Let's talk",
+      title: "Get in touch by email",
       body: "Questions or ideas? Get in touch.",
     },
   },

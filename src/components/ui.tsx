@@ -30,16 +30,16 @@ export function TagList({ tags }: { tags: Tag[] }) {
 
 export function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="text-xs px-2.5 py-1 rounded-md border border-line bg-surface text-muted">
+    <span className="text-xs px-2 py-0.5 rounded bg-surface text-muted">
       {children}
     </span>
   );
 }
 
-// 휴대폰 접기·펼치기 버튼 - 본문 글자와 헷갈리지 않게 강조색 테두리 알약 모양
+// 휴대폰 접기·펼치기 버튼 - 본문 글자와 구분되게 한 단계 밝은 면 + 테두리
 // data-more-toggle 을 붙이면 접을 때 펼쳤던 화면 위치로 돌아감(components/MoreToggleScrollRestore)
 export const MOBILE_TOGGLE =
-  "inline-flex w-fit cursor-pointer select-none items-center gap-1 rounded-full border border-accent/40 bg-accent-soft px-3 py-1.5 text-xs font-semibold text-accent-2 transition-colors hover:border-accent/70";
+  "inline-flex w-fit cursor-pointer select-none items-center gap-1 rounded-lg border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-muted transition-colors duration-150 hover:text-foreground";
 
 // 휴대폰 접기 묶음 - 바깥 상자에 group/more 를 주고 버튼(MobileMoreToggle)을 하나만 두면
 // 안쪽의 MOBILE_OPEN_ONLY 붙은 것들이 그 버튼 하나로 같이 펼쳐지고 접힘 (JS 없이 체크박스 + :has). sm 이상은 항상 펼침
@@ -106,8 +106,9 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
+// 영어 작은 라벨(eyebrow)은 넘길 때만 보임
 export function SectionHeader({ eyebrow, title, href, linkLabel }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   href?: string;
   linkLabel?: string;
@@ -115,16 +116,16 @@ export function SectionHeader({ eyebrow, title, href, linkLabel }: {
   return (
     <div className="flex items-end justify-between gap-4">
       <div className="flex flex-col gap-1.5">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+        <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em]">{title}</h2>
       </div>
       {href && (
         <Link
           href={href}
-          className="group inline-flex items-center gap-1 text-sm text-muted hover:text-foreground shrink-0"
+          className="group inline-flex items-center gap-1 text-sm text-muted transition-colors duration-150 hover:text-foreground shrink-0"
         >
           {linkLabel}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="size-4" strokeWidth={1.5} />
         </Link>
       )}
     </div>
