@@ -305,12 +305,13 @@ function EvidencePin({ evidence, lang }: { evidence: Evidence; lang: Lang }) {
     <details className="group/pin inline">
       <summary
         aria-label={t("evidence.aria")}
-        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center rounded-full border border-accent-2 align-[1px] text-[12px] font-bold leading-none text-accent-2 transition-colors group-open/pin:bg-accent-2 group-open/pin:text-background [&::-webkit-details-marker]:hidden"
+        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center rounded-full border border-line align-[1px] text-[12px] font-medium leading-none text-muted transition-colors duration-150 hover:text-foreground group-open/pin:bg-surface-hover group-open/pin:text-foreground [&::-webkit-details-marker]:hidden"
       >
         i
       </summary>
-      <div className="mt-2 mb-1 rounded-[10px] border border-line border-l-[3px] border-l-accent bg-surface max-sm:bg-background px-3.5 py-3 text-[14px] text-foreground">
-        <dl className="grid grid-cols-[minmax(3.25rem,auto)_1fr] gap-x-2.5 gap-y-1 m-0">
+      {/* 상자 대신 위 구분선 + 작은 글씨로 본문 아래에 붙임 */}
+      <div className="mt-2 mb-1 border-t border-line pt-2 text-sm text-foreground">
+        <dl className="grid grid-cols-[minmax(3.25rem,auto)_1fr] gap-x-3 gap-y-1 m-0">
           {rows.map(([k, v]) => (
             <div key={k} className="contents">
               <dt className="text-muted">{k}</dt>
