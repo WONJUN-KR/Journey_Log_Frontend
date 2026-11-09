@@ -1,9 +1,8 @@
 import type { CareerItem } from "@/lib/api";
-import type { Lang } from "@/i18n";
 import { monthIn, yearIn } from "@/lib/time";
 
 // "2022.05 ~ 2024.04" / "2026.03 ~ 재직중" → 시작·끝 달 포함 개월 수 (잡사이트와 같은 셈법)
-// 기준은 한국어 데이터의 기간 문자열 - 영어 데이터는 기간을 'Mar 2026 – Present' 처럼 자유롭게 써도 됨
+// 기준은 한국어 데이터의 기간 문자열
 function careerMonths(period: string, now: Date): number {
   const m = period.match(/(\d{4})\.(\d{1,2})\s*~\s*(?:(\d{4})\.(\d{1,2})|재직중)/);
   if (!m) return 0;
@@ -13,15 +12,10 @@ function careerMonths(period: string, now: Date): number {
   return Math.max(0, end - start + 1);
 }
 
-// 경력 기간 합계 - 오늘 날짜 기준으로 자동 계산 (재직중이면 매달 늘어남). 표시만 언어별 - "2년 10개월" / "2 yrs 10 mos"
-export function totalCareerPeriod(careers: CareerItem[], lang: Lang = "ko", now = new Date()): string {
+// 경력 기간 합계 - 오늘 날짜 기준으로 자동 계산 (재직중이면 매달 늘어남). "2년 10개월"
+export function totalCareerPeriod(careers: CareerItem[], now = new Date()): string {
   const total = careers.reduce((sum, c) => sum + careerMonths(c.period, now), 0);
   const years = Math.floor(total / 12);
   const months = total % 12;
-  if (lang === "en") {
-    const y = years ? `${years} ${years === 1 ? "yr" : "yrs"}` : "";
-    const mo = months ? `${months} ${months === 1 ? "mo" : "mos"}` : "";
-    return [y, mo].filter(Boolean).join(" ") || "0 mos";
-  }
   return [years && `${years}년`, months && `${months}개월`].filter(Boolean).join(" ") || "0개월";
 }

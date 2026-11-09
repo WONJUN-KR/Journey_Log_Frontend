@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { hasPage, localizedPath, pathWithoutLang, type Lang } from "@/i18n";
+import { localizedPath, pathWithoutLang, type Lang } from "@/i18n";
 import { useTranslations } from "next-intl";
 
 // 상단 메뉴 - 지금 보고 있는 페이지 탭은 마우스를 올린 상태처럼 계속 강조
@@ -20,7 +20,7 @@ export default function NavLinks({ lang }: { lang: Lang }) {
 
   return (
     <div className="flex items-center gap-0.5 max-[359px]:gap-0 sm:gap-1 text-[13px] max-[359px]:text-[12px] sm:text-sm font-semibold text-accent-2">
-      {NAV_ITEMS.filter((item) => hasPage(lang, item.href)).map((item) => {
+      {NAV_ITEMS.map((item) => {
         const active = item.match.some((m) => pathname === m || pathname.startsWith(`${m}/`));
         return (
           <Link

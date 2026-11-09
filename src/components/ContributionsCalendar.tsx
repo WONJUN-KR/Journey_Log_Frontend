@@ -155,7 +155,7 @@ export default function ContributionsCalendar({ initialDays, initialYear = "", y
       const x = (week - offset) * step;
       if (lastMonth !== -1) monthDividers.push(x - gap / 2);
       if (x - lastLabelX >= minLabelGap) {
-        monthLabels.push({ x, label: monthLabel(month, lang) });
+        monthLabels.push({ x, label: monthLabel(month) });
         lastLabelX = x;
       }
       lastMonth = month;
@@ -198,7 +198,7 @@ export default function ContributionsCalendar({ initialDays, initialYear = "", y
     <div className="flex flex-col gap-4">
       {header(periodLabel)}
       <div className="flex flex-col gap-2">
-        {/* 합계 · 계정 안내 - 좁아서 한 줄에 안 들어가면 안내가 다음 줄로 (영어 문구가 찌그러져 세 줄 되던 것) */}
+        {/* 합계 · 계정 안내 - 좁아서 한 줄에 안 들어가면 안내가 다음 줄로 */}
         <div className="flex flex-wrap items-baseline gap-x-2">
           <span className="whitespace-nowrap text-sm text-muted">
             <span className="text-lg font-medium tabular-nums text-foreground">{shownTotal.toLocaleString("en-US")}</span>{t("contrib.unit")}
@@ -257,8 +257,7 @@ export default function ContributionsCalendar({ initialDays, initialYear = "", y
   );
 }
 
-// 월 이름 - 한국어 "10월", 영어 "Oct" (월 번호만 쓰니 시간대와 상관없게 UTC 로)
-function monthLabel(month: number, lang: Lang): string {
-  if (lang === "ko") return `${month + 1}월`;
-  return new Date(Date.UTC(2000, month, 1)).toLocaleString("en-US", { month: "short", timeZone: "UTC" });
+// 월 이름 - "10월"
+function monthLabel(month: number): string {
+  return `${month + 1}월`;
 }

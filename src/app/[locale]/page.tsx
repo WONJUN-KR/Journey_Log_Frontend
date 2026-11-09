@@ -9,5 +9,5 @@ type Props = { params: Promise<{ locale: Lang }> };
 export default async function Home({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomeView about={getAbout(locale)} lang={locale} />;
+  return <HomeView about={getAbout()} lang={locale} />;
 }

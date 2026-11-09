@@ -12,7 +12,7 @@ export function logMetadata(lang: Lang): Metadata {
   return pageMetadata({ title: t("meta.log.title"), description: t("meta.log.description"), path: "/log", lang });
 }
 
-// 기록 페이지 본문 - 한국어 · 영어 페이지가 같이 씀
+// 기록 페이지 본문
 export default async function LogView({ lang }: { lang: Lang }) {
   const t = await getTranslations();
   const [seriesList, posts] = await Promise.all([getSeriesList(), getPosts()]);

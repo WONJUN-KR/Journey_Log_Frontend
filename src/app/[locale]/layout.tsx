@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
-// 언어별 루트 레이아웃 - 한국어 /(주소 그대로) · 영어 /en. 두 언어를 빌드 때 정적으로 미리 만듦
+// 루트 레이아웃 - 한국어 /(주소 그대로), 빌드 때 정적으로 미리 만듦
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
