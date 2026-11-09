@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import NavLinks from "@/components/NavLinks";
-import LangSwitch from "@/components/LangSwitch";
 import "@/app/globals.css";
 import { SITE_URL, pageMetadata } from "@/lib/seo";
 import { localizedPath, type Lang } from "@/i18n";
@@ -36,7 +35,7 @@ export function rootMetadata(lang: Lang): Metadata {
   };
 }
 
-// 사이트 공통 틀 - <html> 부터 헤더 · 푸터 · 분석 도구까지. 한국어 · 영어 두 루트 레이아웃이 같이 씀
+// 사이트 공통 틀 - <html> 부터 헤더 · 푸터 · 분석 도구까지
 // 클라이언트 컴포넌트가 useTranslations 로 쓰는 메시지 묶음 - 새 클라이언트 컴포넌트에서 다른 묶음을 쓰면 여기에 추가
 // (빠지면 화면에 키 이름이 그대로 나오고 콘솔에 MISSING_MESSAGE)
 const CLIENT_NAMESPACES = ["nav", "contrib", "log", "series", "gallery", "toggle", "stack"] as const;
@@ -62,7 +61,6 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
         <main className="relative flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* 언어 전환 국기 - 본문 위 여백(py-8) 안 오른쪽에 겹쳐 둬서 본문 위치는 그대로 */}
           <div className="absolute right-4 sm:right-6 top-2 sm:top-3">
-            <LangSwitch lang={lang} />
           </div>
           {children}
         </main>

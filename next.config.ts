@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import { EN_LOG_ENABLED } from "./src/i18n/config";
 
 const nextConfig: NextConfig = {
   // 개발 서버 왼쪽 아래 Next.js 표시(동그라미 버튼) 숨김 - 배포 화면엔 원래 안 나옴
@@ -19,18 +18,9 @@ const nextConfig: NextConfig = {
       { source: "/roadmap/:slug", destination: "/history", permanent: true },
       // 글 상세는 네이버 원문으로 옮겨서, 예전 글 주소는 목록으로
       { source: "/log/:slug", destination: "/log", permanent: false },
-      // 영어 주소(/en)도 같은 규칙
-      { source: "/en/about", destination: "/en/resume", permanent: true },
-      { source: "/en/roadmap", destination: "/en/history", permanent: true },
-      { source: "/en/roadmap/:slug", destination: "/en/history", permanent: true },
-      // 영어판 기록이 꺼져 있으면(EN_LOG_ENABLED) 한국어 기록으로
-      ...(EN_LOG_ENABLED
-        ? [{ source: "/en/log/:slug", destination: "/en/log", permanent: false }]
-        : [
-            { source: "/en/log", destination: "/log", permanent: false },
-            { source: "/en/log/:slug", destination: "/log", permanent: false },
-            { source: "/en/series/:slug", destination: "/series/:slug", permanent: false },
-          ]),
+      // 영어판을 내려서 예전 영어 주소(/en/...)는 같은 한국어 주소로
+      { source: "/en", destination: "/", permanent: true },
+      { source: "/en/:path*", destination: "/:path*", permanent: true },
     ];
   },
 };

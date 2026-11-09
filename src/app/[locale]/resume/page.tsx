@@ -20,5 +20,5 @@ export const revalidate = 3600;
 export default async function ResumePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <AboutView about={getAbout(locale)} lang={locale} />;
+  return <AboutView about={getAbout()} lang={locale} />;
 }

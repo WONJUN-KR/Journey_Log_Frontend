@@ -1,7 +1,6 @@
 import type { Project } from "@/lib/projects";
 
-// 프로젝트 데이터 (한국어 = 기준) - 사진 · 영상 경로, 기술 스택, 링크, 상태 같은 언어와 무관한 값은 여기에만
-// 영어 글자는 ./en.ts 에 slug 별로(글자만). 프로젝트를 추가 · 삭제하면 PROJECT_SLUGS 와 en.ts 도 같이 (빠지면 빌드 실패)
+// 프로젝트 데이터 - 사진 · 영상 경로, 기술 스택, 링크, 상태. 프로젝트를 추가 · 삭제하면 PROJECT_SLUGS 도 같이
 export const PROJECT_SLUGS = ["gotcha", "ai-auto-posting", "cos-house", "eureka-2021"] as const;
 export type ProjectSlug = (typeof PROJECT_SLUGS)[number];
 

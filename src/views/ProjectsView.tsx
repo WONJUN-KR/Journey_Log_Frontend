@@ -87,7 +87,7 @@ function ProjectVisual({ project, preload = false }: { project: Project; preload
   );
 }
 
-// 프로젝트 페이지 본문 - 한국어(/projects) · 영어(/en/projects) 페이지가 같이 씀
+// 프로젝트 페이지 본문
 export default function ProjectsView({ lang }: { lang: Lang }) {
   const t = useTranslations();
   return (
@@ -95,7 +95,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
       <PageHeader title={t("projects.title")} />
 
       <div className="flex flex-col gap-16 max-sm:gap-12">
-        {getProjects(lang).map((p, i) => (
+        {getProjects().map((p, i) => (
           <article
             key={p.slug}
             id={p.slug}

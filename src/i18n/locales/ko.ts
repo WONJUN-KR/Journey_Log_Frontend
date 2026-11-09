@@ -182,5 +182,5 @@ export const ko = {
   },
 };
 
-// 영어 사전이 따라야 하는 모양 - 키는 같고 값은 아무 문자열
+// 사전 모양 - 키는 같고 값은 아무 문자열
 export type Messages<T = typeof ko> = { [K in keyof T]: T[K] extends string ? string : Messages<T[K]> };

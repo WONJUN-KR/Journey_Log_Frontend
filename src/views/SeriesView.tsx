@@ -9,7 +9,7 @@ import SeriesPostList from "@/components/SeriesPostList";
 import { getTranslations } from "next-intl/server";
 import { tFor } from "@/i18n/translator";
 
-// 시리즈 페이지 본문 · 메타데이터 - 한국어(/series/x) · 영어(/en/series/x) 페이지가 같이 씀
+// 시리즈 페이지 본문 · 메타데이터
 export async function seriesMetadata(slug: string, lang: Lang): Promise<Metadata> {
   const t = tFor(lang);
   const series = await getSeries(slug);

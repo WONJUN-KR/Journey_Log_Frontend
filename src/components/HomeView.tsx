@@ -9,7 +9,7 @@ import { CONTRIBUTIONS_EARLIEST_YEAR, detailText, getContributions, getPosts, ty
 import { getHomeHighlights } from "@/lib/about";
 import SafeImage from "@/components/SafeImage";
 import { getProjects } from "@/lib/projects";
-import { hasPage, localizedPath, type Lang } from "@/i18n";
+import { localizedPath, type Lang } from "@/i18n";
 import { yearIn } from "@/lib/time";
 import LocalDate from "@/components/LocalDate";
 import { getTranslations } from "next-intl/server";
@@ -40,14 +40,13 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
   const profile = about?.profile;
   const contacts = profile?.contacts;
   const careers = [...(about?.careers ?? [])].sort((a, b) => a.sortOrder - b.sortOrder);
-  const showLog = hasPage(lang, "/log");
   const latestPosts = posts.slice(0, LATEST_POSTS_COUNT);
-  const featured = getProjects(lang).slice(0, FEATURED_PROJECTS_COUNT);
+  const featured = getProjects().slice(0, FEATURED_PROJECTS_COUNT);
 
   // 숫자 - 커밋 수 같은 활동량 대신 결과 지표 + 근거 한 줄
   const stats = [
     { label: t("home.stat.career"), value: profile?.careerPeriod ?? "-", basis: t("home.stat.careerBasis") },
-    ...getHomeHighlights(lang),
+    ...getHomeHighlights(),
   ];
 
   return (
@@ -210,14 +209,10 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         </div>
       </section>
 
-      {/* Activity - 글은 날짜 · 제목 목록, 잔디는 한 판(이 화면에서 색이 들어가는 곳). 기록이 없는 언어(영어판, EN_LOG_ENABLED)는 잔디만 */}
+      {/* Activity - 글은 날짜 · 제목 목록, 잔디는 한 판(이 화면에서 색이 들어가는 곳). */}
       <section className="flex flex-col gap-8">
-        {showLog ? (
-          <SectionHeader title={t("home.log.title")} href={localizedPath(lang, "/log")} linkLabel={t("home.log.link")} />
-        ) : (
-          <SectionHeader title={t("home.activity.title")} />
-        )}
-        {showLog && latestPosts.length > 0 && (
+        <SectionHeader title={t("home.log.title")} href={localizedPath(lang, "/log")} linkLabel={t("home.log.link")} />
+        {latestPosts.length > 0 && (
           <ul className="flex flex-col divide-y divide-line border-y border-line">
             {latestPosts.map((post) => (
               <li key={post.id}>
