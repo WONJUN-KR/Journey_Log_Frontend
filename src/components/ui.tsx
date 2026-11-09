@@ -102,7 +102,7 @@ export function StackChips({ items, grouped = false, lang = "ko" }: { items: str
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">{children}</span>
+    <span className="text-sm text-muted">{children}</span>
   );
 }
 
