@@ -27,13 +27,13 @@ export default function SeriesPostList({ posts, lang = "ko" }: { posts: SeriesPo
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="inline-flex w-fit rounded-full border border-line bg-surface p-1 text-sm">
+      <div className="inline-flex w-fit rounded-[10px] border border-line bg-surface p-1 text-sm">
         {ORDER_OPTIONS.map((o) => (
           <button
             key={o.value}
             type="button"
             onClick={() => setOrder(o.value)}
-            className={`rounded-full px-4 py-1.5 transition-colors ${
+            className={`rounded-md px-4 py-1.5 transition-colors duration-150 ${
               order === o.value ? "bg-surface-hover text-foreground font-semibold" : "text-muted hover:text-foreground"
             }`}
           >
@@ -42,23 +42,23 @@ export default function SeriesPostList({ posts, lang = "ko" }: { posts: SeriesPo
         ))}
       </div>
 
-      <ol className="flex flex-col gap-3">
+      <ol className="flex flex-col divide-y divide-line border-y border-line">
         {sorted.map((post) => (
           <li key={post.id}>
             <a
               href={post.url}
               target="_blank"
               rel="noreferrer"
-              className="group flex gap-5 rounded-3xl border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-accent/40"
+              className="group flex gap-5 py-6"
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft tabular-nums text-sm font-bold text-accent-2">
+              <span className="w-8 shrink-0 pt-0.5 tabular-nums text-sm text-muted">
                 {post.seriesIndex ?? "·"}
               </span>
               <div className="flex flex-col gap-2 min-w-0">
-                <h2 className="text-lg font-bold tracking-tight group-hover:text-accent-2 transition-colors">{post.title}</h2>
+                <h2 className="text-lg font-semibold transition-colors duration-150 group-hover:text-accent-2">{post.title}</h2>
                 {post.excerpt && <p className="text-sm text-muted line-clamp-2">{post.excerpt}</p>}
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-xs tabular-nums text-muted" />}
+                  {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
                   <TagList tags={post.tags} />
                 </div>
               </div>

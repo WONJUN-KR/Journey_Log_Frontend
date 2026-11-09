@@ -68,28 +68,28 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                   type="button"
                   onClick={() => selectSeries(series.id)}
                   aria-pressed={active}
-                  className={`group flex flex-col gap-3 sm:gap-4 rounded-3xl border p-4 sm:p-6 text-left transition-all hover:-translate-y-1 max-sm:grid max-sm:grid-cols-[auto_minmax(0,1fr)_auto] max-sm:items-center max-sm:gap-x-3 max-sm:gap-y-0.5 max-sm:rounded-2xl max-sm:px-4 max-sm:py-3 ${
-                    active ? "border-accent bg-accent-soft" : "border-line bg-surface hover:border-accent/40"
+                  className={`group flex flex-col gap-3 sm:gap-4 rounded-xl border p-4 sm:p-5 text-left transition-colors duration-150 max-sm:grid max-sm:grid-cols-[auto_minmax(0,1fr)_auto] max-sm:items-center max-sm:gap-x-3 max-sm:gap-y-0.5 max-sm:px-4 max-sm:py-3 ${
+                    active ? "border-accent bg-surface-hover" : "border-line bg-surface hover:bg-surface-hover"
                   }`}
                 >
                   {/* 오른쪽 위 깔때기 = 누르면 이 시리즈 글만 걸러짐 (선택 중이면 해제 아이콘)
                       휴대폰은 세로 한 줄 카드: [아이콘] [연도·제목 / 글 수·업데이트] [깔때기] */}
                   <div className="flex items-start justify-between gap-3 max-sm:contents">
-                    <span className="flex size-10 items-center justify-center rounded-xl bg-accent-soft max-sm:col-start-1 max-sm:row-span-2 max-sm:row-start-1 max-sm:size-9">
-                      <Layers className="size-5 text-accent-2" />
+                    <span className="flex size-5 items-center justify-center max-sm:col-start-1 max-sm:row-span-2 max-sm:row-start-1">
+                      <Layers className="size-[18px] text-muted" strokeWidth={1.5} />
                     </span>
                     {active ? (
-                      <FunnelX className="size-5 text-accent-2 max-sm:col-start-3 max-sm:row-span-2 max-sm:row-start-1" aria-label={t("log.filterClear")} />
+                      <FunnelX strokeWidth={1.5} className="size-[18px] text-accent-2 max-sm:col-start-3 max-sm:row-span-2 max-sm:row-start-1" aria-label={t("log.filterClear")} />
                     ) : (
-                      <Funnel className="size-5 text-muted transition-colors group-hover:text-accent-2 max-sm:col-start-3 max-sm:row-span-2 max-sm:row-start-1" aria-label={t("log.filterBy")} />
+                      <Funnel strokeWidth={1.5} className="size-[18px] text-muted transition-colors duration-150 group-hover:text-foreground max-sm:col-start-3 max-sm:row-span-2 max-sm:row-start-1" aria-label={t("log.filterBy")} />
                     )}
                   </div>
                   {/* 360px 미만은 연도를 제목 위로, 글 수·날짜를 짧게 */}
                   <div className="flex flex-col gap-1 max-sm:col-start-2 max-sm:row-start-1 max-sm:min-w-0 max-sm:gap-0 min-[360px]:max-sm:flex-row min-[360px]:max-sm:items-baseline min-[360px]:max-sm:gap-2">
-                    {years && <span className="text-xs font-semibold tabular-nums text-accent-2 max-sm:shrink-0">{years}</span>}
-                    <h3 className="text-lg font-bold tracking-tight max-sm:truncate max-sm:text-base">{title}</h3>
+                    {years && <span className="text-sm tabular-nums text-muted max-sm:shrink-0">{years}</span>}
+                    <h3 className="text-lg font-semibold max-sm:truncate max-sm:text-base">{title}</h3>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted max-sm:col-start-2 max-sm:row-start-2 max-sm:min-w-0 max-sm:gap-1.5 max-sm:overflow-hidden max-sm:whitespace-nowrap">
+                  <div className="flex items-center gap-2 text-sm text-muted max-sm:col-start-2 max-sm:row-start-2 max-sm:min-w-0 max-sm:gap-1.5 max-sm:overflow-hidden max-sm:whitespace-nowrap">
                     <span className="shrink-0">{t("log.countShort", { n: series.postsCount })}<span className="max-[359px]:hidden">{t("log.countSuffix")}</span></span>
                     {series.updatedAt && (
                       <>
@@ -110,12 +110,12 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           {/* 시리즈 선택 시: 작은 글씨 = 시리즈 이름·연도, 큰 제목 = 글 수 */}
           <SectionHeader
-            eyebrow={selected ? seriesHeading(selected.name) : "All Posts"}
+            eyebrow={selected ? seriesHeading(selected.name) : undefined}
             title={t(selected ? "log.filtered" : "log.all", { n: filtered.length })}
           />
           <div className="flex items-center gap-2">
             <label className="relative w-full sm:w-72">
-              <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted" />
+              <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted" strokeWidth={1.5} />
               <input
                 type="search"
                 value={query}
@@ -124,14 +124,14 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                   setPage(1);
                 }}
                 placeholder={t("log.search")}
-                className="w-full rounded-full border border-line bg-surface py-2.5 pl-11 pr-4 text-sm placeholder:text-muted focus:border-accent/60 focus:outline-none"
+                className="h-11 w-full rounded-[10px] border border-line bg-surface pl-11 pr-4 text-sm placeholder:text-muted focus:border-accent/60 focus:outline-none"
               />
             </label>
             {selected && (
               <button
                 type="button"
                 onClick={() => selectSeries(selected.id)}
-                className="shrink-0 rounded-full border border-line px-4 py-2.5 text-sm font-semibold hover:bg-surface-hover transition-colors"
+                className="h-11 shrink-0 rounded-[10px] border border-line bg-surface px-4 text-sm font-semibold transition-colors duration-150 hover:bg-surface-hover"
               >
                 {t("log.clearSeries")}
               </button>
@@ -142,16 +142,16 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
         {visible.length === 0 ? (
           <p className="text-muted">{t(posts.length === 0 ? "log.empty" : "log.noMatch")}</p>
         ) : (
-          <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8 sm:gap-x-6">
             {visible.map((post, idx) => (
               <li key={post.id}>
                 <a
                   href={post.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface transition-all hover:-translate-y-1 hover:border-accent/40"
+                  className="group flex h-full flex-col gap-3"
                 >
-                  <div className="relative aspect-square overflow-hidden border-b border-line bg-background">
+                  <div className="relative aspect-square overflow-hidden rounded-xl border border-line bg-surface">
                     {post.thumbnail ? (
                       // 썸네일은 public/blog/naver 에 받아 둔 파일 (빌드 전에 크기별 WebP 로 줄여 둔 걸 로더가 고름)
                       // 첫 줄(휴대폰 2칸·PC 3칸)은 첫 화면이라 먼저 불러오고 나머지는 스크롤할 때
@@ -161,19 +161,19 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
                         preload={idx < 3}
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="object-cover"
                       />
                     ) : (
                       <div className="flex size-full items-center justify-center">
-                        <BookOpen className="size-8 text-muted/40" />
+                        <BookOpen className="size-8 text-muted/40" strokeWidth={1.5} />
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-col gap-1 px-3 py-3 sm:px-4 sm:py-3.5">
-                    <h3 className="text-sm font-bold tracking-tight line-clamp-2 group-hover:text-accent-2 transition-colors">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-sm font-semibold line-clamp-2 transition-colors duration-150 group-hover:text-accent-2">
                       {post.title}
                     </h3>
-                    {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-xs tabular-nums text-muted" />}
+                    {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
                   </div>
                 </a>
               </li>
@@ -224,7 +224,7 @@ function PageButton({ children, onClick, label, active = false }: {
       onClick={onClick}
       aria-label={label}
       aria-current={active ? "page" : undefined}
-      className={`flex size-9 items-center justify-center rounded-full text-sm tabular-nums font-semibold transition-colors ${
+      className={`flex size-9 items-center justify-center rounded-lg text-sm tabular-nums font-semibold transition-colors duration-150 ${
         active ? "bg-accent-strong text-foreground" : "text-muted hover:bg-surface-hover hover:text-foreground"
       }`}
     >

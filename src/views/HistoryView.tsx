@@ -36,13 +36,13 @@ export default function HistoryView({ lang }: { lang: Lang }) {
 
   return (
     <div className="flex flex-col gap-12 py-6">
-      <PageHeader eyebrow="History" title={t("history.title")} />
+      <PageHeader title={t("history.title")} />
 
       <div className="flex flex-col">
         {years.map(({ year, items }) => (
           <section key={year} className="grid grid-cols-[72px_minmax(0,1fr)] max-[359px]:grid-cols-1 sm:grid-cols-[160px_1fr] gap-4 max-[359px]:gap-3 sm:gap-8 border-t border-line py-8">
             {/* 연도 - 넓은 화면에선 그 해 항목을 내리는 동안 따라옴. 360px 미만에선 항목 위로 올려 글 칸을 넓힘 */}
-            <h2 className="self-start text-2xl sm:text-4xl font-bold tracking-tight tabular-nums text-accent-2 sm:sticky sm:top-20">
+            <h2 className="self-start text-2xl sm:text-4xl font-medium tracking-[-0.02em] tabular-nums sm:sticky sm:top-20">
               {year}
             </h2>
             <ol className="flex flex-col gap-6">
@@ -52,9 +52,13 @@ export default function HistoryView({ lang }: { lang: Lang }) {
                   {/* 긴 문구가 칸을 밀어내지 않게 - 가장 작은 폰(320px)에서 가로 스크롤 생기던 곳 */}
                   <div className="flex flex-col gap-1 min-w-0 break-words">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-semibold tracking-tight">{item.title}</h3>
+                      <h3 className="font-semibold">{item.title}</h3>
+                      {/* 진행 중은 배지 대신 벽돌색 점 + 글자 */}
                       {item.status === "IN_PROGRESS" && (
-                        <span className="rounded-full border border-transparent bg-accent-soft px-2 py-0.5 text-xs font-semibold text-accent-2">{t("history.current")}</span>
+                        <span className="inline-flex items-center gap-1.5 text-sm text-accent-2">
+                          <span aria-hidden className="size-1.5 rounded-full bg-accent" />
+                          {t("history.current")}
+                        </span>
                       )}
                     </div>
                     {item.description && <p className="text-sm text-muted">{item.description}</p>}

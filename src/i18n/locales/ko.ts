@@ -18,9 +18,6 @@ export const ko = {
       label: "English 버전으로 보기",
     },
   },
-  footer: {
-    analytics: "방문 통계에 Google Analytics(쿠키)를 써요.",
-  },
   meta: {
     resume: {
       title: "이력서",
@@ -49,7 +46,7 @@ export const ko = {
   },
   home: {
     taglineFallback: "풀스택 개발자",
-    greeting: "안녕하세요, {name}입니다.",
+    greeting: "{name}",
     contact: "연락하기",
     stat: {
       career: "경력",
@@ -71,7 +68,7 @@ export const ko = {
       title: "활동",
     },
     cta: {
-      title: "함께 이야기 나눠요",
+      title: "메일로 연락 주세요",
       body: "궁금한 점이나 제안이 있다면 편하게 연락 주세요.",
     },
   },
@@ -81,7 +78,6 @@ export const ko = {
   },
   projects: {
     title: "포트폴리오",
-    pinnedAria: "대표 프로젝트로 고정",
     pinned: "대표",
     lead: "팀장",
     features: "핵심 기능",
@@ -121,7 +117,6 @@ export const ko = {
       certs: "자격증",
       certsMore: "외 {n}개",
     },
-    coverLetterEyebrow: "Cover Letter",
     coverLetter: "자기소개서",
     readAll: "전체 읽기",
     skills: "역량",

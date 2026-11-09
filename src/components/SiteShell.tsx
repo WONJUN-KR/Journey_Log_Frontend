@@ -12,6 +12,7 @@ import WebFontLoader from "@/components/WebFontLoader";
 import MoreToggleScrollRestore from "@/components/MoreToggleScrollRestore";
 import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl";
 import { tFor } from "@/i18n/translator";
+import { yearIn } from "@/lib/time";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,8 +66,8 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
           </div>
           {children}
         </main>
-        {/* GA 는 쿠키를 써서 이용 안내 한 줄 (Google Analytics 약관의 고지 의무) */}
-        <footer className="max-w-5xl w-full mx-auto px-4 sm:px-6 pb-8 text-xs text-muted print:hidden">{t("footer.analytics")}</footer>
+        {/* 저작권 - 모든 페이지 하단 */}
+        <footer className="max-w-5xl w-full mx-auto px-4 sm:px-6 pb-8 text-xs text-muted print:hidden">© {yearIn()} WonJun. All rights reserved.</footer>
         {/* 방문 통계 (Vercel Web Analytics) - 쿠키 없이 페이지뷰·유입 경로·기기만 집계, Vercel 배포에서만 수집 */}
         <Analytics />
         {/* 웹폰트(페이퍼로지 · Pretendard)는 첫 페인트 뒤에 등록 */}
