@@ -120,7 +120,6 @@ export const en = {
       certs: "Certifications",
       certsMore: "+{n} more",
     },
-    coverLetterEyebrow: "Summary",
     coverLetter: "About",
     readAll: "Read all",
     skills: "Skills",

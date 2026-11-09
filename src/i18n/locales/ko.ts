@@ -118,7 +118,6 @@ export const ko = {
       certs: "자격증",
       certsMore: "외 {n}개",
     },
-    coverLetterEyebrow: "Cover Letter",
     coverLetter: "자기소개서",
     readAll: "전체 읽기",
     skills: "역량",
