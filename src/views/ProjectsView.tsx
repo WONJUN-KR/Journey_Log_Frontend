@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { type Lang } from "@/i18n";
-import { ExternalLink, Pin } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { getProjects, type Project } from "@/lib/projects";
 import SafeImage from "@/components/SafeImage";
 import MockupGallery from "@/components/MockupGallery";
@@ -17,13 +17,7 @@ export function projectsMetadata(lang: Lang): Metadata {
 
 function BrowserFrame({ children, fixedAspect = true }: { children: React.ReactNode; fixedAspect?: boolean }) {
   return (
-    <div className="w-full rounded-2xl border border-line bg-background overflow-hidden shadow-2xl shadow-black/20">
-      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-line">
-        {/* macOS 창 버튼 색 (닫기·최소화·확대) */}
-        <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-        <span className="size-2.5 rounded-full bg-[#febc2e]" />
-        <span className="size-2.5 rounded-full bg-[#28c840]" />
-      </div>
+    <div className="w-full rounded-xl border border-line bg-background overflow-hidden">
       <div className={fixedAspect ? "relative aspect-[16/10] max-sm:aspect-[2/1] flex items-center justify-center" : "relative max-sm:aspect-[2/1] max-sm:overflow-hidden"}>
         {children}
       </div>
@@ -34,7 +28,7 @@ function BrowserFrame({ children, fixedAspect = true }: { children: React.ReactN
 function MobileFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full max-w-[240px] max-sm:max-w-[150px] mx-auto">
-      <div className="rounded-[2rem] border-[6px] border-surface-hover bg-background overflow-hidden shadow-2xl shadow-black/20">
+      <div className="rounded-[28px] border-[6px] border-surface-hover bg-background overflow-hidden">
         <div className="aspect-[9/16] relative overflow-hidden">{children}</div>
       </div>
     </div>
@@ -87,8 +81,7 @@ function ProjectVisual({ project, preload = false }: { project: Project; preload
   return (
     <Frame>
       <div className="flex flex-col items-center gap-2 text-muted">
-        <span className="tabular-nums text-xs uppercase tracking-widest">preview</span>
-        <span className="text-2xl font-semibold tracking-tight text-center px-4">{project.title}</span>
+        <span className="text-2xl font-medium text-center px-4">{project.title}</span>
       </div>
     </Frame>
   );
@@ -99,29 +92,16 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
   const t = useTranslations();
   return (
     <div className="flex flex-col gap-16 py-6">
-      <PageHeader
-        eyebrow="Projects"
-        title={t("projects.title")}
-      />
+      <PageHeader title={t("projects.title")} />
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-16 max-sm:gap-12">
         {getProjects(lang).map((p, i) => (
           <article
             key={p.slug}
             id={p.slug}
-            // 홈 카드에서 /projects#slug 로 오면 해당 카드로 스크롤 (상단 고정 헤더만큼 여백) + 테두리 강조
-            className="relative scroll-mt-24 target:border-accent/60 rounded-3xl border border-line bg-surface p-4 sm:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start max-sm:flex max-sm:flex-col max-sm:items-stretch max-sm:gap-4 group/more"
+            // 홈 카드에서 /projects#slug 로 오면 해당 프로젝트로 스크롤 (상단 고정 헤더만큼 여백) + 위 구분선 강조
+            className="relative scroll-mt-24 border-t border-line target:border-accent pt-10 max-sm:pt-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start max-sm:flex max-sm:flex-col max-sm:items-stretch max-sm:gap-4 group/more"
           >
-            {/* 대표(고정) 프로젝트 - 카드 왼쪽 위 모서리에 꽂힌 핀 */}
-            {p.pinned && (
-              <span
-                role="img"
-                aria-label={t("projects.pinnedAria")}
-                className="absolute -left-3 -top-3 z-10 flex size-10 -rotate-12 items-center justify-center rounded-full border border-line bg-accent-strong text-foreground shadow-lg shadow-black/30 max-sm:-left-2 max-sm:-top-2 max-sm:size-8"
-              >
-                <Pin className="size-5 fill-current max-sm:size-4" />
-              </span>
-            )}
             {/* 왼쪽: 화면 + 핵심 기능(사용자가 할 수 있는 것) / 오른쪽: 소개 + 내가 맡은 부분 */}
             <div className="flex flex-col gap-6 max-sm:contents">
               <div className="flex flex-col gap-3 max-sm:order-1">
@@ -140,10 +120,10 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
               </div>
               {/* 휴대폰은 카드마다 '자세히 보기' 버튼 하나로 핵심 기능·맡은 부분·기술을 같이 펼침 */}
               <div className={`flex flex-col gap-2 max-sm:order-4 ${MOBILE_OPEN_ONLY} max-sm:flex-col`}>
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">{t("projects.features")}</span>
+                <span className="text-sm font-semibold text-muted">{t("projects.features")}</span>
                 <ul className="flex flex-col gap-1.5 text-sm leading-relaxed">
                   {p.features.map((f) => (
-                    <li key={f} className="relative pl-4 before:absolute before:left-0 before:top-2 before:size-1 before:rounded-full before:bg-accent">
+                    <li key={f} className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:size-1 before:rounded-full before:bg-muted">
                       {f}
                     </li>
                   ))}
@@ -153,28 +133,25 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
 
             <div className="flex flex-col gap-5 max-sm:contents">
               <div className="flex flex-col gap-2 max-sm:order-2">
-                <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-                  {p.pinned && (
-                    <span className="rounded-full border border-transparent bg-accent-soft text-accent-2 px-2.5 py-0.5 font-semibold">{t("projects.pinned")}</span>
-                  )}
-                  {p.status !== "local" && (
-                    <span className="rounded-full border border-line px-2.5 py-0.5 font-semibold text-foreground">
-                      {t(p.status === "live" ? "status.live" : "status.released")}
-                    </span>
-                  )}
-                  {p.lead && (
-                    <span className="rounded-full border border-transparent bg-accent-soft text-accent-2 px-2.5 py-0.5 font-semibold">{t("projects.lead")}</span>
-                  )}
+                {/* 대표 · 배포 상태 · 팀장은 배지 대신 글자, 대표만 벽돌색 */}
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+                  {p.pinned && <span className="font-semibold text-accent-2">{t("projects.pinned")}</span>}
+                  {[
+                    p.status !== "local" ? t(p.status === "live" ? "status.live" : "status.released") : null,
+                    p.lead ? t("projects.lead") : null,
+                  ].filter(Boolean).map((x) => (
+                    <span key={x} className="font-semibold text-foreground">{x}</span>
+                  ))}
                   <span className="tabular-nums">{p.period}</span>
                   <span>·</span>
                   <span>{p.role}</span>
                 </div>
-                <h2 className="text-3xl max-sm:text-2xl font-bold tracking-tight">{p.title}</h2>
+                <h2 className="text-3xl max-sm:text-2xl font-medium tracking-[-0.02em]">{p.title}</h2>
               </div>
 
-              <div className={`flex flex-col gap-2 rounded-2xl border border-line bg-background p-4 max-sm:order-5 max-sm:rounded-none max-sm:border-0 max-sm:bg-transparent max-sm:p-0 ${MOBILE_OPEN_ONLY} max-sm:flex-col`}>
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{t("projects.myPart")}</span>
-                <ul className="flex flex-col gap-1.5 text-sm leading-relaxed text-muted">
+              <div className={`flex flex-col gap-2 max-sm:order-5 ${MOBILE_OPEN_ONLY} max-sm:flex-col`}>
+                <span className="text-sm font-semibold text-muted">{t("projects.myPart")}</span>
+                <ul className="flex flex-col gap-1.5 text-sm leading-relaxed">
                   {p.myPart.map((m) => (
                     <li key={m}>{m}</li>
                   ))}
@@ -194,7 +171,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
                     href={p.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-transparent bg-accent-strong text-foreground px-4 py-2.5 text-sm font-bold hover:opacity-85 transition-opacity max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
+                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] bg-accent-strong text-foreground px-5 text-sm font-semibold transition-opacity duration-150 hover:opacity-85 max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
                   >
                     {t("projects.live")}
                     <ExternalLink className="size-4 shrink-0 max-sm:size-3.5 max-[359px]:hidden" />
@@ -206,7 +183,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
                     href={r.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-4 py-2.5 text-sm font-semibold hover:bg-surface-hover transition-colors max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
+                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] border border-line bg-surface px-5 text-sm font-semibold transition-colors duration-150 hover:bg-surface-hover max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
                   >
                     <GithubIcon className="size-4 shrink-0 max-sm:size-3.5 max-[359px]:hidden" />
                     {r.label}
