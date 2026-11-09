@@ -22,7 +22,7 @@ export default function YearSelector({ years, value, onChange, defaultLabel, dis
       value={value}
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
-      className="text-xs bg-surface border border-line rounded-full px-3 py-1 text-foreground disabled:opacity-60"
+      className="text-xs bg-surface border border-line rounded-md px-2.5 py-1 text-foreground disabled:opacity-60"
     >
       <option value="">{defaultLabel}</option>
       {years.map((y) => (
