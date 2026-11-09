@@ -27,7 +27,7 @@ export default function NavLinks({ lang }: { lang: Lang }) {
             key={item.href}
             href={localizedPath(lang, item.href)}
             aria-current={active ? "page" : undefined}
-            className={`px-2 max-[359px]:px-1 sm:px-3 py-1.5 rounded-full transition-colors ${
+            className={`px-2 max-[359px]:px-1 sm:px-3 py-1.5 rounded-md transition-colors ${
               active ? "text-foreground bg-surface-hover" : "hover:text-foreground hover:bg-surface-hover"
             }`}
           >
