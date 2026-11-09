@@ -201,7 +201,7 @@ export default function ContributionsCalendar({ initialDays, initialYear = "", y
         {/* 합계 · 계정 안내 - 좁아서 한 줄에 안 들어가면 안내가 다음 줄로 (영어 문구가 찌그러져 세 줄 되던 것) */}
         <div className="flex flex-wrap items-baseline gap-x-2">
           <span className="whitespace-nowrap text-sm text-muted">
-            <span className="text-lg font-bold text-accent-2">{shownTotal.toLocaleString("en-US")}</span>{t("contrib.unit")}
+            <span className="text-lg font-medium tabular-nums text-foreground">{shownTotal.toLocaleString("en-US")}</span>{t("contrib.unit")}
           </span>
           <span className="whitespace-nowrap text-xs text-muted">{t("contrib.combined")}</span>
         </div>
