@@ -4,7 +4,7 @@ import { getSeries } from "@/lib/api";
 import { pageMetadata } from "@/lib/seo";
 import { DATE_LOCALE, localizedPath, type Lang } from "@/i18n";
 import LocalDate from "@/components/LocalDate";
-import { BackLink, Eyebrow } from "@/components/ui";
+import { BackLink } from "@/components/ui";
 import SeriesPostList from "@/components/SeriesPostList";
 import { getTranslations } from "next-intl/server";
 import { tFor } from "@/i18n/translator";
@@ -32,8 +32,7 @@ export default async function SeriesView({ slug, lang }: { slug: string; lang: L
       <BackLink href={localizedPath(lang, "/log")} label={t("series.back")} />
 
       <header className="animate-fade-up flex flex-col gap-4">
-        <Eyebrow>Series</Eyebrow>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">{series.name}</h1>
+        <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{series.name}</h1>
         {series.description && <p className="text-base sm:text-lg text-muted max-w-2xl">{series.description}</p>}
         <div className="flex items-center gap-2 text-sm text-muted">
           <span>{t("series.count", { n: series.postsCount })}</span>
