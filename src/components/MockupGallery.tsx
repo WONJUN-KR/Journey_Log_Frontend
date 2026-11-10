@@ -159,7 +159,7 @@ export default function MockupGallery({ slug, title, mockup, children, lang = "k
                 }}
               >
                 <div
-                  className="flex transition-transform duration-300 ease-out motion-reduce:transition-none"
+                  className="flex transition-transform duration-300 motion-reduce:transition-none"
                   style={{ transform: `translateX(-${index * 100}%)` }}
                 >
                   {slides.map((s, i) => (
