@@ -116,11 +116,11 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
               </div>
               <div className="flex flex-col gap-1 max-sm:order-3">
                 <p className="text-base text-muted">{p.subtitle}</p>
-                <p className="text-lg font-semibold leading-snug">{p.tagline}</p>
+                <p className="text-lg font-medium leading-snug">{p.tagline}</p>
               </div>
               {/* 휴대폰은 카드마다 '자세히 보기' 버튼 하나로 핵심 기능·맡은 부분·기술을 같이 펼침 */}
               <div className={`flex flex-col gap-2 max-sm:order-4 ${MOBILE_OPEN_ONLY} max-sm:flex-col`}>
-                <span className="text-sm font-semibold text-muted">{t("projects.features")}</span>
+                <span className="text-sm font-medium text-muted">{t("projects.features")}</span>
                 <ul className="flex flex-col gap-1.5 text-sm leading-relaxed">
                   {p.features.map((f) => (
                     <li key={f} className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:size-1 before:rounded-full before:bg-muted">
@@ -135,12 +135,12 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
               <div className="flex flex-col gap-2 max-sm:order-2">
                 {/* 대표 · 배포 상태 · 팀장은 배지 대신 글자, 대표만 벽돌색 */}
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
-                  {p.pinned && <span className="font-semibold text-accent-2">{t("projects.pinned")}</span>}
+                  {p.pinned && <span className="font-medium text-accent-2">{t("projects.pinned")}</span>}
                   {[
                     p.status !== "local" ? t(p.status === "live" ? "status.live" : "status.released") : null,
                     p.lead ? t("projects.lead") : null,
                   ].filter(Boolean).map((x) => (
-                    <span key={x} className="font-semibold text-foreground">{x}</span>
+                    <span key={x} className="font-medium text-foreground">{x}</span>
                   ))}
                   <span className="tabular-nums">{p.period}</span>
                   <span>·</span>
@@ -150,7 +150,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
               </div>
 
               <div className={`flex flex-col gap-2 max-sm:order-5 ${MOBILE_OPEN_ONLY} max-sm:flex-col`}>
-                <span className="text-sm font-semibold text-muted">{t("projects.myPart")}</span>
+                <span className="text-sm font-medium text-muted">{t("projects.myPart")}</span>
                 <ul className="flex flex-col gap-1.5 text-sm leading-relaxed">
                   {p.myPart.map((m) => (
                     <li key={m}>{m}</li>
@@ -171,7 +171,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
                     href={p.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] bg-accent-strong text-foreground px-5 text-sm font-semibold transition-opacity duration-150 hover:opacity-85 max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
+                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] bg-accent-strong text-foreground px-5 text-sm font-medium transition-opacity duration-150 hover:opacity-85 max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
                   >
                     {t("projects.live")}
                     <ExternalLink className="size-4 shrink-0 max-sm:size-3.5 max-[359px]:hidden" />
@@ -183,7 +183,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
                     href={r.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] border border-line bg-surface px-5 text-sm font-semibold transition-colors duration-150 hover:bg-surface-hover max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
+                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] border border-line bg-surface px-5 text-sm font-medium transition-colors duration-150 hover:bg-surface-hover max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
                   >
                     <GithubIcon className="size-4 shrink-0 max-sm:size-3.5 max-[359px]:hidden" />
                     {r.label}

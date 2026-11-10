@@ -6,7 +6,7 @@ export const ko = {
     description: "의료 IT 풀스택 개발자",
   },
   nav: {
-    logoSuffix: " · PORTFOLIO",
+    logoSuffix: " PORTFOLIO",
     resume: "Resume",
     projects: "Projects",
     log: "Log",

@@ -72,8 +72,7 @@
   --color-heat-2: var(--heat-2);
   --color-heat-3: var(--heat-3);
   --color-heat-4: var(--heat-4);
-  --font-sans: "Paperozi", "Pretendard Variable", Pretendard, var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Paperozi", "Pretendard Variable", Pretendard, system-ui, sans-serif;
   --font-display: "Paperozi", "Pretendard Variable", Pretendard, system-ui, sans-serif;
 }
 

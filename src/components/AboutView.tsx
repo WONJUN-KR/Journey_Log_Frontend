@@ -11,8 +11,8 @@ import { MOBILE_OPEN_ONLY_INLINE, MOBILE_OPEN_ONLY_ITEM, MOBILE_TOGGLE, MobileMo
 import { useTranslations } from "next-intl";
 
 // 헤더 - PDF 저장만 버튼(크림색 바탕), 나머지 링크는 글자 링크
-const LINK_TEXT = "inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground [&>svg]:shrink-0";
-const PDF_BUTTON = "inline-flex h-11 cursor-pointer items-center gap-2 whitespace-nowrap rounded-[10px] bg-foreground px-5 text-sm font-semibold text-background transition-opacity duration-150 hover:opacity-85 [&>svg]:shrink-0";
+const LINK_TEXT = "inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium text-muted transition-colors duration-150 hover:text-foreground [&>svg]:shrink-0";
+const PDF_BUTTON = "inline-flex h-11 cursor-pointer items-center gap-2 whitespace-nowrap rounded-[10px] bg-foreground px-5 text-sm font-medium text-background transition-opacity duration-150 hover:opacity-85 [&>svg]:shrink-0";
 
 // resume 페이지 본문 - 데이터는 src/lib/about.ts
 export default function AboutView({ about, lang = "ko" }: { about: AboutContent; lang?: Lang }) {
@@ -83,7 +83,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
           {/* 휴대폰은 앞부분만 보여주고 '전체 읽기' ↔ '접기' - JS 없이 체크박스 + :has */}
           <div className="group/cover flex flex-col">
             <div className={coverFolds ? "relative max-sm:max-h-[22rem] max-sm:overflow-hidden max-sm:group-has-[:checked]/cover:max-h-none max-sm:after:absolute max-sm:after:inset-x-0 max-sm:after:bottom-0 max-sm:after:h-24 max-sm:after:bg-gradient-to-t max-sm:after:from-background max-sm:after:to-transparent max-sm:group-has-[:checked]/cover:after:hidden" : undefined}>
-              <div className="prose prose-invert max-w-none prose-headings:font-[family-name:var(--font-display)] prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground prose-a:text-accent-2">
+              <div className="prose prose-invert max-w-none prose-headings:font-[family-name:var(--font-display)] prose-headings:font-medium prose-strong:font-medium prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground prose-a:text-accent-2">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{coverLetter}</ReactMarkdown>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
               <div className="group/more flex flex-col gap-3">
                 <MobileMoreInput id={`career-more-${idx}`} />
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <h3 className="text-lg font-semibold">{c.company}</h3>
+                  <h3 className="text-lg font-medium">{c.company}</h3>
                   <span className="text-sm text-muted">{[c.position, c.role].filter(Boolean).join(" · ")}</span>
                 </div>
                 {c.summary && <p className="text-sm leading-relaxed">{c.summary}</p>}
@@ -121,7 +121,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                     {c.projects.map((p, pi) => (
                       <div key={pi} className="flex flex-col gap-3 border-t border-line pt-4 print:break-inside-avoid max-sm:gap-0 max-sm:border-0 max-sm:pt-0 max-sm:group-has-[:checked]/more:gap-3">
                         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                          <h4 className="font-semibold">{p.title}</h4>
+                          <h4 className="font-medium">{p.title}</h4>
                           <span className={`text-sm tabular-nums text-muted ${MOBILE_OPEN_ONLY_INLINE}`}>{p.period}</span>
                         </div>
                         <BulletList items={p.details} mobileKeep={0} lang={lang} />
@@ -144,7 +144,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
           {sortedTrainings.map((tr, idx) => (
             <TimelineItem key={idx} period={tr.period}>
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <h3 className="text-lg font-semibold">{tr.org}</h3>
+                <h3 className="text-lg font-medium">{tr.org}</h3>
                 <span className="text-sm text-muted">{tr.course}</span>
               </div>
               {/* 배운 기술(learned)은 역량과 겹쳐서 안 그림 - 데이터는 about.ts 에 그대로 */}
@@ -161,7 +161,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
           {sortedEducations.map((e, idx) => (
             <TimelineItem key={idx} period={[e.period, e.status].filter(Boolean).join(" · ")}>
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <h3 className="text-lg font-semibold">{e.school}</h3>
+                <h3 className="text-lg font-medium">{e.school}</h3>
                 {e.department && <span className="text-sm text-muted">{e.department}</span>}
               </div>
               {(e.region || e.gpa) && (
@@ -181,7 +181,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
           {certifications.map((c, idx) => (
             <li key={idx} className="flex flex-col gap-1 border-t border-line py-4">
-              <div className="font-semibold">{c.name}</div>
+              <div className="font-medium">{c.name}</div>
               <div className="text-sm text-muted">{c.issuer} · <span className="tabular-nums">{c.acquiredAt}</span></div>
             </li>
           ))}
@@ -192,7 +192,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
       {military && (
         <Section title={t("resume.etc")}>
           <div className="border-t border-line pt-4 text-sm">
-            <span className="font-semibold">{t("resume.military")} · {military.status}</span>
+            <span className="font-medium">{t("resume.military")} · {military.status}</span>
             <span className="text-muted"> - {military.type} ({military.period})</span>
           </div>
         </Section>
@@ -210,7 +210,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                 className="group flex items-start justify-between gap-3 border-t border-line py-4"
               >
                 <div className="flex flex-col gap-1 min-w-0">
-                  <div className="font-semibold transition-colors duration-150 group-hover:text-accent-2">{p.title}</div>
+                  <div className="font-medium transition-colors duration-150 group-hover:text-accent-2">{p.title}</div>
                   <div className="text-sm tabular-nums text-muted">
                     {p.period}
                     {p.teamSize && ` · ${t("resume.teamSize", { n: p.teamSize })}`}

@@ -69,7 +69,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
             {profile?.email && (
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-semibold text-foreground transition-[opacity,transform] duration-150 hover:opacity-85 active:scale-[0.97]"
+                className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-medium text-foreground transition-[opacity,transform] duration-150 hover:opacity-85 active:scale-[0.97]"
               >
                 <Mail className="size-4" strokeWidth={1.5} />
                 {t("home.contact")}
@@ -80,7 +80,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                 href={contacts.githubPersonal}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line bg-surface px-5 text-sm font-semibold transition-[background-color,transform] duration-150 hover:bg-surface-hover active:scale-[0.97]"
+                className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line bg-surface px-5 text-sm font-medium transition-[background-color,transform] duration-150 hover:bg-surface-hover active:scale-[0.97]"
               >
                 <GithubIcon className="size-4" />
                 GitHub
@@ -127,7 +127,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 flex-1 min-w-0">
                       <div className="flex flex-col gap-1">
-                        <h3 className="text-lg font-semibold">{c.company}</h3>
+                        <h3 className="text-lg font-medium">{c.company}</h3>
                         <span className="text-sm text-muted">
                           {[c.role, c.position].filter(Boolean).join(" · ")}
                         </span>
@@ -195,7 +195,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                 )}
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2 min-w-0">
-                    <h3 className={`${lead ? "text-2xl max-sm:text-lg" : "text-lg"} font-semibold truncate transition-colors duration-150 group-hover:text-accent-2`}>{p.title}</h3>
+                    <h3 className={`${lead ? "text-2xl max-sm:text-lg" : "text-lg"} font-medium truncate transition-colors duration-150 group-hover:text-accent-2`}>{p.title}</h3>
                     {p.status !== "local" && (
                       <span className="shrink-0 text-sm text-muted">· {t(p.status === "live" ? "status.live" : "status.released")}</span>
                     )}
@@ -263,7 +263,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
           {profile?.email && (
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex h-11 max-w-full items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-semibold text-foreground transition-[opacity,transform] hover:opacity-85 active:scale-[0.97] max-[359px]:px-4 max-[359px]:text-[15px]"
+              className="inline-flex h-11 max-w-full items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-medium text-foreground transition-[opacity,transform] hover:opacity-85 active:scale-[0.97] max-[359px]:px-4 max-[359px]:text-[15px]"
             >
               <Mail className="size-4 shrink-0 max-[359px]:hidden" />
               {profile.email}
@@ -274,7 +274,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
               href={contacts.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line px-5 text-sm font-semibold transition-[background-color,transform] hover:bg-surface-hover active:scale-[0.97]"
+              className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line px-5 text-sm font-medium transition-[background-color,transform] hover:bg-surface-hover active:scale-[0.97]"
             >
               <LinkedinIcon className="size-4" />
               LinkedIn

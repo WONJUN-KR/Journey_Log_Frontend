@@ -39,7 +39,7 @@ export function Chip({ children }: { children: React.ReactNode }) {
 // 휴대폰 접기·펼치기 버튼 - 본문 글자와 구분되게 한 단계 밝은 면 + 테두리
 // data-more-toggle 을 붙이면 접을 때 펼쳤던 화면 위치로 돌아감(components/MoreToggleScrollRestore)
 export const MOBILE_TOGGLE =
-  "inline-flex w-fit cursor-pointer select-none items-center gap-1 rounded-lg border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-muted transition-colors duration-150 hover:text-foreground";
+  "inline-flex w-fit cursor-pointer select-none items-center gap-1 rounded-lg border border-line bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-colors duration-150 hover:text-foreground";
 
 // 휴대폰 접기 묶음 - 바깥 상자에 group/more 를 주고 버튼(MobileMoreToggle)을 하나만 두면
 // 안쪽의 MOBILE_OPEN_ONLY 붙은 것들이 그 버튼 하나로 같이 펼쳐지고 접힘 (JS 없이 체크박스 + :has). sm 이상은 항상 펼침

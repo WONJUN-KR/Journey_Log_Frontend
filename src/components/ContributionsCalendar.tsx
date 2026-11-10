@@ -87,7 +87,7 @@ export default function ContributionsCalendar({ initialDays, initialYear = "", y
   // 제목과 선택 상자가 한 줄에 안 들어가는 폭(320px 등)에선 선택 상자를 다음 줄로 내림 (nowrap 제목에 밀려 카드 밖으로 나가던 문제)
   const header = (periodLabel: string) => (
     <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
-      <span className="whitespace-nowrap text-sm font-semibold">GitHub Contributions</span>
+      <span className="whitespace-nowrap text-sm font-medium">GitHub Contributions</span>
       <YearSelector years={years} value={year} onChange={changeYear} defaultLabel={periodLabel} lang={lang} />
     </div>
   );
