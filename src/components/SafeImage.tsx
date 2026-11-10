@@ -36,7 +36,7 @@ export default function SafeImage({ src, alt, className = "", onLoad, preload, .
     <span
       aria-hidden
       className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-surface ${
-        fade ? `transition-opacity duration-500 ${done ? "opacity-0" : "opacity-100"}` : ""
+        fade ? `transition-opacity duration-300 ${done ? "opacity-0" : "opacity-100"}` : ""
       }`}
     >
       <svg viewBox="0 0 48 48" className="w-[min(56px,45%)] aspect-square motion-safe:animate-spin [animation-duration:0.9s]">
@@ -54,7 +54,7 @@ export default function SafeImage({ src, alt, className = "", onLoad, preload, .
         src={src}
         alt={alt}
         preload={preload}
-        className={`${className} ${fade ? `transition-opacity duration-500 ${done ? "opacity-100" : "opacity-0"}` : ""}`}
+        className={`${className} ${fade ? `transition-opacity duration-300 ${done ? "opacity-100" : "opacity-0"}` : ""}`}
         onLoad={(e) => {
           setView((v) => ({ ...v, done: true }));
           onLoad?.(e);

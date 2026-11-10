@@ -88,7 +88,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
               <input type="checkbox" className="peer sr-only" />
               <span className="peer-checked:hidden">{t("resume.readAll")}</span>
               <span className="hidden peer-checked:inline">{t("toggle.less")}</span>
-              <ChevronDown className="size-3.5 transition-transform duration-200 peer-checked:rotate-180" />
+              <ChevronDown className="size-3.5 transition-transform peer-checked:rotate-180" />
             </label>
             )}
           </div>

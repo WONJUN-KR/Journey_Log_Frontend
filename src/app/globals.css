@@ -96,33 +96,21 @@
 }
 
 @theme {
-  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* 모든 transition 은 같은 곡선 · 기본 150ms - 클래스에 duration 을 안 쓰면 이 값 */
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-up: fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   @keyframes fade-up {
     /* 투명(opacity 0)에서 시작하면 브라우저가 첫 화면 글자를 '아직 안 보임'으로 쳐서 LCP 가 애니메이션 끝까지 밀림
        (휴대폰 라이트하우스 홈 79 → 94, LCP 5.5 → 2.9초 실측) → 위로 올라오는 움직임만 남김 */
     from {
-      transform: translateY(12px);
+      transform: translateY(8px);
     }
     to {
       transform: translateY(0);
     }
   }
-}
-
-/* 마우스를 올리면 왼쪽에서 오른쪽으로 그어지는 벽돌색 밑줄 - 링크 자신 또는 감싼 .group 에 hover */
-.underline-draw {
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 2px;
-  padding-bottom: 2px;
-  transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.underline-draw:hover,
-.group:hover .underline-draw,
-.group:focus-visible .underline-draw {
-  background-size: 100% 2px;
 }
 
 body {

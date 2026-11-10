@@ -98,7 +98,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
       </section>
 
       {/* 숫자 - 카드 없이 위 구분선 + 숫자 + 근거 한 줄. 근거 앞 짧은 벽돌색 선 = 사이트 공통 '근거 표기' */}
-      <section className="animate-fade-up [animation-delay:60ms] grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-sm:grid-cols-1 max-sm:gap-y-0">
+      <section className="animate-fade-up [animation-delay:50ms] grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-sm:grid-cols-1 max-sm:gap-y-0">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-col gap-2 border-t border-line pt-4 max-sm:grid max-sm:grid-cols-[minmax(0,1fr)_auto] max-sm:gap-x-4 max-sm:gap-y-1 max-sm:py-4">
             <span className="text-sm text-muted max-sm:col-start-1 max-sm:row-start-1">{s.label}</span>
@@ -146,7 +146,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                             <span className="text-sm sm:text-base font-medium">{proj.title}</span>
                             <span className="flex items-center gap-3 shrink-0">
                               <span className="hidden sm:inline text-sm tabular-nums text-muted">{proj.period}</span>
-                              <ChevronDown className="size-4 text-muted transition-transform duration-200 group-open:rotate-180" strokeWidth={1.5} />
+                              <ChevronDown className="size-4 text-muted transition-transform group-open:rotate-180" strokeWidth={1.5} />
                             </span>
                           </summary>
                           <ul className="flex flex-col gap-2 pb-5 text-sm text-muted">
