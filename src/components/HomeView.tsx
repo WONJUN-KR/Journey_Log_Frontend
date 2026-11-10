@@ -239,11 +239,11 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         )}
       </section>
 
-      {/* Contact - 메일 버튼 하나 + 글자 링크. 페이지를 닫는 짧은 블록이라 이것만 가운데 정렬 */}
-      <section className="flex flex-col items-center gap-5 border-t border-line pt-12 sm:pt-16 text-center">
+      {/* Contact - 메일 버튼 하나 + 글자 링크 */}
+      <section className="flex flex-col gap-5 border-t border-line pt-12 sm:pt-16">
         <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em]">{t("home.cta.title")}</h2>
         <p className="max-w-md text-muted">{t("home.cta.body")}</p>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pt-1">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
           {/* 360px 미만은 메일 주소가 버튼 여백·아이콘까지 들어갈 폭이 안 돼서 여백·글자 크기를 줄이고 아이콘 생략 */}
           {profile?.email && (
             <a
