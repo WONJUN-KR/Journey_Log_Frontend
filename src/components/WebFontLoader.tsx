@@ -17,9 +17,6 @@ const BASE = "https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0";
 const WEIGHTS: [string, string][] = [
   ["400", "Paperlogy-4Regular"],
   ["500", "Paperlogy-5Medium"],
-  ["600", "Paperlogy-6SemiBold"],
-  ["700", "Paperlogy-7Bold"],
-  ["800", "Paperlogy-8ExtraBold"],
 ];
 // first-contentful-paint 기록을 못 받는 브라우저 대비 - load 뒤 이 시간이 지나면 그냥 등록
 const FALLBACK_MS = 3000;

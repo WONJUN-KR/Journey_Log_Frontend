@@ -96,7 +96,7 @@ export default function MockupGallery({ slug, title, mockup, children, lang = "k
         className="group/shot relative block w-full cursor-pointer rounded-xl text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
         {children}
-        <span className="pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-lg bg-black/70 px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-150 group-hover/shot:bg-black/85 max-sm:right-2 max-sm:bottom-2 max-sm:px-3 max-sm:py-1.5 max-sm:text-[13px]">
+        <span className="pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-lg bg-black/70 px-3.5 py-2 text-sm font-medium text-white transition-colors duration-150 group-hover/shot:bg-black/85 max-sm:right-2 max-sm:bottom-2 max-sm:px-3 max-sm:py-1.5 max-sm:text-[13px]">
           <Play className="size-4 fill-current max-sm:size-3.5" />
           {t("gallery.open")}
           <span className="font-normal text-white/75">
@@ -121,13 +121,13 @@ export default function MockupGallery({ slug, title, mockup, children, lang = "k
           <div className="flex flex-col gap-4 p-5 sm:p-8 max-sm:p-4">
             <div className="flex items-start justify-between gap-4">
               <div className="flex flex-col gap-1">
-                <h3 className="text-xl font-semibold max-sm:text-lg">{title}</h3>
+                <h3 className="text-xl font-medium max-sm:text-lg">{title}</h3>
                 {mockup.note && <p className="text-sm text-muted max-sm:text-[13px]">{mockup.note}</p>}
                 {mockup.related && (
                   <button
                     type="button"
                     onClick={() => openRelated(mockup.related!.slug)}
-                    className="mt-1 inline-flex w-fit items-center gap-1.5 rounded-lg border border-line bg-background px-3 py-1.5 text-sm font-semibold text-accent-2 transition-colors duration-150 hover:bg-surface-hover"
+                    className="mt-1 inline-flex w-fit items-center gap-1.5 rounded-lg border border-line bg-background px-3 py-1.5 text-sm font-medium text-accent-2 transition-colors duration-150 hover:bg-surface-hover"
                   >
                     <ArrowLeftRight className="size-4 shrink-0" />
                     {mockup.related.label}

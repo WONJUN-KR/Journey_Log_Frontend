@@ -6,7 +6,7 @@ export const ko = {
     description: "의료 IT 풀스택 개발자",
   },
   nav: {
-    logoSuffix: " · PORTFOLIO",
+    logoSuffix: " PORTFOLIO",
     resume: "Resume",
     projects: "Projects",
     log: "Log",
@@ -68,7 +68,7 @@ export const ko = {
       title: "활동",
     },
     cta: {
-      title: "메일로 연락 주세요",
+      title: "함께 이야기 나눠요",
       body: "궁금한 점이나 제안이 있다면 편하게 연락 주세요.",
     },
   },

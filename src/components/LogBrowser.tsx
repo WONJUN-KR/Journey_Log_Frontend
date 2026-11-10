@@ -87,7 +87,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                   {/* 360px 미만은 연도를 제목 위로, 글 수·날짜를 짧게 */}
                   <div className="flex flex-col gap-1 max-sm:col-start-2 max-sm:row-start-1 max-sm:min-w-0 max-sm:gap-0 min-[360px]:max-sm:flex-row min-[360px]:max-sm:items-baseline min-[360px]:max-sm:gap-2">
                     {years && <span className="text-sm tabular-nums text-muted max-sm:shrink-0">{years}</span>}
-                    <h3 className="text-lg font-semibold max-sm:truncate max-sm:text-base">{title}</h3>
+                    <h3 className="text-lg font-medium max-sm:truncate max-sm:text-base">{title}</h3>
                   </div>
                   {/* 날짜는 숫자형(2026-01-26) - 긴 한글 날짜는 카드 폭에서 두 줄로 꺾였음 */}
                   <div className="flex items-center gap-2 whitespace-nowrap text-sm text-muted max-sm:col-start-2 max-sm:row-start-2 max-sm:min-w-0 max-sm:gap-1.5 max-sm:overflow-hidden max-sm:whitespace-nowrap">
@@ -132,7 +132,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
               <button
                 type="button"
                 onClick={() => selectSeries(selected.id)}
-                className="h-11 shrink-0 rounded-[10px] border border-line bg-surface px-4 text-sm font-semibold transition-colors duration-150 hover:bg-surface-hover"
+                className="h-11 shrink-0 rounded-[10px] border border-line bg-surface px-4 text-sm font-medium transition-colors duration-150 hover:bg-surface-hover"
               >
                 {t("log.clearSeries")}
               </button>
@@ -171,7 +171,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                     )}
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-sm font-semibold line-clamp-2 transition-colors duration-150 group-hover:text-accent-2">
+                    <h3 className="text-sm font-medium line-clamp-2 transition-colors duration-150 group-hover:text-accent-2">
                       {post.title}
                     </h3>
                     {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
@@ -225,7 +225,7 @@ function PageButton({ children, onClick, label, active = false }: {
       onClick={onClick}
       aria-label={label}
       aria-current={active ? "page" : undefined}
-      className={`flex size-9 items-center justify-center rounded-lg text-sm tabular-nums font-semibold transition-colors duration-150 ${
+      className={`flex size-9 items-center justify-center rounded-lg text-sm tabular-nums font-medium transition-colors duration-150 ${
         active ? "bg-accent-strong text-foreground" : "text-muted hover:bg-surface-hover hover:text-foreground"
       }`}
     >

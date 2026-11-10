@@ -52,7 +52,7 @@ export default function HistoryView({ lang }: { lang: Lang }) {
                   {/* 긴 문구가 칸을 밀어내지 않게 - 가장 작은 폰(320px)에서 가로 스크롤 생기던 곳 */}
                   <div className="flex flex-col gap-1 min-w-0 break-words">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-semibold">{item.title}</h3>
+                      <h3 className="font-medium">{item.title}</h3>
                       {/* 진행 중은 배지 대신 벽돌색 점 + 글자 */}
                       {item.status === "IN_PROGRESS" && (
                         <span className="inline-flex items-center gap-1.5 text-sm text-accent-2">

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import NavLinks from "@/components/NavLinks";
 import "@/app/globals.css";
@@ -12,16 +11,6 @@ import MoreToggleScrollRestore from "@/components/MoreToggleScrollRestore";
 import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl";
 import { tFor } from "@/i18n/translator";
 import { yearIn } from "@/lib/time";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 // 언어별 루트 레이아웃(app/[locale])의 홈 기준 메타데이터 - 다른 페이지는 각 page.tsx 에서 pageMetadata 로 설명·주소를 덮어씀
 export function rootMetadata(lang: Lang): Metadata {
@@ -45,14 +34,14 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
   const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((ns) => [ns, messages[ns]]));
   const t = useTranslations();
   return (
-    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}>
+    <html lang={lang} className="dark h-full antialiased">
       <body className="min-h-full flex flex-col font-sans">
         {/* 클라이언트 컴포넌트(메뉴 · 잔디 · 기록 등)의 useTranslations 용 - 쓰는 묶음만 넘김 (전부 넘기면 페이지마다 HTML 약 5KB 증가) */}
         <NextIntlClientProvider messages={clientMessages}>
         <header className="sticky top-0 z-40 border-b border-line bg-background/70 backdrop-blur-xl">
           <nav className="max-w-5xl mx-auto flex items-center justify-between gap-3 max-[359px]:gap-2 px-4 max-[359px]:px-3 sm:px-6 h-14">
             {/* 휴대폰 폭에선 메뉴가 한 줄에 들어가도록 로고를 줄임. 360px 미만(가장 작은 폰 320px)은 여백·글자를 한 단계 더 줄임 */}
-            <Link href={localizedPath(lang, "/")} className="shrink-0 whitespace-nowrap max-[359px]:text-[15px] font-semibold tracking-tight">
+            <Link href={localizedPath(lang, "/")} className="shrink-0 origin-left whitespace-nowrap max-[359px]:text-[15px] font-medium transition-[color,transform] hover:text-accent-2 active:scale-[0.97]">
               WONJUN<span className="hidden sm:inline">{t("nav.logoSuffix")}</span>
             </Link>
             <NavLinks lang={lang} />
@@ -65,7 +54,7 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
           {children}
         </main>
         {/* 저작권 - 모든 페이지 하단 */}
-        <footer className="max-w-5xl w-full mx-auto px-4 sm:px-6 pb-8 text-xs text-muted print:hidden">© {yearIn()} WonJun. All rights reserved.</footer>
+        <footer className="max-w-5xl w-full mx-auto px-4 sm:px-6 pb-8 text-center text-xs text-muted print:hidden">© {yearIn()} WonJun. All rights reserved.</footer>
         {/* 방문 통계 (Vercel Web Analytics) - 쿠키 없이 페이지뷰·유입 경로·기기만 집계, Vercel 배포에서만 수집 */}
         <Analytics />
         {/* 웹폰트(페이퍼로지 · Pretendard)는 첫 페인트 뒤에 등록 */}
