@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, Building2, ChevronDown, Mail } from "lucide-react";
+import { ArrowUpRight, Building2, ChevronDown, Mail } from "lucide-react";
 import ContributionsCalendar from "@/components/ContributionsCalendar";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { SectionHeader, StackChips } from "@/components/ui";
@@ -254,7 +254,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         )}
       </section>
 
-      {/* Contact - 메일 버튼 하나 + 글자 링크 */}
+      {/* Contact - 메일 버튼 하나 + LinkedIn 글자 링크 */}
       <section className="flex flex-col gap-5 border-t border-line pt-12 sm:pt-16">
         <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em]">{t("home.cta.title")}</h2>
         <p className="max-w-md text-muted">{t("home.cta.body")}</p>
@@ -273,12 +273,6 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
             <a href={contacts.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
               <LinkedinIcon className="size-4" />
               LinkedIn
-            </a>
-          )}
-          {contacts?.blog && (
-            <a href={contacts.blog} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
-              <BookOpen className="size-4" strokeWidth={1.5} />
-              Blog
             </a>
           )}
         </div>
