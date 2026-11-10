@@ -89,12 +89,13 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                     {years && <span className="text-sm tabular-nums text-muted max-sm:shrink-0">{years}</span>}
                     <h3 className="text-lg font-semibold max-sm:truncate max-sm:text-base">{title}</h3>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted max-sm:col-start-2 max-sm:row-start-2 max-sm:min-w-0 max-sm:gap-1.5 max-sm:overflow-hidden max-sm:whitespace-nowrap">
+                  {/* 날짜는 숫자형(2026-01-26) - 긴 한글 날짜는 카드 폭에서 두 줄로 꺾였음 */}
+                  <div className="flex items-center gap-2 whitespace-nowrap text-sm text-muted max-sm:col-start-2 max-sm:row-start-2 max-sm:min-w-0 max-sm:gap-1.5 max-sm:overflow-hidden max-sm:whitespace-nowrap">
                     <span className="shrink-0">{t("log.countShort", { n: series.postsCount })}<span className="max-[359px]:hidden">{t("log.countSuffix")}</span></span>
                     {series.updatedAt && (
                       <>
                         <span>·</span>
-                        <span className="max-sm:truncate"><span className="max-[359px]:hidden">{t("log.updatedPrefix")}</span><LocalDate iso={series.updatedAt} locale={locale} /><span className="max-[359px]:hidden">{t("log.updatedSuffix")}</span></span>
+                        <span className="max-sm:truncate"><span className="max-[359px]:hidden">{t("log.updatedPrefix")}</span><LocalDate iso={series.updatedAt} locale={locale} numeric /><span className="max-[359px]:hidden">{t("log.updatedSuffix")}</span></span>
                       </>
                     )}
                   </div>
