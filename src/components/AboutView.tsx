@@ -119,7 +119,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                 {c.projects && c.projects.length > 0 && (
                   <div className="flex flex-col gap-5 mt-1">
                     {c.projects.map((p, pi) => (
-                      <div key={pi} className="flex flex-col gap-2 border-t border-line pt-4 print:break-inside-avoid max-sm:gap-0 max-sm:border-0 max-sm:pt-0 max-sm:group-has-[:checked]/more:gap-2">
+                      <div key={pi} className="flex flex-col gap-3 border-t border-line pt-4 print:break-inside-avoid max-sm:gap-0 max-sm:border-0 max-sm:pt-0 max-sm:group-has-[:checked]/more:gap-3">
                         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                           <h4 className="font-semibold">{p.title}</h4>
                           <span className={`text-sm tabular-nums text-muted ${MOBILE_OPEN_ONLY_INLINE}`}>{p.period}</span>
@@ -281,11 +281,12 @@ function TimelineItem({ period, current, children }: {
 // mobileKeep 을 주면 휴대폰에선 앞 N개만 보이고 나머지는 바깥 group/more 버튼으로 펼침
 function BulletList({ items, mobileKeep, lang }: { items: CareerDetail[]; mobileKeep?: number; lang: Lang }) {
   return (
-    <ul className="flex flex-col gap-1.5 text-sm text-muted">
+    // 본문 줄이라 흐린 회색 대신 본문색을 살짝 낮춰서, 줄 사이 · 줄 안 간격을 넉넉하게 (붙어 보여 안 읽히던 것)
+    <ul className="flex flex-col gap-2.5 text-sm leading-relaxed text-foreground/85">
       {items.map((d, i) => (
         <li
           key={i}
-          className={`relative pl-4 before:absolute before:left-0 before:top-2.5 before:size-1 before:rounded-full before:bg-muted ${
+          className={`relative pl-4 before:absolute before:left-0 before:top-3 before:size-1 before:rounded-full before:bg-muted ${
             mobileKeep !== undefined && i >= mobileKeep ? MOBILE_OPEN_ONLY_ITEM : ""
           }`}
         >
