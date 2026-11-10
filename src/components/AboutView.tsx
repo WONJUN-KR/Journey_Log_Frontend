@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { BookOpen, ChevronDown, ExternalLink, Mail, MapPin } from "lucide-react";
+import { BookOpen, ChevronDown, ExternalLink, Info, Mail, MapPin } from "lucide-react";
 import { detailText, type AboutContent, type CareerDetail, type Evidence } from "@/lib/api";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import SkillGroups from "@/components/SkillGroups";
@@ -305,9 +305,10 @@ function EvidencePin({ evidence, lang }: { evidence: Evidence; lang: Lang }) {
     <details className="group/pin inline">
       <summary
         aria-label={t("evidence.aria")}
-        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center rounded-full border border-line align-[1px] text-[12px] font-medium leading-none text-muted transition-colors duration-150 hover:text-foreground group-open/pin:bg-surface-hover group-open/pin:text-foreground [&::-webkit-details-marker]:hidden"
+        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center align-[-4px] text-accent-2 transition-colors hover:text-foreground group-open/pin:text-foreground [&::-webkit-details-marker]:hidden"
       >
-        i
+        {/* 글자 i 를 원 안에 넣으면 폰트에 따라 가운데가 어긋나서 아이콘으로 */}
+        <Info className="size-[18px]" strokeWidth={1.75} />
       </summary>
       {/* 상자 대신 위 구분선 + 작은 글씨로 본문 아래에 붙임 */}
       <div className="mt-2 mb-1 border-t border-line pt-2 text-sm text-foreground">
