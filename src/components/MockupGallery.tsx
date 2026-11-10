@@ -81,7 +81,7 @@ export default function MockupGallery({ slug, title, mockup, children, lang = "k
   };
 
   const current = slides[index];
-  const navButton = "absolute top-1/2 -translate-y-1/2 z-10 rounded-full border border-line bg-surface/90 p-2 shadow-lg backdrop-blur hover:bg-surface-hover transition-colors disabled:opacity-0 max-sm:p-1.5";
+  const navButton = "absolute top-1/2 -translate-y-1/2 z-10 rounded-lg border border-line bg-surface p-2 hover:bg-surface-hover transition-colors duration-150 disabled:opacity-0 max-sm:p-1.5";
 
   return (
     <>
@@ -159,7 +159,7 @@ export default function MockupGallery({ slug, title, mockup, children, lang = "k
                 }}
               >
                 <div
-                  className="flex transition-transform duration-300 ease-out motion-reduce:transition-none"
+                  className="flex transition-transform duration-300 motion-reduce:transition-none"
                   style={{ transform: `translateX(-${index * 100}%)` }}
                 >
                   {slides.map((s, i) => (

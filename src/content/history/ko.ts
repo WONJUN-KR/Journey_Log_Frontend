@@ -1,6 +1,6 @@
 import type { RoadmapItem } from "@/lib/api";
 
-// 연혁(History) 데이터 (한국어) - 영어는 ./en.ts 에 같은 타입으로 통째. 노션·DB 동기화 대신 코드로 관리 (수정 이력이 커밋으로 남음). period(YYYY.MM)로 연도별로 묶여 최신이 위로
+// 연혁(History) 데이터 - 노션·DB 동기화 대신 코드로 관리 (수정 이력이 커밋으로 남음). period(YYYY.MM)로 연도별로 묶여 최신이 위로
 export const HISTORY_KO: RoadmapItem[] = [
   { id: 20, slug: "bucheon-univ-start", title: "부천대학교 입학", description: "정보통신학과 입학", period: "2019.03", story: null, status: "LEARNED", targetDate: null, sortOrder: 1 },
   { id: 19, slug: "bucheon-univ-grad", title: "부천대학교 졸업", description: "전문학사 졸업", period: "2021.02", story: null, status: "SUCCEEDED", targetDate: null, sortOrder: 2 },

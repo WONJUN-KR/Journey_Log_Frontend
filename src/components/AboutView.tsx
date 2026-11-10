@@ -22,7 +22,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
   const currentCareer = sortedCareers.find((c) => c.isCurrent);
   const sortedEducations = [...educations].sort((a, b) => a.sortOrder - b.sortOrder);
   const sortedTrainings = [...trainings].sort((a, b) => a.sortOrder - b.sortOrder);
-  // 짧은 소개(영어판 3~4문장)는 휴대폰에서도 다 보여서 접기 없이 그대로
+  // 짧은 소개는 휴대폰에서도 다 보여서 접기 없이 그대로
   const coverFolds = coverLetter.length > 800;
 
   const links = [
@@ -57,7 +57,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
 
       {/* 정보 박스 */}
       {/* 이력서 요약 4칸 - 사람인·잡코리아 상단 요약 기준 (총 경력 · 전문 분야 · 최종 학력 · 자격증) */}
-      {/* 홈 숫자와 같은 모양(위 구분선). 휴대폰은 한 줄씩 (이름·설명 왼쪽, 값 오른쪽) - 값 칸은 최대 65%, 넘으면 값도 줄바꿈 (영어 자격증 이름처럼 긴 값이 화면 밖으로 안 나가게) */}
+      {/* 홈 숫자와 같은 모양(위 구분선). 휴대폰은 한 줄씩 (이름·설명 왼쪽, 값 오른쪽) - 값 칸은 최대 65%, 넘으면 값도 줄바꿈 (긴 값이 화면 밖으로 안 나가게) */}
       <section className="grid grid-cols-2 max-sm:grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-8 max-sm:gap-y-0">
         <InfoBox
           label={t("resume.info.career")}
@@ -88,7 +88,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
               <input type="checkbox" className="peer sr-only" />
               <span className="peer-checked:hidden">{t("resume.readAll")}</span>
               <span className="hidden peer-checked:inline">{t("toggle.less")}</span>
-              <ChevronDown className="size-3.5 transition-transform duration-200 peer-checked:rotate-180" />
+              <ChevronDown className="size-3.5 transition-transform peer-checked:rotate-180" />
             </label>
             )}
           </div>
@@ -144,7 +144,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                 <span className="text-sm text-muted">{tr.course}</span>
               </div>
               {/* 배운 기술(learned)은 역량과 겹쳐서 안 그림 - 데이터는 about.ts 에 그대로 */}
-              {/* 교육 중 사이드 프로젝트는 제목만 ("제목 (팀·기간) - 설명" · 영어 "Title (team, period): 설명" 에서 설명 앞까지) - 자세한 건 포트폴리오에서 */}
+              {/* 교육 중 사이드 프로젝트는 제목만 ("제목 (팀·기간) - 설명" 에서 설명 앞까지) - 자세한 건 포트폴리오에서 */}
               {tr.projects && tr.projects.length > 0 && <BulletList items={tr.projects.map((x) => x.split(/ - |(?<=\)): /)[0])} lang={lang} />}
             </TimelineItem>
           ))}
@@ -305,12 +305,13 @@ function EvidencePin({ evidence, lang }: { evidence: Evidence; lang: Lang }) {
     <details className="group/pin inline">
       <summary
         aria-label={t("evidence.aria")}
-        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center rounded-full border border-accent-2 align-[1px] text-[12px] font-bold leading-none text-accent-2 transition-colors group-open/pin:bg-accent-2 group-open/pin:text-background [&::-webkit-details-marker]:hidden"
+        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center rounded-full border border-line align-[1px] text-[12px] font-medium leading-none text-muted transition-colors duration-150 hover:text-foreground group-open/pin:bg-surface-hover group-open/pin:text-foreground [&::-webkit-details-marker]:hidden"
       >
         i
       </summary>
-      <div className="mt-2 mb-1 rounded-[10px] border border-line border-l-[3px] border-l-accent bg-surface max-sm:bg-background px-3.5 py-3 text-[14px] text-foreground">
-        <dl className="grid grid-cols-[minmax(3.25rem,auto)_1fr] gap-x-2.5 gap-y-1 m-0">
+      {/* 상자 대신 위 구분선 + 작은 글씨로 본문 아래에 붙임 */}
+      <div className="mt-2 mb-1 border-t border-line pt-2 text-sm text-foreground">
+        <dl className="grid grid-cols-[minmax(3.25rem,auto)_1fr] gap-x-3 gap-y-1 m-0">
           {rows.map(([k, v]) => (
             <div key={k} className="contents">
               <dt className="text-muted">{k}</dt>

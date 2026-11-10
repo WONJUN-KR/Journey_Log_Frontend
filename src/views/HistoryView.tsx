@@ -26,13 +26,13 @@ function groupByYear(items: RoadmapItem[], other: string): { year: string; items
     .map(([year, list]) => ({ year, items: list.sort(newestFirst) }));
 }
 
-// 연혁 페이지 본문 - 한국어 · 영어 페이지가 같이 씀
+// 연혁 페이지 본문
 export default function HistoryView({ lang }: { lang: Lang }) {
   const t = useTranslations();
-  const years = groupByYear(getHistory(lang), t("history.other"));
-  // "2024.11" 의 월 → 한국어 "11월" · 영어 "Nov"
+  const years = groupByYear(getHistory(), t("history.other"));
+  // "2024.11" 의 월 → "11월"
   const monthLabel = (period: string) =>
-    lang === "en" ? new Date(Date.UTC(2000, Number(period.slice(5, 7)) - 1, 1)).toLocaleString("en-US", { month: "short", timeZone: "UTC" }) : `${period.slice(5, 7)}월`;
+    `${period.slice(5, 7)}월`;
 
   return (
     <div className="flex flex-col gap-12 py-6">

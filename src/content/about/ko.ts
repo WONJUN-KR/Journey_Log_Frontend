@@ -1,7 +1,7 @@
 import type { AboutContent } from "@/lib/api";
 import { totalCareerPeriod } from "@/lib/career";
 
-// 이력서 데이터 (한국어) - 홈(/)과 Resume(/resume)이 함께 씀. 영어는 ./en.ts 에 같은 타입으로 통째 (항목 · 순서는 달라도 됨)
+// 이력서 데이터 - 홈(/)과 Resume(/resume)이 함께 씀
 // 경력 · 학력 id 가 언어끼리 안 맞으면 빌드 때 경고(lib/about.ts) - 항목을 추가 · 삭제하면 en.ts 도 같이
 
 // 홈 숫자 카드 - 커밋 수 대신 결과 지표. 아래 careers 문구에 있는 숫자만 씀 (basis = 근거 한 줄)
@@ -20,7 +20,7 @@ export const ABOUT_KO: AboutContent = {
     region: "경기 시흥",
     // 읽을 때마다 careers 기간으로 계산
     get careerPeriod() {
-      return totalCareerPeriod(ABOUT_KO.careers, "ko");
+      return totalCareerPeriod(ABOUT_KO.careers);
     },
     isEmployed: true,
     contacts: {

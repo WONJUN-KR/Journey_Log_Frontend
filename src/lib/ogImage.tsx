@@ -1,4 +1,4 @@
-// 링크 미리보기(카톡·슬랙 등) 썸네일 그리기 - 한국어 app/opengraph-image.tsx · 영어 app/og/en/route.tsx 가 같이 씀 (빌드 때 1200x630 PNG)
+// 링크 미리보기(카톡·슬랙 등) 썸네일 그리기 - app/opengraph-image.tsx 가 씀 (빌드 때 1200x630 PNG)
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
@@ -7,12 +7,11 @@ import type { Lang } from "@/i18n";
 export const OG_SIZE = { width: 1200, height: 630 };
 
 const BRAND = "WONJUN · PORTFOLIO";
-// tagline 은 줄 단위 배열 - 영어는 하이픈(Full-stack)에서 끊기지 않게 줄을 직접 나눔
+// tagline 은 줄 단위 배열
 const TEXT: Record<Lang, { alt: string; name: string; tagline: string[]; taglineSize: number; sub: string }> = {
   ko: { alt: "오원준 포트폴리오 - 의료 IT 풀스택 개발자", name: "오원준", tagline: ["의료 IT 풀스택 개발자"], taglineSize: 68, sub: "CGM 의료기기 · Spring · Next.js · AWS" },
-  en: { alt: "WonJun Oh Portfolio - Health IT full-stack developer", name: "WonJun Oh", tagline: ["Health IT", "Full-stack Developer"], taglineSize: 60, sub: "CGM medical devices · Spring · Next.js · AWS" },
 };
-export const OG_ALT: Record<Lang, string> = { ko: TEXT.ko.alt, en: TEXT.en.alt };
+export const OG_ALT: Record<Lang, string> = { ko: TEXT.ko.alt };
 
 // 이미지에 들어가는 글자만 Google Fonts 에서 잘라 받음 (satori 는 woff2 를 못 읽어서 ttf)
 async function loadFont(weight: number, text: string): Promise<ArrayBuffer> {
@@ -45,7 +44,7 @@ export async function renderOgImage(lang: Lang): Promise<ImageResponse> {
           fontFamily: "Noto Sans KR",
         }}
       >
-        {/* 글자 칸은 폭을 정해 둠 - 영어 제목처럼 길면 줄바꿈되고 사진은 그대로 (안 정하면 사진이 오른쪽 밖으로 밀림) */}
+        {/* 글자 칸은 폭을 정해 둠 - 길면 줄바꿈되고 사진은 그대로 (안 정하면 사진이 오른쪽 밖으로 밀림) */}
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 640 }}>
           <div style={{ fontSize: 30, fontWeight: 700, color: "#c9a88f", letterSpacing: 1 }}>{BRAND}</div>
           <div style={{ width: 64, height: 6, background: "#d0604c", borderRadius: 3, margin: "28px 0 32px" }} />
