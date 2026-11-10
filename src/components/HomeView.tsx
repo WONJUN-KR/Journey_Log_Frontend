@@ -203,6 +203,21 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                   </div>
                   <p className="text-sm sm:text-base leading-snug text-muted max-sm:line-clamp-2">{p.tagline}</p>
                 </div>
+                {/* 큰 카드만 - 오른쪽 두 카드보다 짧아 아래가 비어서 기간 · 역할과 맡은 부분 세 줄을 더함 (한 줄로 쌓이는 좁은 화면은 생략) */}
+                {lead && (
+                  <div className="flex flex-col gap-3 border-t border-line pt-4 max-md:hidden">
+                    <p className="text-sm text-muted">
+                      <span className="tabular-nums">{p.period}</span> · {p.role}
+                    </p>
+                    <ul className="flex flex-col gap-1.5 text-sm leading-relaxed">
+                      {p.myPart.slice(0, 3).map((m) => (
+                        <li key={m} className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:size-1 before:rounded-full before:bg-muted">
+                          {m}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </Link>
             );
           })}
