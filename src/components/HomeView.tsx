@@ -254,11 +254,13 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         )}
       </section>
 
-      {/* Contact - 메일 버튼 하나 + 글자 링크 */}
-      <section className="flex flex-col gap-5 border-t border-line pt-12 sm:pt-16">
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em]">{t("home.cta.title")}</h2>
-        <p className="max-w-md text-muted">{t("home.cta.body")}</p>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
+      {/* Contact - 왼쪽 제목 · 설명, 오른쪽 메일 버튼과 그 아래 글자 링크 (박스 없이). 휴대폰은 위아래로 쌓고 왼쪽 정렬 */}
+      <section className="flex flex-col gap-6 border-t border-line pt-12 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:pt-16">
+        <div className="flex flex-col gap-3">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em]">{t("home.cta.title")}</h2>
+          <p className="max-w-md text-muted">{t("home.cta.body")}</p>
+        </div>
+        <div className="flex flex-col items-start gap-3 sm:items-end">
           {/* 360px 미만은 메일 주소가 버튼 여백·아이콘까지 들어갈 폭이 안 돼서 여백·글자 크기를 줄이고 아이콘 생략 */}
           {profile?.email && (
             <a
@@ -269,18 +271,20 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
               {profile.email}
             </a>
           )}
-          {contacts?.linkedin && (
-            <a href={contacts.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
-              <LinkedinIcon className="size-4" />
-              LinkedIn
-            </a>
-          )}
-          {contacts?.blog && (
-            <a href={contacts.blog} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
-              <BookOpen className="size-4" strokeWidth={1.5} />
-              Blog
-            </a>
-          )}
+          <div className="flex items-center gap-x-6">
+            {contacts?.linkedin && (
+              <a href={contacts.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
+                <LinkedinIcon className="size-4" />
+                LinkedIn
+              </a>
+            )}
+            {contacts?.blog && (
+              <a href={contacts.blog} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
+                <BookOpen className="size-4" strokeWidth={1.5} />
+                Blog
+              </a>
+            )}
+          </div>
         </div>
       </section>
     </div>
