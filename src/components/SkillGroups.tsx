@@ -31,7 +31,7 @@ export default function SkillGroups({ skills, lang = "ko" }: { skills: Record<st
       <div className={`flex-col gap-4 ${MOBILE_OPEN_ONLY}`}>
         {groups.map((g) => (
           <div key={g.key} className="flex flex-col gap-2">
-            <span className="text-sm font-semibold">{g.label}</span>
+            <span className="text-sm font-medium">{g.label}</span>
             <div className="flex flex-wrap gap-1.5">
               {groupSkillsByKind(skills[g.key]).flatMap((k) => k.items).map((x) => (
                 <Chip key={x.name}>{x.name}</Chip>
@@ -45,7 +45,7 @@ export default function SkillGroups({ skills, lang = "ko" }: { skills: Record<st
     <div className="flex flex-col gap-8 max-sm:hidden">
       {groups.map((g) => (
         <div key={g.key} className="flex flex-col gap-3">
-          <span className="text-sm font-semibold">{g.label}</span>
+          <span className="text-sm font-medium">{g.label}</span>
           {groupSkillsByKind(skills[g.key]).map((k) => (
             <div key={k.kind ?? "all"} className={`grid grid-cols-1 sm:grid-cols-[110px_1fr] items-start gap-x-4 gap-y-1.5`}>
               {k.kind ? <span className="pt-1 text-xs text-muted">{k.kind}</span> : <span className="hidden sm:block" />}

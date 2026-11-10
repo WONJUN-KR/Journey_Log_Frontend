@@ -34,7 +34,7 @@ export default function SeriesPostList({ posts, lang = "ko" }: { posts: SeriesPo
             type="button"
             onClick={() => setOrder(o.value)}
             className={`rounded-md px-4 py-1.5 transition-colors duration-150 ${
-              order === o.value ? "bg-surface-hover text-foreground font-semibold" : "text-muted hover:text-foreground"
+              order === o.value ? "bg-surface-hover text-foreground font-medium" : "text-muted hover:text-foreground"
             }`}
           >
             {t(o.label)}
@@ -55,7 +55,7 @@ export default function SeriesPostList({ posts, lang = "ko" }: { posts: SeriesPo
                 {post.seriesIndex ?? "·"}
               </span>
               <div className="flex flex-col gap-2 min-w-0">
-                <h2 className="text-lg font-semibold transition-colors duration-150 group-hover:text-accent-2">{post.title}</h2>
+                <h2 className="text-lg font-medium transition-colors duration-150 group-hover:text-accent-2">{post.title}</h2>
                 {post.excerpt && <p className="text-sm text-muted line-clamp-2">{post.excerpt}</p>}
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
