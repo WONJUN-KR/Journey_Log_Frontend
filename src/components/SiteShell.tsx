@@ -65,7 +65,7 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
           {children}
         </main>
         {/* 저작권 - 모든 페이지 하단 */}
-        <footer className="max-w-5xl w-full mx-auto px-4 sm:px-6 pb-8 text-xs text-muted print:hidden">© {yearIn()} WonJun. All rights reserved.</footer>
+        <footer className="max-w-5xl w-full mx-auto px-4 sm:px-6 pb-8 text-center text-xs text-muted print:hidden">© {yearIn()} WonJun. All rights reserved.</footer>
         {/* 방문 통계 (Vercel Web Analytics) - 쿠키 없이 페이지뷰·유입 경로·기기만 집계, Vercel 배포에서만 수집 */}
         <Analytics />
         {/* 웹폰트(페이퍼로지 · Pretendard)는 첫 페인트 뒤에 등록 */}

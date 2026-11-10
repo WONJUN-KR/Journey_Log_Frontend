@@ -69,7 +69,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
             {profile?.email && (
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-semibold text-foreground transition-opacity duration-150 hover:opacity-85"
+                className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-semibold text-foreground transition-[opacity,transform] duration-150 hover:opacity-85 active:scale-[0.97]"
               >
                 <Mail className="size-4" strokeWidth={1.5} />
                 {t("home.contact")}
@@ -80,7 +80,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                 href={contacts.githubPersonal}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line bg-surface px-5 text-sm font-semibold transition-colors duration-150 hover:bg-surface-hover"
+                className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line bg-surface px-5 text-sm font-semibold transition-[background-color,transform] duration-150 hover:bg-surface-hover active:scale-[0.97]"
               >
                 <GithubIcon className="size-4" />
                 GitHub
@@ -254,23 +254,28 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         )}
       </section>
 
-      {/* Contact - 메일 버튼 하나 + LinkedIn 글자 링크 */}
-      <section className="flex flex-col gap-5 border-t border-line pt-12 sm:pt-16">
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em]">{t("home.cta.title")}</h2>
-        <p className="max-w-md text-muted">{t("home.cta.body")}</p>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
+      {/* Contact - 페이지를 닫는 한 톤 밝은 면, 그 안에서만 가운데 정렬. 메일(주 버튼) + LinkedIn(보조) */}
+      <section className="rounded-2xl border border-line bg-surface px-6 max-[359px]:px-4 py-14 sm:py-20 flex flex-col items-center text-center gap-6">
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em]">{t("home.cta.title")}</h2>
+        <p className="text-muted max-w-md">{t("home.cta.body")}</p>
+        <div className="flex flex-wrap justify-center gap-3">
           {/* 360px 미만은 메일 주소가 버튼 여백·아이콘까지 들어갈 폭이 안 돼서 여백·글자 크기를 줄이고 아이콘 생략 */}
           {profile?.email && (
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex h-11 max-w-full items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-semibold text-foreground transition-opacity duration-150 hover:opacity-85 max-[359px]:px-4 max-[359px]:text-[15px]"
+              className="inline-flex h-11 max-w-full items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-semibold text-foreground transition-[opacity,transform] hover:opacity-85 active:scale-[0.97] max-[359px]:px-4 max-[359px]:text-[15px]"
             >
-              <Mail className="size-4 shrink-0 max-[359px]:hidden" strokeWidth={1.5} />
+              <Mail className="size-4 shrink-0 max-[359px]:hidden" />
               {profile.email}
             </a>
           )}
           {contacts?.linkedin && (
-            <a href={contacts.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors duration-150 hover:text-foreground">
+            <a
+              href={contacts.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-line px-5 text-sm font-semibold transition-[background-color,transform] hover:bg-surface-hover active:scale-[0.97]"
+            >
               <LinkedinIcon className="size-4" />
               LinkedIn
             </a>
