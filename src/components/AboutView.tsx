@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { BookOpen, ChevronDown, ExternalLink, Info, Mail, MapPin } from "lucide-react";
+import { BookOpen, ChevronDown, ExternalLink, Info, Mail, MapPin, X } from "lucide-react";
+import { useId } from "react";
 import { detailText, type AboutContent, type CareerDetail, type Evidence } from "@/lib/api";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import SkillGroups from "@/components/SkillGroups";
@@ -289,41 +290,54 @@ function BulletList({ items, mobileKeep, lang }: { items: CareerDetail[]; mobile
           }`}
         >
           {detailText(d)}
-          {typeof d !== "string" && <EvidencePin evidence={d.evidence} lang={lang} />}
+          {typeof d !== "string" && <EvidencePin evidence={d.evidence} claim={d.text} />}
         </li>
       ))}
     </ul>
   );
 }
 
-// 숫자 줄 끝의 ⓘ - 누르면 측정 방식·환경·시기가 아래로 펼쳐짐 (details/summary 라 JS 없이 동작, 키보드 Enter/Space 로도 열림)
-function EvidencePin({ evidence, lang }: { evidence: Evidence; lang: Lang }) {
+// 숫자 줄 끝의 ⓘ - 누르면 측정 방식·환경·시기를 팝업으로 (브라우저 popover 라 JS 없이 동작 - 바깥 클릭 · Esc 로 닫힘)
+function EvidencePin({ evidence, claim }: { evidence: Evidence; claim: string }) {
   const t = useTranslations();
+  const id = `evidence-${useId().replace(/:/g, "")}`;
   const rows: [string, string][] = [
     [t("evidence.method"), evidence.method],
     [t("evidence.env"), evidence.env],
     [t("evidence.when"), evidence.when],
   ];
   return (
-    <details className="group/pin inline">
-      <summary
+    <>
+      <button
+        type="button"
+        popoverTarget={id}
         aria-label={t("evidence.aria")}
-        className="ml-1 inline-flex size-5 cursor-pointer list-none items-center justify-center align-[-4px] text-accent-2 transition-colors hover:text-foreground group-open/pin:text-foreground [&::-webkit-details-marker]:hidden"
+        className="ml-1 inline-flex size-5 cursor-pointer items-center justify-center align-[-4px] text-accent-2 transition-colors hover:text-foreground print:hidden"
       >
         {/* 글자 i 를 원 안에 넣으면 폰트에 따라 가운데가 어긋나서 아이콘으로 */}
         <Info className="size-[18px]" strokeWidth={1.75} />
-      </summary>
-      {/* 상자 대신 위 구분선 + 작은 글씨로 본문 아래에 붙임 */}
-      <div className="mt-2 mb-1 border-t border-line pt-2 text-sm text-foreground">
-        <dl className="grid grid-cols-[minmax(3.25rem,auto)_1fr] gap-x-3 gap-y-1 m-0">
+      </button>
+      <div
+        id={id}
+        popover="auto"
+        className="m-auto w-[min(28rem,calc(100vw-2rem))] rounded-xl border border-line bg-surface p-5 text-foreground backdrop:bg-black/50 max-sm:p-4"
+      >
+        <div className="flex items-start justify-between gap-4">
+          {/* 어떤 숫자의 근거인지 - 본문 줄 그대로 */}
+          <p className="text-base font-medium leading-snug">{claim}</p>
+          <button type="button" popoverTarget={id} popoverTargetAction="hide" aria-label={t("gallery.close")} className="-mr-1 -mt-1 shrink-0 rounded-md p-1 text-muted transition-colors hover:bg-surface-hover hover:text-foreground">
+            <X className="size-5" strokeWidth={1.5} />
+          </button>
+        </div>
+        <dl className="mt-4 flex flex-col divide-y divide-line border-t border-line text-sm">
           {rows.map(([k, v]) => (
-            <div key={k} className="contents">
+            <div key={k} className="grid grid-cols-[3.5rem_1fr] gap-x-4 py-3 last:pb-0">
               <dt className="text-muted">{k}</dt>
-              <dd className="m-0">{v}</dd>
+              <dd className="m-0 leading-relaxed">{v}</dd>
             </div>
           ))}
         </dl>
       </div>
-    </details>
+    </>
   );
 }
