@@ -243,13 +243,19 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                   href={post.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group grid grid-cols-[10rem_minmax(0,1fr)] gap-x-6 gap-y-1 py-5 max-sm:grid-cols-1 -mx-3 rounded-lg px-3 transition-colors duration-150 hover:bg-surface-hover"
+                  // 날짜 | 제목 · 요약 | 썸네일. 모바일은 날짜 · 글을 왼쪽에 쌓고 썸네일은 오른쪽
+                  className="group grid grid-cols-[10rem_minmax(0,1fr)_auto] items-center gap-x-6 gap-y-1 py-5 max-sm:grid-cols-[minmax(0,1fr)_auto] max-sm:gap-x-4 -mx-3 rounded-lg px-3 transition-colors duration-150 hover:bg-surface-hover"
                 >
-                  {post.publishedAt ? <LocalDate iso={post.publishedAt} numeric className="whitespace-nowrap text-sm tabular-nums text-muted pt-0.5" /> : <span />}
-                  <span className="flex flex-col gap-1 min-w-0">
+                  {post.publishedAt ? <LocalDate iso={post.publishedAt} numeric className="self-start whitespace-nowrap text-sm tabular-nums text-muted pt-0.5 max-sm:col-start-1 max-sm:row-start-1" /> : <span />}
+                  <span className="flex flex-col gap-1 min-w-0 max-sm:col-start-1 max-sm:row-start-2">
                     <span className="font-medium leading-snug line-clamp-1">{post.title}</span>
                     {post.excerpt && <span className="text-sm text-muted line-clamp-2 max-sm:line-clamp-2">{post.excerpt}</span>}
                   </span>
+                  {post.thumbnail && (
+                    <span className="relative size-20 shrink-0 overflow-hidden rounded-lg border border-line bg-surface max-sm:size-16 max-sm:col-start-2 max-sm:row-span-2 max-sm:row-start-1">
+                      <SafeImage src={post.thumbnail} alt="" fill sizes="80px" className="object-cover" />
+                    </span>
+                  )}
                 </a>
               </li>
             ))}
