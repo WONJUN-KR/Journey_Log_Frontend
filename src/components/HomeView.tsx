@@ -184,7 +184,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         </section>
       )}
 
-      {/* Projects - 첫 프로젝트는 크게(왼쪽 2칸), 나머지 둘은 오른쪽에 작게 */}
+      {/* Projects - 첫 프로젝트는 크게(왼쪽 2칸), 나머지 둘은 오른쪽에 작게. 모바일은 대표 하나만(나머지는 "프로젝트 모두 보기") */}
       <section className="flex flex-col gap-8">
         <SectionHeader title={t("home.projects.title")} href={localizedPath(lang, "/projects")} linkLabel={t("home.projects.link")} />
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-x-8 gap-y-10">
@@ -196,10 +196,10 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
               <Link
                 key={p.slug}
                 href={`${localizedPath(lang, "/projects")}#${p.slug}`}
-                className={`group flex flex-col gap-4 max-sm:gap-3 ${lead ? "md:col-span-2 md:row-span-2" : ""}`}
+                className={`group flex flex-col gap-4 max-sm:gap-3 ${lead ? "md:col-span-2 md:row-span-2" : "max-sm:hidden"}`}
               >
                 {visual && (
-                  <div className={`relative overflow-hidden rounded-xl border border-line transition-opacity duration-150 group-hover:opacity-90 ${lead ? "aspect-[16/10]" : "aspect-[16/9]"} max-sm:aspect-[5/2] ${p.thumbnail ? "bg-background" : "bg-white"}`}>
+                  <div className={`relative overflow-hidden rounded-xl border border-line transition-opacity duration-150 group-hover:opacity-90 ${lead ? "aspect-[16/10]" : "aspect-[16/9]"} max-sm:aspect-[16/10] ${p.thumbnail ? "bg-background" : "bg-white"}`}>
                     <SafeImage
                       src={visual}
                       alt={p.title}
