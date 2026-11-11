@@ -50,15 +50,24 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
   ];
 
   return (
-    <div className="flex flex-col gap-24 sm:gap-32 py-6">
-      {/* Hero - 왼쪽 글 · 오른쪽 사진. 버튼은 주 1개(연락) + 보조 1개(GitHub), 나머지 링크는 아래 연락 칸으로 */}
+    <div className="flex flex-col gap-16 sm:gap-32 py-6">
+      {/* Hero - 왼쪽 글 · 오른쪽 사진. 버튼은 주 1개(연락) + 보조 1개(GitHub), 나머지 링크는 아래 연락 칸으로
+          모바일은 큰 사진 대신 제목 오른쪽 작은 사진 - 사진만 위에 떠서 첫 화면 위쪽이 비던 것 */}
       <section className="flex flex-col-reverse sm:flex-row sm:items-center gap-8 sm:gap-12 pt-2">
         <div className="flex flex-col gap-6 min-w-0">
-          <div className="flex flex-col gap-3">
-            <p className="text-base text-muted">{t("home.greeting", { name: profile?.name ?? "WonJun" })}</p>
-            <h1 className="text-4xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1.06]">
-              {profile?.tagline ?? t("home.taglineFallback")}
-            </h1>
+          {/* 모바일은 이력서처럼 이름 · 제목 왼쪽, 사진 오른쪽(3:4) */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-3 min-w-0">
+              <h1 className="text-4xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1.06]">
+                {profile?.tagline ?? t("home.taglineFallback")}
+              </h1>
+              <p className="text-base text-muted max-sm:text-lg max-sm:font-medium max-sm:text-foreground">{t("home.greeting", { name: profile?.name ?? "WonJun" })}</p>
+            </div>
+            {hasProfileImg && (
+              <div className="relative w-16 aspect-[3/4] shrink-0 overflow-hidden rounded-lg border border-line bg-surface sm:hidden">
+                <SafeImage src={PROFILE_IMG} alt="" width={128} height={171} sizes="64px" preload className="size-full object-cover object-[center_5%]" />
+              </div>
+            )}
           </div>
           {profile?.intro && (
             <p className="max-w-[36rem] text-base max-sm:text-[15px] sm:text-lg leading-relaxed text-muted whitespace-pre-line">
@@ -88,7 +97,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
             )}
           </div>
         </div>
-        <div className="relative shrink-0 size-24 sm:size-56 rounded-2xl overflow-hidden border border-line bg-surface flex items-center justify-center">
+        <div className="relative shrink-0 size-24 sm:size-56 max-sm:hidden rounded-2xl overflow-hidden border border-line bg-surface flex items-center justify-center">
           {hasProfileImg ? (
             <SafeImage src={PROFILE_IMG} alt={profile?.name ?? "WonJun"} width={416} height={416} sizes="(max-width: 640px) 96px, 224px" preload className="size-full object-cover object-[center_5%]" />
           ) : (

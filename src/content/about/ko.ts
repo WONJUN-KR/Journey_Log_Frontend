@@ -159,6 +159,7 @@ export const ABOUT_KO: AboutContent = {
     },
     {
       id: "compuzone",
+      logo: "/logos/compuzone.jpg",
       company: "(주)컴퓨존",
       position: "계약직",
       role: "컴퓨터 조립",
