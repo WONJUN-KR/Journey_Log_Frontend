@@ -189,7 +189,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                       alt={p.title}
                       fill
                       sizes={lead ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
-                      className={p.thumbnail ? `object-cover object-top ${p.mobileThumbPosition ?? ""}` : "object-contain p-6 max-sm:p-3"}
+                      className={p.thumbnail ? `object-cover object-top ${p.mobileThumbPosition ?? ""}` : "object-contain p-6 max-sm:p-3 mix-blend-multiply"}
                     />
                   </div>
                 )}
