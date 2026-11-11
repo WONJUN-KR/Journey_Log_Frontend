@@ -12,7 +12,7 @@ export const SITE_DESCRIPTION = "의료 IT 풀스택 개발자";
 // openGraph 는 레이아웃과 얕게 병합돼서 페이지가 openGraph 를 쓰면 레이아웃 값(파일 기반 og 이미지 포함)이 통째로 사라짐
 // → 공통 필드와 미리보기 이미지(app/opengraph-image.tsx)를 여기서 같이 넣음
 // 이미지 주소에 버전을 붙임 - 카톡 등은 이미지를 주소 기준으로 오래 저장해서, 그림을 바꾸면 이 값을 올려야 새 그림을 다시 받음
-const OG_VERSION = 2;
+const OG_VERSION = 3;
 const ogImage = (lang: Lang) => ({ url: `/opengraph-image?v=${OG_VERSION}`, ...OG_SIZE, alt: OG_ALT[lang] });
 
 // 페이지별 제목·설명·주소를 description · og · twitter 에 똑같이 반영

@@ -9,25 +9,17 @@ export const OG_SIZE = { width: 1200, height: 630 };
 const BRAND = "WONJUN PORTFOLIO";
 // tagline 은 줄 단위 배열
 const TEXT: Record<Lang, { alt: string; name: string; tagline: string[]; taglineSize: number; sub: string }> = {
-  ko: { alt: "오원준 포트폴리오 - 의료 IT 풀스택 개발자", name: "오원준", tagline: ["의료 IT 풀스택 개발자"], taglineSize: 68, sub: "CGM 의료기기 · Spring · Next.js · AWS" },
+  ko: { alt: "오원준 포트폴리오 - 의료 IT 풀스택 개발자", name: "오원준", tagline: ["의료 IT 풀스택 개발자"], taglineSize: 68, sub: "연속혈당측정(CGM) 웹 서비스" },
 };
 export const OG_ALT: Record<Lang, string> = { ko: TEXT.ko.alt };
 
-// 이미지에 들어가는 글자만 Google Fonts 에서 잘라 받음 (satori 는 woff2 를 못 읽어서 ttf)
-async function loadFont(weight: number, text: string): Promise<ArrayBuffer> {
-  const css = await (
-    await fetch(`https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@${weight}&text=${encodeURIComponent(text)}`)
-  ).text();
-  const url = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
-  if (!url) throw new Error("OG font not found");
-  return (await fetch(url)).arrayBuffer();
-}
+// 사이트와 같은 페이퍼로지(SIL OFL 1.1) - satori 는 woff2 를 못 읽어서 ttf 로 바꿔 assets/fonts 에 둠 (빌드 때만 읽음)
+const loadFont = (file: string) => readFile(join(process.cwd(), "assets/fonts", file));
 
 export async function renderOgImage(lang: Lang): Promise<ImageResponse> {
   const { name: NAME, tagline: TAGLINE, taglineSize, sub: SUB } = TEXT[lang];
   const photo = await readFile(join(process.cwd(), "public/img/profile.jpg"));
   const photoSrc = `data:image/jpeg;base64,${photo.toString("base64")}`;
-  const allText = NAME + TAGLINE.join("") + SUB + BRAND;
 
   return new ImageResponse(
     (
@@ -41,7 +33,7 @@ export async function renderOgImage(lang: Lang): Promise<ImageResponse> {
           padding: "0 96px",
           background: "#e4e9f0",
           color: "#1e2a3b",
-          fontFamily: "Noto Sans KR",
+          fontFamily: "Paperozi",
         }}
       >
         {/* 글자 칸은 폭을 정해 둠 - 길면 줄바꿈되고 사진은 그대로 (안 정하면 사진이 오른쪽 밖으로 밀림) */}
@@ -67,8 +59,8 @@ export async function renderOgImage(lang: Lang): Promise<ImageResponse> {
     {
       ...OG_SIZE,
       fonts: [
-        { name: "Noto Sans KR", data: await loadFont(400, allText), weight: 400, style: "normal" },
-        { name: "Noto Sans KR", data: await loadFont(500, allText), weight: 500, style: "normal" },
+        { name: "Paperozi", data: await loadFont("Paperlogy-4Regular.ttf"), weight: 400, style: "normal" },
+        { name: "Paperozi", data: await loadFont("Paperlogy-5Medium.ttf"), weight: 500, style: "normal" },
       ],
     },
   );
