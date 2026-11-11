@@ -49,13 +49,13 @@ export default function SeriesPostList({ posts, lang = "ko" }: { posts: SeriesPo
               href={post.url}
               target="_blank"
               rel="noreferrer"
-              className="group flex gap-5 py-6"
+              className="group flex gap-5 py-6 -mx-3 rounded-lg px-3 transition-colors duration-150 hover:bg-surface-hover"
             >
               <span className="w-8 shrink-0 pt-0.5 tabular-nums text-sm text-muted">
                 {post.seriesIndex ?? "·"}
               </span>
               <div className="flex flex-col gap-2 min-w-0">
-                <h2 className="text-lg font-medium transition-colors duration-150 group-hover:text-accent-2">{post.title}</h2>
+                <h2 className="text-lg font-medium">{post.title}</h2>
                 {post.excerpt && <p className="text-sm text-muted line-clamp-2">{post.excerpt}</p>}
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
