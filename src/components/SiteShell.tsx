@@ -34,14 +34,14 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
   const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((ns) => [ns, messages[ns]]));
   const t = useTranslations();
   return (
-    <html lang={lang} className="dark h-full antialiased">
+    <html lang={lang} className="h-full">
       <body className="min-h-full flex flex-col font-sans">
         {/* 클라이언트 컴포넌트(메뉴 · 잔디 · 기록 등)의 useTranslations 용 - 쓰는 묶음만 넘김 (전부 넘기면 페이지마다 HTML 약 5KB 증가) */}
         <NextIntlClientProvider messages={clientMessages}>
-        <header className="sticky top-0 z-40 border-b border-line bg-background/70 backdrop-blur-xl">
+        <header className="sticky top-0 z-40 border-b border-line bg-background">
           <nav className="max-w-5xl mx-auto flex items-center justify-between gap-3 max-[359px]:gap-2 px-4 max-[359px]:px-3 sm:px-6 h-14">
             {/* 휴대폰 폭에선 메뉴가 한 줄에 들어가도록 로고를 줄임. 360px 미만(가장 작은 폰 320px)은 여백·글자를 한 단계 더 줄임 */}
-            <Link href={localizedPath(lang, "/")} className="shrink-0 origin-left whitespace-nowrap max-[359px]:text-[15px] font-medium transition-[color,transform] hover:text-accent-2 active:scale-[0.97]">
+            <Link href={localizedPath(lang, "/")} className="-ml-2 shrink-0 whitespace-nowrap rounded-md px-2 py-1.5 max-[359px]:text-[15px] font-medium transition-colors hover:bg-surface-hover">
               WONJUN<span className="hidden sm:inline">{t("nav.logoSuffix")}</span>
             </Link>
             <NavLinks lang={lang} />

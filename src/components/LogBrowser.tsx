@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { BookOpen, ChevronLeft, ChevronRight, Funnel, FunnelX, Layers, Search } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, Funnel, FunnelX, Search } from "lucide-react";
 import type { PostListItem } from "@/lib/api";
 import { SectionHeader } from "@/components/ui";
 import { splitSeriesName } from "@/lib/series";
@@ -56,53 +56,44 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
     <>
       {seriesList.length > 0 && (
         <section className="flex flex-col gap-8">
-          {/* 화면엔 안 보이는 구역 제목 - 페이지 제목(h1) 다음에 시리즈 카드 제목(h3)이 바로 오면 제목 단계가 건너뛰어짐 */}
+          {/* 화면엔 안 보이는 구역 제목 - 페이지 제목(h1) 다음에 시리즈 제목(h3)이 바로 오면 제목 단계가 건너뛰어짐 */}
           <h2 className="sr-only">{t("log.seriesHeading")}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          {/* 같은 모양 카드를 나란히 두지 않고 구분선 목록으로: [연도] [제목] [글 수 · 업데이트] [깔때기]
+              휴대폰은 연도를 제목 위로, 업데이트 날짜는 생략 */}
+          <ul className="flex flex-col border-t border-line">
             {seriesList.map((series) => {
               const active = series.id === seriesId;
               const { title, years } = splitSeriesName(series.name);
               return (
-                <button
-                  key={series.id}
-                  type="button"
-                  onClick={() => selectSeries(series.id)}
-                  aria-pressed={active}
-                  className={`group flex flex-col gap-3 sm:gap-4 rounded-xl border p-4 sm:p-5 text-left transition-colors duration-150 max-sm:grid max-sm:grid-cols-[auto_minmax(0,1fr)_auto] max-sm:items-center max-sm:gap-x-3 max-sm:gap-y-0.5 max-sm:px-4 max-sm:py-3 ${
-                    active ? "border-accent bg-surface-hover" : "border-line bg-surface hover:bg-surface-hover"
-                  }`}
-                >
-                  {/* 오른쪽 위 깔때기 = 누르면 이 시리즈 글만 걸러짐 (선택 중이면 해제 아이콘)
-                      휴대폰은 세로 한 줄 카드: [아이콘] [연도·제목 / 글 수·업데이트] [깔때기] */}
-                  <div className="flex items-start justify-between gap-3 max-sm:contents">
-                    <span className="flex size-5 items-center justify-center max-sm:col-start-1 max-sm:row-span-2 max-sm:row-start-1">
-                      <Layers className="size-[18px] text-muted" strokeWidth={1.5} />
+                <li key={series.id} className="border-b border-line">
+                  <button
+                    type="button"
+                    onClick={() => selectSeries(series.id)}
+                    aria-pressed={active}
+                    className={`group -mx-3 flex w-[calc(100%+1.5rem)] items-center gap-4 rounded-lg px-3 py-4 text-left transition-colors duration-150 hover:bg-surface-hover max-sm:gap-3 max-sm:py-3 ${active ? "bg-surface-hover" : ""}`}
+                  >
+                    <span className="w-32 shrink-0 text-sm tabular-nums text-muted max-sm:hidden">{years}</span>
+                    <span className="flex min-w-0 flex-1 flex-col">
+                      {years && <span className="text-sm tabular-nums text-muted sm:hidden">{years}</span>}
+                      <h3 className="truncate text-lg font-medium max-sm:text-base">{title}</h3>
                     </span>
+                    <span className="shrink-0 whitespace-nowrap text-sm tabular-nums text-muted">
+                      {t("log.countShort", { n: series.postsCount })}<span className="max-[359px]:hidden">{t("log.countSuffix")}</span>
+                      {series.updatedAt && (
+                        <span className="max-md:hidden"> · {t("log.updatedPrefix")}<LocalDate iso={series.updatedAt} locale={locale} numeric />{t("log.updatedSuffix")}</span>
+                      )}
+                    </span>
+                    {/* 깔때기 = 누르면 이 시리즈 글만 걸러짐 (선택 중이면 해제 아이콘) */}
                     {active ? (
-                      <FunnelX strokeWidth={1.5} className="size-[18px] text-accent-2 max-sm:col-start-3 max-sm:row-span-2 max-sm:row-start-1" aria-label={t("log.filterClear")} />
+                      <FunnelX strokeWidth={1.5} className="size-[18px] shrink-0 text-foreground" aria-label={t("log.filterClear")} />
                     ) : (
-                      <Funnel strokeWidth={1.5} className="size-[18px] text-muted transition-colors duration-150 group-hover:text-foreground max-sm:col-start-3 max-sm:row-span-2 max-sm:row-start-1" aria-label={t("log.filterBy")} />
+                      <Funnel strokeWidth={1.5} className="size-[18px] shrink-0 text-muted transition-colors duration-150 group-hover:text-foreground" aria-label={t("log.filterBy")} />
                     )}
-                  </div>
-                  {/* 360px 미만은 연도를 제목 위로, 글 수·날짜를 짧게 */}
-                  <div className="flex flex-col gap-1 max-sm:col-start-2 max-sm:row-start-1 max-sm:min-w-0 max-sm:gap-0 min-[360px]:max-sm:flex-row min-[360px]:max-sm:items-baseline min-[360px]:max-sm:gap-2">
-                    {years && <span className="text-sm tabular-nums text-muted max-sm:shrink-0">{years}</span>}
-                    <h3 className="text-lg font-medium max-sm:truncate max-sm:text-base">{title}</h3>
-                  </div>
-                  {/* 날짜는 숫자형(2026-01-26) - 긴 한글 날짜는 카드 폭에서 두 줄로 꺾였음 */}
-                  <div className="flex items-center gap-2 whitespace-nowrap text-sm text-muted max-sm:col-start-2 max-sm:row-start-2 max-sm:min-w-0 max-sm:gap-1.5 max-sm:overflow-hidden max-sm:whitespace-nowrap">
-                    <span className="shrink-0">{t("log.countShort", { n: series.postsCount })}<span className="max-[359px]:hidden">{t("log.countSuffix")}</span></span>
-                    {series.updatedAt && (
-                      <>
-                        <span>·</span>
-                        <span className="max-sm:truncate"><span className="max-[359px]:hidden">{t("log.updatedPrefix")}</span><LocalDate iso={series.updatedAt} locale={locale} numeric /><span className="max-[359px]:hidden">{t("log.updatedSuffix")}</span></span>
-                      </>
-                    )}
-                  </div>
-                </button>
+                  </button>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </section>
       )}
 
@@ -152,7 +143,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                   rel="noreferrer"
                   className="group flex h-full flex-col gap-3"
                 >
-                  <div className="relative aspect-square overflow-hidden rounded-xl border border-line bg-surface">
+                  <div className="relative aspect-square overflow-hidden rounded-xl border border-line bg-surface transition-opacity duration-150 group-hover:opacity-90">
                     {post.thumbnail ? (
                       // 썸네일은 public/blog/naver 에 받아 둔 파일 (빌드 전에 크기별 WebP 로 줄여 둔 걸 로더가 고름)
                       // 첫 줄(휴대폰 2칸·PC 3칸)은 첫 화면이라 먼저 불러오고 나머지는 스크롤할 때
@@ -171,7 +162,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                     )}
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-sm font-medium line-clamp-2 transition-colors duration-150 group-hover:text-accent-2">
+                    <h3 className="text-sm font-medium line-clamp-2">
                       {post.title}
                     </h3>
                     {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
@@ -226,7 +217,7 @@ function PageButton({ children, onClick, label, active = false }: {
       aria-label={label}
       aria-current={active ? "page" : undefined}
       className={`flex size-9 items-center justify-center rounded-lg text-sm tabular-nums font-medium transition-colors duration-150 ${
-        active ? "bg-accent-strong text-foreground" : "text-muted hover:bg-surface-hover hover:text-foreground"
+        active ? "bg-accent-strong text-on-accent" : "text-muted hover:bg-surface-hover hover:text-foreground"
       }`}
     >
       {children}

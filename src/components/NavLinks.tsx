@@ -19,7 +19,7 @@ export default function NavLinks({ lang }: { lang: Lang }) {
   const pathname = pathWithoutLang(usePathname());
 
   return (
-    <div className="flex items-center gap-0.5 max-[359px]:gap-0 sm:gap-1 text-[13px] max-[359px]:text-[12px] sm:text-sm font-medium text-accent-2">
+    <div className="flex items-center gap-0.5 max-[359px]:gap-0 sm:gap-1 text-[13px] max-[359px]:text-[12px] sm:text-sm font-medium text-muted">
       {NAV_ITEMS.map((item) => {
         const active = item.match.some((m) => pathname === m || pathname.startsWith(`${m}/`));
         return (
