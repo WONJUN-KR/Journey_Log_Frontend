@@ -158,6 +158,15 @@ export const ABOUT_KO: AboutContent = {
       sortOrder: 1,
     },
     {
+      id: "compuzone",
+      company: "(주)컴퓨존",
+      position: "계약직",
+      role: "컴퓨터 조립",
+      period: "2024.12 ~ 2025.04",
+      summary: "컴퓨터 부품 분류와 PC 조립",
+      sortOrder: 2,
+    },
+    {
       id: "sangsang",
       logo: "/logos/sangs.jpg",
       company: "상상스토리(주)",
@@ -194,7 +203,7 @@ export const ABOUT_KO: AboutContent = {
         "Spring Security", "MyBatis", "JSP", "jQuery",
         "Oracle", "MySQL", "Linux(CentOS)", "Docker",
       ],
-      sortOrder: 2,
+      sortOrder: 3,
     },
   ],
   educations: [
