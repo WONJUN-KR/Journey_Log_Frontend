@@ -41,7 +41,7 @@ export const ABOUT_KO: AboutContent = {
       role: "풀스택 개발",
       period: "2026.03 ~ 재직중",
       isCurrent: true,
-      summary: "연속혈당측정 의료기기 웹 서비스·사내 데이터 플랫폼·IoT 플랫폼 6개 프로젝트 동시 담당 (개발부터 인프라·배포까지)",
+      summary: "연속혈당측정 의료기기 웹 서비스·사내 데이터 플랫폼·IoT 플랫폼 6개 프로젝트 개발·인프라·배포 동시 담당",
       projects: [
         {
           title: "환자용 연속혈당 모니터링 서비스 - AWS 이전·배포 전담, 관리자 콘솔 신규 구축",
@@ -161,10 +161,8 @@ export const ABOUT_KO: AboutContent = {
       id: "compuzone",
       logo: "/logos/compuzone.jpg",
       company: "(주)컴퓨존",
-      position: "계약직",
       role: "컴퓨터 조립",
       period: "2024.12 ~ 2025.04",
-      summary: "컴퓨터 부품 분류와 PC 조립",
       sortOrder: 2,
     },
     {
@@ -176,7 +174,7 @@ export const ABOUT_KO: AboutContent = {
       period: "2022.03 ~ 2024.04",
       region: "서울",
       resignReason: "학업",
-      summary: "Spring 기반 웹 시스템 3건 개발·운영 (포털, LMS, 시설물 관리) (2022.03~04 수습 2개월은 사업소득, 2022.05 병역특례 편입과 함께 정규 전환)",
+      summary: "Spring 기반 웹 시스템 3건 개발·운영 (포털, LMS, 시설물 관리)",
       projects: [
         {
           title: "사내 포털 및 접근권한 관리 시스템 개발",
