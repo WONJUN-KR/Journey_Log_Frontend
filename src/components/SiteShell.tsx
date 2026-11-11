@@ -42,7 +42,7 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
           <nav className="max-w-5xl mx-auto flex items-center justify-between gap-3 max-[359px]:gap-2 px-4 max-[359px]:px-3 sm:px-6 h-14">
             {/* 휴대폰 폭에선 메뉴가 한 줄에 들어가도록 로고를 줄임. 360px 미만(가장 작은 폰 320px)은 여백·글자를 한 단계 더 줄임 */}
             <Link href={localizedPath(lang, "/")} className="-ml-2 shrink-0 whitespace-nowrap rounded-md px-2 py-1.5 max-[359px]:text-[15px] font-medium transition-colors hover:bg-surface-hover">
-              WONJUN<span className="hidden sm:inline">{t("nav.logoSuffix")}</span>
+              Wonjun<span className="hidden sm:inline">{t("nav.logoSuffix")}</span>
             </Link>
             <NavLinks lang={lang} />
           </nav>
