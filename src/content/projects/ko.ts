@@ -54,7 +54,6 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
         { src: "/projects/mockups/gotcha/16-report-form-filled.jpg", caption: "매장 정보 등록 - 매장명 · 위치 힌트 · 영업일" },
         { src: "/projects/mockups/gotcha/19-community.jpg", caption: "커뮤니티 - 갓챠일상 · 궁금해요 · 거래해요" },
       ],
-      note: "iOS 앱에서 게스트로 찍었어요. 작성자 닉네임은 흐리게 처리했어요.",
     },
   },
   {
@@ -98,7 +97,6 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
         { src: "/projects/mockups/ai-auto-posting/05-generated-post.jpg", caption: "생성된 글 - 상품 · 키워드 · 본문" },
         { src: "/projects/mockups/ai-auto-posting/06-step-logs.jpg", caption: "실행 로그 - 크롤링 → AI 생성 → 포스팅" },
       ],
-      note: "OpenAI 키 없이 로컬 시연 데이터로 찍었어요. 생성 결과는 예시예요.",
     },
   },
   {
@@ -137,12 +135,11 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
         { src: "/projects/mockups/cos-house/04-product-detail.jpg", caption: "상품 상세 - 옵션 · 장바구니 / 구매" },
         { src: "/projects/mockups/cos-house/18-community.jpg", caption: "커뮤니티 - 집들이 목록" },
         { src: "/projects/mockups/cos-house/19-post-detail.jpg", caption: "집들이 상세 - 사진 슬라이드 · 댓글" },
-        { src: "/projects/mockups/cos-house/14-mypage-reviews.jpg", caption: "마이페이지 - 내가 쓴 구매 후기 (담당)" },
+        { src: "/projects/mockups/cos-house/14-mypage-reviews.jpg", caption: "마이페이지 - 내가 쓴 구매 후기" },
         { src: "/projects/mockups/cos-house/20-admin.jpg", caption: "관리자 대시보드" },
-        { src: "/projects/mockups/cos-house/21-admin-products.jpg", caption: "관리자 상품 관리 · 검색 (담당)" },
+        { src: "/projects/mockups/cos-house/21-admin-products.jpg", caption: "관리자 상품 관리 · 검색" },
         { src: "/projects/mockups/cos-house/26-mobile-home.jpg", caption: "휴대폰 화면 (390px)" },
       ],
-      note: "로컬 시연 데이터로 찍었어요. 외부 상품 사진은 흐리게 처리했어요.",
     },
   },
   {
@@ -182,7 +179,6 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
         { src: "/projects/mockups/eureka-2021/10-read-popup.jpg", caption: "읽기 창" },
         { src: "/projects/mockups/eureka-2021/14-write-modal.jpg", caption: "단계별 글쓰기 창" },
       ],
-      note: "2021년 원본을 2026년에 로컬로 다시 띄워 찍었어요.",
     },
   },
 ];
