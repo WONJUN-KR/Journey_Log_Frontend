@@ -132,17 +132,8 @@ export function SectionHeader({ eyebrow, title, href, linkLabel }: {
   );
 }
 
-// 각 페이지 맨 위 제목 블록
-export function PageHeader({ eyebrow, title, description }: {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-}) {
-  return (
-    <section className="flex flex-col gap-4 pt-8">
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{title}</h1>
-      {description && <p className="text-base sm:text-lg text-muted max-w-2xl">{description}</p>}
-    </section>
-  );
+// 각 페이지 제목 - 상단 메뉴가 지금 페이지를 이미 보여 줘서 화면에는 안 그림(이력서처럼 본문부터 시작).
+// 스크린 리더 · 검색엔진용 h1 만 남김. sr-only 는 absolute 라 부모 flex 간격(gap)을 차지하지 않음
+export function PageHeader({ title }: { title: string }) {
+  return <h1 className="sr-only">{title}</h1>;
 }

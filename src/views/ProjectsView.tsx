@@ -91,7 +91,7 @@ function ProjectVisual({ project, preload = false }: { project: Project; preload
 export default function ProjectsView({ lang }: { lang: Lang }) {
   const t = useTranslations();
   return (
-    <div className="flex flex-col gap-16 py-6">
+    <div className="flex flex-col gap-16 pt-8 pb-6">
       <PageHeader title={t("projects.title")} />
 
       <div className="flex flex-col gap-16 max-sm:gap-12">
@@ -100,7 +100,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
             key={p.slug}
             id={p.slug}
             // 홈 카드에서 /projects#slug 로 오면 해당 프로젝트로 스크롤 (상단 고정 헤더만큼 여백) + 위 구분선 강조
-            className="relative scroll-mt-24 border-t border-line target:border-accent pt-10 max-sm:pt-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start max-sm:flex max-sm:flex-col max-sm:items-stretch max-sm:gap-4 group/more"
+            className="relative scroll-mt-24 border-t border-line target:border-accent pt-10 max-sm:pt-6 first:border-t-0 first:pt-0 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start max-sm:flex max-sm:flex-col max-sm:items-stretch max-sm:gap-4 group/more"
           >
             {/* 왼쪽: 화면 + 핵심 기능(사용자가 할 수 있는 것) / 오른쪽: 소개 + 내가 맡은 부분 */}
             <div className="flex flex-col gap-6 max-sm:contents">
