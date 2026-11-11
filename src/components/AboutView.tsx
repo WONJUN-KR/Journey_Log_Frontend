@@ -5,6 +5,7 @@ import { useId } from "react";
 import { detailText, type AboutContent, type CareerDetail, type Evidence } from "@/lib/api";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import SkillGroups from "@/components/SkillGroups";
+import SafeImage from "@/components/SafeImage";
 import PrintButton from "@/components/PrintButton";
 import { type Lang } from "@/i18n";
 import { MOBILE_OPEN_ONLY_INLINE, MOBILE_OPEN_ONLY_ITEM, MOBILE_TOGGLE, MobileMoreInput, MobileMoreToggle, StackChips } from "@/components/ui";
@@ -34,19 +35,23 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
 
   return (
     <div className="flex flex-col gap-20 py-6">
-      {/* 상단 헤더 */}
-      <header className="flex flex-col gap-6 pt-8">
+      {/* 상단 헤더 - 오른쪽 증명사진(3:4), 이력서 양식처럼 인쇄물에도 그대로
+          휴대폰은 사진이 이름 줄 옆에만 오고 연락처 · 버튼은 아래 전체 폭 (링크 셋이 한 줄에 들어가게) */}
+      <header className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-6 gap-y-6 pt-8">
         <div className="flex flex-col gap-3">
           <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{profile.name}</h1>
           <p className="text-lg sm:text-xl text-muted">{profile.tagline}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted">
+        <div className="relative row-span-1 sm:row-span-3 w-20 sm:w-36 aspect-[3/4] self-start rounded-xl overflow-hidden border border-line bg-surface">
+          <SafeImage src="/img/profile.jpg" alt={profile.name} fill sizes="(max-width: 640px) 80px, 144px" preload className="object-cover" />
+        </div>
+        <div className="col-span-2 sm:col-span-1 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted">
           <span className="inline-flex items-center gap-1.5"><Mail className="size-4" strokeWidth={1.5} />{profile.email}</span>
           <span className="inline-flex items-center gap-1.5"><MapPin className="size-4" strokeWidth={1.5} />{profile.region}</span>
         </div>
         {/* PDF 저장 버튼 + 글자 링크. 인쇄물에선 줄 전체를 숨김
             링크는 한 묶음으로 줄바꿈 - 휴대폰에서 링크 하나만 다음 줄로 떨어지지 않고 링크 셋이 버튼 아래 한 줄로 */}
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 print:hidden">
+        <div className="col-span-2 sm:col-span-1 flex flex-wrap items-center gap-x-6 gap-y-3 print:hidden">
           <PrintButton fileName={t("resume.pdfFile", { name: profile.name })} label={t("resume.pdf")} className={PDF_BUTTON} />
           <div className="flex items-center gap-x-6 max-sm:gap-x-4">
             {links.map((l) => (
@@ -211,13 +216,13 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                 className="group flex items-start justify-between gap-3 border-t border-line py-4"
               >
                 <div className="flex flex-col gap-1 min-w-0">
-                  <div className="font-medium transition-colors duration-150 group-hover:text-accent-2">{p.title}</div>
+                  <div className="font-medium">{p.title}</div>
                   <div className="text-sm tabular-nums text-muted">
                     {p.period}
                     {p.teamSize && ` · ${t("resume.teamSize", { n: p.teamSize })}`}
                   </div>
                 </div>
-                <ExternalLink className="size-4 shrink-0 text-muted transition-colors duration-150 group-hover:text-accent-2" strokeWidth={1.5} />
+                <ExternalLink className="size-4 shrink-0 text-muted transition-colors duration-150 group-hover:text-foreground" strokeWidth={1.5} />
               </a>
             </li>
           ))}
