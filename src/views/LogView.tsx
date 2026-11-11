@@ -34,7 +34,8 @@ export default async function LogView({ lang }: { lang: Lang }) {
   }));
 
   return (
-    <div className="flex flex-col gap-20 max-sm:gap-10 py-6">
+    <div className="flex flex-col gap-20 max-sm:gap-10 pt-4 pb-6">
+      {/* 첫 줄(시리즈 행)이 자체 위 여백 16px 을 가져서 다른 페이지보다 16px 덜 띄움 */}
       <PageHeader title={t("log.title")} />
       <LogBrowser posts={logPosts} seriesList={logSeries} lang={lang} />
     </div>
