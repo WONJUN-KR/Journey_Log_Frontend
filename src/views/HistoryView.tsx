@@ -35,12 +35,12 @@ export default function HistoryView({ lang }: { lang: Lang }) {
     `${period.slice(5, 7)}월`;
 
   return (
-    <div className="flex flex-col gap-12 py-6">
+    <div className="flex flex-col gap-12 pt-8 pb-6">
       <PageHeader title={t("history.title")} />
 
       <div className="flex flex-col">
         {years.map(({ year, items }) => (
-          <section key={year} className="grid grid-cols-[72px_minmax(0,1fr)] max-[359px]:grid-cols-1 sm:grid-cols-[160px_1fr] gap-4 max-[359px]:gap-3 sm:gap-8 border-t border-line py-8">
+          <section key={year} className="grid grid-cols-[72px_minmax(0,1fr)] max-[359px]:grid-cols-1 sm:grid-cols-[160px_1fr] gap-4 max-[359px]:gap-3 sm:gap-8 border-t border-line py-8 first:border-t-0 first:pt-0">
             {/* 연도 - 넓은 화면에선 그 해 항목을 내리는 동안 따라옴. 360px 미만에선 항목 위로 올려 글 칸을 넓힘 */}
             <h2 className="self-start text-2xl sm:text-4xl font-medium tracking-[-0.02em] tabular-nums sm:sticky sm:top-20">
               {year}

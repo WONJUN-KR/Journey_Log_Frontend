@@ -66,7 +66,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
           <h2 className="sr-only">{t("log.seriesHeading")}</h2>
           {/* 같은 모양 카드를 나란히 두지 않고 구분선 목록으로: [연도] [제목] [글 수 · 업데이트] [깔때기]
               휴대폰은 연도를 제목 위로, 업데이트 날짜는 생략 */}
-          <ul className="flex flex-col border-t border-line">
+          <ul className="flex flex-col">
             {seriesList.map((series) => {
               const active = series.id === seriesId;
               const { title, years } = splitSeriesName(series.name);

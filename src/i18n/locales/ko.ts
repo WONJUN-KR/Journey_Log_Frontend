@@ -24,7 +24,7 @@ export const ko = {
       description: "경력 기술서",
     },
     projects: {
-      title: "포트폴리오",
+      title: "프로젝트",
       description: "개인 프로젝트",
     },
     log: {
@@ -57,7 +57,7 @@ export const ko = {
       link: "이력서 보기",
     },
     projects: {
-      title: "포트폴리오",
+      title: "프로젝트",
       link: "프로젝트 모두 보기",
     },
     log: {
@@ -77,7 +77,7 @@ export const ko = {
     released: "앱 배포",
   },
   projects: {
-    title: "포트폴리오",
+    title: "프로젝트",
     pinned: "대표",
     lead: "팀장",
     features: "핵심 기능",
