@@ -146,8 +146,16 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                     </div>
                   </div>
                   {c.summary && <p className="max-w-[48rem] text-base leading-relaxed">{c.summary}</p>}
+                  {/* 모바일: 프로젝트 이름(" - " 앞)만 한 줄씩, 펼치기 없음 - 자세한 내용은 이력서에서. 펼칠 게 없으면 뜻이 없는 "기타" 줄은 뺀 */}
                   {c.projects && c.projects.length > 0 && (
-                    <div className="flex flex-col divide-y divide-line border-y border-line">
+                    <ul className="sm:hidden flex flex-col divide-y divide-line border-y border-line">
+                      {c.projects.filter((proj) => proj.title !== "기타").map((proj) => (
+                        <li key={proj.title} className="py-3 text-sm font-medium">{proj.title.split(" - ")[0]}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {c.projects && c.projects.length > 0 && (
+                    <div className="max-sm:hidden flex flex-col divide-y divide-line border-y border-line">
                       {c.projects.map((proj) => (
                         <details key={proj.title} className="group">
                           <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3 transition-colors duration-150 hover:text-muted [&::-webkit-details-marker]:hidden">
@@ -176,7 +184,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         </section>
       )}
 
-      {/* Projects - 첫 프로젝트는 크게(왼쪽 2칸), 나머지 둘은 오른쪽에 작게 */}
+      {/* Projects - 첫 프로젝트는 크게(왼쪽 2칸), 나머지 둘은 오른쪽에 작게. 모바일은 대표 하나만(나머지는 "프로젝트 모두 보기") */}
       <section className="flex flex-col gap-8">
         <SectionHeader title={t("home.projects.title")} href={localizedPath(lang, "/projects")} linkLabel={t("home.projects.link")} />
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-x-8 gap-y-10">
@@ -188,10 +196,10 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
               <Link
                 key={p.slug}
                 href={`${localizedPath(lang, "/projects")}#${p.slug}`}
-                className={`group flex flex-col gap-4 max-sm:gap-3 ${lead ? "md:col-span-2 md:row-span-2" : ""}`}
+                className={`group flex flex-col gap-4 max-sm:gap-3 ${lead ? "md:col-span-2 md:row-span-2" : "max-sm:hidden"}`}
               >
                 {visual && (
-                  <div className={`relative overflow-hidden rounded-xl border border-line transition-opacity duration-150 group-hover:opacity-90 ${lead ? "aspect-[16/10]" : "aspect-[16/9]"} max-sm:aspect-[5/2] ${p.thumbnail ? "bg-background" : "bg-white"}`}>
+                  <div className={`relative overflow-hidden rounded-xl border border-line transition-opacity duration-150 group-hover:opacity-90 ${lead ? "aspect-[16/10]" : "aspect-[16/9]"} max-sm:aspect-[16/10] ${p.thumbnail ? "bg-background" : "bg-white"}`}>
                     <SafeImage
                       src={visual}
                       alt={p.title}

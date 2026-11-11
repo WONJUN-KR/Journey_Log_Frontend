@@ -18,7 +18,7 @@ export function projectsMetadata(lang: Lang): Metadata {
 function BrowserFrame({ children, fixedAspect = true }: { children: React.ReactNode; fixedAspect?: boolean }) {
   return (
     <div className="w-full rounded-xl border border-line bg-background overflow-hidden">
-      <div className={fixedAspect ? "relative aspect-[16/10] max-sm:aspect-[2/1] flex items-center justify-center" : "relative max-sm:aspect-[2/1] max-sm:overflow-hidden"}>
+      <div className={fixedAspect ? "relative aspect-[16/10] flex items-center justify-center" : "relative max-sm:aspect-[16/10] max-sm:overflow-hidden"}>
         {children}
       </div>
     </div>
