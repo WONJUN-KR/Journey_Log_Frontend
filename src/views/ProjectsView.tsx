@@ -71,7 +71,7 @@ function ProjectVisual({ project, preload = false }: { project: Project; preload
             height={800}
             sizes="(max-width: 1024px) 100vw, 50vw"
             preload={preload}
-            className="w-full h-full object-contain p-8 max-sm:p-4"
+            className="w-full h-full object-contain p-8 max-sm:p-4 mix-blend-multiply"
           />
         </div>
       </BrowserFrame>
