@@ -52,7 +52,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
   return (
     <div className="flex flex-col gap-24 sm:gap-32 py-6">
       {/* Hero - 왼쪽 글 · 오른쪽 사진. 버튼은 주 1개(연락) + 보조 1개(GitHub), 나머지 링크는 아래 연락 칸으로 */}
-      <section className="animate-fade-up flex flex-col-reverse sm:flex-row sm:items-center gap-8 sm:gap-12 pt-2">
+      <section className="flex flex-col-reverse sm:flex-row sm:items-center gap-8 sm:gap-12 pt-2">
         <div className="flex flex-col gap-6 min-w-0">
           <div className="flex flex-col gap-3">
             <p className="text-base text-muted">{t("home.greeting", { name: profile?.name ?? "WonJun" })}</p>
@@ -69,7 +69,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
             {profile?.email && (
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-medium text-foreground transition-[opacity,transform] duration-150 hover:opacity-85 active:scale-[0.97]"
+                className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-medium text-on-accent transition-[opacity,transform] duration-150 hover:opacity-85 active:scale-[0.97]"
               >
                 <Mail className="size-4" strokeWidth={1.5} />
                 {t("home.contact")}
@@ -98,7 +98,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
       </section>
 
       {/* 숫자 - 카드 없이 위 구분선 + 숫자 + 근거 한 줄. 근거 앞 짧은 벽돌색 선 = 사이트 공통 '근거 표기' */}
-      <section className="animate-fade-up [animation-delay:50ms] grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-sm:grid-cols-1 max-sm:gap-y-0">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-sm:grid-cols-1 max-sm:gap-y-0">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-col gap-2 border-t border-line pt-4 max-sm:grid max-sm:grid-cols-[minmax(0,1fr)_auto] max-sm:gap-x-4 max-sm:gap-y-1 max-sm:py-4">
             <span className="text-sm text-muted max-sm:col-start-1 max-sm:row-start-1">{s.label}</span>
@@ -263,7 +263,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
           {profile?.email && (
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex h-11 max-w-full items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-medium text-foreground transition-[opacity,transform] hover:opacity-85 active:scale-[0.97] max-[359px]:px-4 max-[359px]:text-[15px]"
+              className="inline-flex h-11 max-w-full items-center gap-2 rounded-[10px] bg-accent-strong px-5 text-sm font-medium text-on-accent transition-[opacity,transform] hover:opacity-85 active:scale-[0.97] max-[359px]:px-4 max-[359px]:text-[15px]"
             >
               <Mail className="size-4 shrink-0 max-[359px]:hidden" />
               {profile.email}

@@ -226,7 +226,7 @@ function PageButton({ children, onClick, label, active = false }: {
       aria-label={label}
       aria-current={active ? "page" : undefined}
       className={`flex size-9 items-center justify-center rounded-lg text-sm tabular-nums font-medium transition-colors duration-150 ${
-        active ? "bg-accent-strong text-foreground" : "text-muted hover:bg-surface-hover hover:text-foreground"
+        active ? "bg-accent-strong text-on-accent" : "text-muted hover:bg-surface-hover hover:text-foreground"
       }`}
     >
       {children}

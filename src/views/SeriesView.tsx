@@ -31,7 +31,7 @@ export default async function SeriesView({ slug, lang }: { slug: string; lang: L
     <div className="flex flex-col gap-12 py-6">
       <BackLink href={localizedPath(lang, "/log")} label={t("series.back")} />
 
-      <header className="animate-fade-up flex flex-col gap-4">
+      <header className="flex flex-col gap-4">
         <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{series.name}</h1>
         {series.description && <p className="text-base sm:text-lg text-muted max-w-2xl">{series.description}</p>}
         <div className="flex items-center gap-2 text-sm text-muted">

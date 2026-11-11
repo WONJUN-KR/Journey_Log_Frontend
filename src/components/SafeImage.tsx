@@ -40,8 +40,8 @@ export default function SafeImage({ src, alt, className = "", onLoad, preload, .
       }`}
     >
       <svg viewBox="0 0 48 48" className="w-[min(56px,45%)] aspect-square motion-safe:animate-spin [animation-duration:0.9s]">
-        <circle cx="24" cy="24" r="19" fill="none" stroke="#43362e" strokeWidth="6" />
-        <circle cx="24" cy="24" r="19" fill="none" stroke="#d0604c" strokeWidth="6" strokeLinecap="round" strokeDasharray="36 120" />
+        <circle cx="24" cy="24" r="19" fill="none" className="stroke-surface-hover" strokeWidth="6" />
+        <circle cx="24" cy="24" r="19" fill="none" className="stroke-accent" strokeWidth="6" strokeLinecap="round" strokeDasharray="36 120" />
       </svg>
     </span>
   );
