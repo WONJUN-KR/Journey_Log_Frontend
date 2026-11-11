@@ -142,7 +142,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                     <div className="flex flex-col divide-y divide-line border-y border-line">
                       {c.projects.map((proj) => (
                         <details key={proj.title} className="group">
-                          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3 transition-colors duration-150 hover:text-accent-2 [&::-webkit-details-marker]:hidden">
+                          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3 transition-colors duration-150 hover:text-muted [&::-webkit-details-marker]:hidden">
                             <span className="text-sm sm:text-base font-medium">{proj.title}</span>
                             <span className="flex items-center gap-3 shrink-0">
                               <span className="hidden sm:inline text-sm tabular-nums text-muted">{proj.period}</span>
@@ -183,7 +183,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                 className={`group flex flex-col gap-4 max-sm:gap-3 ${lead ? "md:col-span-2 md:row-span-2" : ""}`}
               >
                 {visual && (
-                  <div className={`relative overflow-hidden rounded-xl border border-line ${lead ? "aspect-[16/10]" : "aspect-[16/9]"} max-sm:aspect-[5/2] ${p.thumbnail ? "bg-background" : "bg-white"}`}>
+                  <div className={`relative overflow-hidden rounded-xl border border-line transition-opacity duration-150 group-hover:opacity-90 ${lead ? "aspect-[16/10]" : "aspect-[16/9]"} max-sm:aspect-[5/2] ${p.thumbnail ? "bg-background" : "bg-white"}`}>
                     <SafeImage
                       src={visual}
                       alt={p.title}
@@ -195,11 +195,11 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                 )}
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2 min-w-0">
-                    <h3 className={`${lead ? "text-2xl max-sm:text-lg" : "text-lg"} font-medium truncate transition-colors duration-150 group-hover:text-accent-2`}>{p.title}</h3>
+                    <h3 className={`${lead ? "text-2xl max-sm:text-lg" : "text-lg"} font-medium truncate`}>{p.title}</h3>
                     {p.status !== "local" && (
                       <span className="shrink-0 text-sm text-muted">· {t(p.status === "live" ? "status.live" : "status.released")}</span>
                     )}
-                    <ArrowUpRight className="ml-auto size-4 shrink-0 text-muted transition-colors duration-150 group-hover:text-accent-2" strokeWidth={1.5} />
+                    <ArrowUpRight className="ml-auto size-4 shrink-0 text-muted transition-colors duration-150 group-hover:text-foreground" strokeWidth={1.5} />
                   </div>
                   <p className="text-sm sm:text-base leading-snug text-muted max-sm:line-clamp-2">{p.tagline}</p>
                 </div>
@@ -235,11 +235,11 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                   href={post.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group grid grid-cols-[10rem_minmax(0,1fr)] gap-x-6 gap-y-1 py-5 max-sm:grid-cols-1"
+                  className="group grid grid-cols-[10rem_minmax(0,1fr)] gap-x-6 gap-y-1 py-5 max-sm:grid-cols-1 -mx-3 rounded-lg px-3 transition-colors duration-150 hover:bg-surface-hover"
                 >
                   {post.publishedAt ? <LocalDate iso={post.publishedAt} numeric className="whitespace-nowrap text-sm tabular-nums text-muted pt-0.5" /> : <span />}
                   <span className="flex flex-col gap-1 min-w-0">
-                    <span className="font-medium leading-snug line-clamp-1 transition-colors duration-150 group-hover:text-accent-2">{post.title}</span>
+                    <span className="font-medium leading-snug line-clamp-1">{post.title}</span>
                     {post.excerpt && <span className="text-sm text-muted line-clamp-2 max-sm:line-clamp-2">{post.excerpt}</span>}
                   </span>
                 </a>
@@ -286,11 +286,10 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
   );
 }
 
-// 근거 한 줄 - 숫자 아래, 앞에 짧은 벽돌색 선. 수치가 나오는 곳에만 씀
+// 근거 한 줄 - 숫자 아래. 수치가 나오는 곳에만 씀
 function Basis({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <span className={`flex items-center gap-2 text-sm text-muted ${className}`}>
-      <span aria-hidden className="h-3 w-px shrink-0 bg-accent" />
+    <span className={`flex items-center text-sm text-muted ${className}`}>
       <span className="min-w-0 sm:truncate">{children}</span>
     </span>
   );

@@ -152,7 +152,6 @@ export const ko = {
     unavailable: "잔디 데이터를 불러올 수 없습니다.",
     tooltip: "{date} - {n}건",
     unit: "건",
-    combined: "(개인 + 회사 계정 합산)",
   },
   log: {
     title: "기록",
