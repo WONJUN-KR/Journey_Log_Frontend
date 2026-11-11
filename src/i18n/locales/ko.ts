@@ -99,9 +99,6 @@ export const ko = {
     less: "접기",
     all: "전체 보기",
   },
-  stack: {
-    count: "기술 스택 {n}개",
-  },
   resume: {
     pdf: "PDF 저장",
     pdfFile: "{name}_이력서",

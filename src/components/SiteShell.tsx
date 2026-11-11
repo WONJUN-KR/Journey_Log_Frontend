@@ -27,7 +27,7 @@ export function rootMetadata(lang: Lang): Metadata {
 // 사이트 공통 틀 - <html> 부터 헤더 · 푸터 · 분석 도구까지
 // 클라이언트 컴포넌트가 useTranslations 로 쓰는 메시지 묶음 - 새 클라이언트 컴포넌트에서 다른 묶음을 쓰면 여기에 추가
 // (빠지면 화면에 키 이름이 그대로 나오고 콘솔에 MISSING_MESSAGE)
-const CLIENT_NAMESPACES = ["nav", "contrib", "log", "series", "gallery", "toggle", "stack"] as const;
+const CLIENT_NAMESPACES = ["nav", "contrib", "log", "series", "gallery", "toggle"] as const;
 
 export default function SiteShell({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   const messages = useMessages();

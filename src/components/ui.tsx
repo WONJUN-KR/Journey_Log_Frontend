@@ -79,25 +79,12 @@ export function MobileMoreInput({ id }: { id: string }) {
   return <input id={id} type="checkbox" className="peer sr-only sm:hidden" />;
 }
 
-// 기술 칩 - 휴대폰은 칩이 화면을 많이 차지해서 '기술 스택 N개'로 접어둠
-// grouped 면 자체 버튼 없이 바깥 group/more 버튼으로 같이 펼쳐짐
-export function StackChips({ items, grouped = false, lang = "ko" }: { items: string[]; grouped?: boolean; lang?: Lang }) {
-  const t = useTranslations();
+// 경력 · 프로젝트 기술 목록 - 상자 대신 가운뎃점으로 이은 글자(상자는 이력서 역량 목록에만)
+// grouped 면 휴대폰에서 바깥 group/more 버튼('자세히 보기')으로 같이 펼쳐짐
+export function StackChips({ items, grouped = false }: { items: string[]; grouped?: boolean }) {
   if (items.length === 0) return null;
-  const chips = items.map((s) => <Chip key={s}>{s}</Chip>);
-  if (grouped) return <div className={`flex flex-wrap gap-1.5 ${MOBILE_OPEN_ONLY}`}>{chips}</div>;
-  return (
-    <>
-      <div className="flex flex-wrap gap-1.5 max-sm:hidden">{chips}</div>
-      <details className="group sm:hidden">
-        <summary data-more-toggle="" className={`list-none [&::-webkit-details-marker]:hidden ${MOBILE_TOGGLE}`}>
-          {t("stack.count", { n: items.length })}
-          <ChevronDown className="size-3.5 transition-transform group-open:rotate-180" />
-        </summary>
-        <div className="flex flex-wrap gap-1.5 pt-3">{chips}</div>
-      </details>
-    </>
-  );
+  const text = <p className="text-sm leading-relaxed text-muted">{items.join(" · ")}</p>;
+  return grouped ? <div className={MOBILE_OPEN_ONLY}>{text}</div> : text;
 }
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {

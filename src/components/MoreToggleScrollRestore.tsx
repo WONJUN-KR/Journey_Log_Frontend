@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 // 휴대폰 접기 · 펼치기 버튼 공통 - 접으면 펼쳤던 그 화면 위치로 되돌림
-// 대상: data-more-toggle 이 붙은 <label>(체크박스 토글: MobileMoreToggle · 자기소개서 '전체 읽기') 과 <summary>(StackChips <details>)
+// 대상: data-more-toggle 이 붙은 <label>(체크박스 토글: MobileMoreToggle · 자기소개서 '전체 읽기') 과 <summary>(<details>)
 // 버튼 위쪽 내용이 줄어들면 스크롤 위치는 그대로라 버튼이 화면 위로 사라지고 다음 구역이 보임
 // → 펼칠 때 window.scrollY 를 그 체크박스 · details 에 기억했다가, 접힌 뒤 다음 프레임에 그 위치로 scrollTo
 // 접힌 모양은 펼치기 전과 같아서 화면이 그대로 복원됨. 기억한 값이 없으면(새로고침 뒤 등) 버튼이 화면 속 같은 자리에 오도록 보정

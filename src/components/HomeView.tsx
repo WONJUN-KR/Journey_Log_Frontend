@@ -176,7 +176,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                       ))}
                     </div>
                   )}
-                  {c.stack && <StackChips items={c.stack} lang={lang} />}
+                  {c.stack && <StackChips items={c.stack} />}
                 </li>
               );
             })}

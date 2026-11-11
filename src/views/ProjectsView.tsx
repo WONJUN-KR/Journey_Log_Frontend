@@ -159,7 +159,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
               </div>
 
               <div className={`max-sm:order-6 ${MOBILE_OPEN_ONLY}`}>
-                <StackChips items={p.stack} grouped lang={lang} />
+                <StackChips items={p.stack} grouped />
               </div>
 
               <MobileMoreToggle className="max-sm:order-7" lang={lang} />
