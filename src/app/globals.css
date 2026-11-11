@@ -8,8 +8,16 @@
 /* 사이트는 다크 단일 테마 - html.dark 고정이라 dark: 유틸리티가 항상 적용됨 */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* 에스프레소 브라운 팔레트 (주황기 뺀 모던 브라운). 색 값은 여기서만 정의 */
+/* 여름 라이트 팔레트 - 눈부시지 않게 한 톤 내린 블루 그레이 바탕 · 소프트 네이비 글자 · 더스티 블루 포인트. 색 값은 여기서만 정의 */
 @theme {
+  --color-mist-50: #e4e9f0;
+  --color-mist-100: #d9e0ea;
+  --color-mist-200: #cdd5e1;
+  --color-slate-ink: #1e2a3b;
+  --color-slate-2: #4b5565;
+  --color-dusty-blue: #4a7bd0;
+  --color-dusty-blue-deep: #3567bd;
+  /* 예전 에스프레소 팔레트 - 미리보기 이미지 · 아이콘이 아직 씀 */
   --color-espresso-900: #2a211c;
   --color-espresso-800: #352a24;
   --color-espresso-700: #43362e;
@@ -20,7 +28,8 @@
   --color-brick-deep: #b04e3c;
   --color-mocha: #a47864;
   --color-latte: #c9a88f;
-  /* 잔디 - 깊고 진한 포레스트 그린 */
+  /* 잔디 - 포레스트 그린 (밝은 바탕이라 연한 잎색부터) */
+  --color-forest-100: #b9dcc1;
   --color-forest-900: #23402d;
   --color-forest-700: #2f5e3d;
   --color-forest-500: #3f7f50;
@@ -36,24 +45,25 @@
 
 /* 디자인 토큰 - 컴포넌트는 이 이름만 씀 */
 :root {
-  color-scheme: dark;
-  --background: var(--color-espresso-900);
-  --foreground: var(--color-cream);
-  --surface: var(--color-espresso-800);
-  --surface-hover: var(--color-espresso-700);
-  --line: color-mix(in oklab, var(--color-cream) 9%, transparent);
-  --muted: var(--color-espresso-300);
-  /* 대비 규칙: 빨강은 면(점·배지·테두리), 버튼은 진한 빨강, 배경 위 글자는 라떼 */
-  --accent: var(--color-brick);
-  --accent-strong: var(--color-brick-deep);
-  --accent-soft: color-mix(in oklab, var(--color-brick) 16%, transparent);
-  --accent-2: var(--color-latte);
-  /* 잔디 5단계 - 포레스트 그린. 빈 칸은 배경에 묻히는 에스프레소 */
-  --heat-0: var(--color-espresso-700);
-  --heat-1: var(--color-forest-900);
-  --heat-2: var(--color-forest-700);
+  color-scheme: light;
+  --background: var(--color-mist-50);
+  --foreground: var(--color-slate-ink);
+  --surface: #eef2f7;
+  --surface-hover: var(--color-mist-100);
+  --line: color-mix(in oklab, var(--color-slate-ink) 12%, transparent);
+  --muted: var(--color-slate-2);
+  /* 대비 규칙: 점 · 선은 더스티 블루, 바탕 위 포인트 글자와 버튼은 한 단계 진하게(바탕 대비 약 5:1) + 버튼 글자는 흰색 */
+  --accent: var(--color-dusty-blue);
+  --accent-strong: var(--color-dusty-blue-deep);
+  --accent-soft: color-mix(in oklab, var(--color-dusty-blue) 12%, transparent);
+  --accent-2: var(--color-dusty-blue-deep);
+  --on-accent: #ffffff;
+  /* 잔디 5단계 - 연한 잎색에서 진한 포레스트 그린으로. 빈 칸은 바탕보다 한 단계 진한 회색 */
+  --heat-0: var(--color-mist-200);
+  --heat-1: var(--color-forest-100);
+  --heat-2: var(--color-forest-300);
   --heat-3: var(--color-forest-500);
-  --heat-4: var(--color-forest-300);
+  --heat-4: var(--color-forest-700);
 }
 
 @theme inline {
@@ -67,6 +77,7 @@
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
   --color-accent-2: var(--accent-2);
+  --color-on-accent: var(--on-accent);
   --color-heat-0: var(--heat-0);
   --color-heat-1: var(--heat-1);
   --color-heat-2: var(--heat-2);
@@ -77,6 +88,20 @@
 }
 
 /* 제목·본문 모두 페이퍼로지 (본문은 400, 한글 글리프 없으면 프리텐다드로 대체) */
+/* 자기소개서 마크다운(prose-invert) 글자색을 사이트 토큰으로 - 바탕이 밝아도 읽히게 */
+.prose-invert {
+  --tw-prose-invert-body: var(--foreground);
+  --tw-prose-invert-headings: var(--foreground);
+  --tw-prose-invert-bold: var(--foreground);
+  --tw-prose-invert-links: var(--accent-2);
+  --tw-prose-invert-bullets: var(--muted);
+  --tw-prose-invert-counters: var(--muted);
+  --tw-prose-invert-quotes: var(--foreground);
+  --tw-prose-invert-quote-borders: var(--line);
+  --tw-prose-invert-hr: var(--line);
+  --tw-prose-invert-code: var(--foreground);
+}
+
 @layer base {
   h1,
   h2,
@@ -84,13 +109,11 @@
     font-family: var(--font-display);
   }
 
-  /* 텍스트 선택(드래그) 색 - 브라우저 기본 파랑 대신 브랜드 brick, 글자는 cream
-     홈 제목처럼 그라데이션 글자(bg-clip-text + text-transparent)는 글자 채움이 투명이라 선택하면 글자가 사라져 보였음
-     → -webkit-text-fill-color 까지 지정해서 선택 중엔 글자가 보이게 */
+  /* 텍스트 선택(드래그) 색 - 포인트 색을 옅게, 글자는 본문색 */
   ::selection {
-    background-color: color-mix(in oklab, var(--color-brick) 45%, transparent);
-    color: var(--color-cream);
-    -webkit-text-fill-color: var(--color-cream);
+    background-color: color-mix(in oklab, var(--accent) 25%, transparent);
+    color: var(--foreground);
+    -webkit-text-fill-color: var(--foreground);
   }
 }
 
@@ -110,6 +133,12 @@
       transform: translateY(0);
     }
   }
+}
+
+/* 키보드로 이동할 때만 포커스 테두리 - 글자에 붙지 않게 띄움, 모서리는 요소의 둥글기를 따라감 (마우스 클릭엔 안 나옴) */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 body {

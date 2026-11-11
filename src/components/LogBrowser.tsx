@@ -152,7 +152,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                   rel="noreferrer"
                   className="group flex h-full flex-col gap-3"
                 >
-                  <div className="relative aspect-square overflow-hidden rounded-xl border border-line bg-surface">
+                  <div className="relative aspect-square overflow-hidden rounded-xl border border-line bg-surface transition-opacity duration-150 group-hover:opacity-90">
                     {post.thumbnail ? (
                       // 썸네일은 public/blog/naver 에 받아 둔 파일 (빌드 전에 크기별 WebP 로 줄여 둔 걸 로더가 고름)
                       // 첫 줄(휴대폰 2칸·PC 3칸)은 첫 화면이라 먼저 불러오고 나머지는 스크롤할 때
@@ -171,7 +171,7 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                     )}
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-sm font-medium line-clamp-2 transition-colors duration-150 group-hover:text-accent-2">
+                    <h3 className="text-sm font-medium line-clamp-2">
                       {post.title}
                     </h3>
                     {post.publishedAt && <LocalDate iso={post.publishedAt} locale={locale} className="text-sm tabular-nums text-muted" />}
@@ -226,7 +226,7 @@ function PageButton({ children, onClick, label, active = false }: {
       aria-label={label}
       aria-current={active ? "page" : undefined}
       className={`flex size-9 items-center justify-center rounded-lg text-sm tabular-nums font-medium transition-colors duration-150 ${
-        active ? "bg-accent-strong text-foreground" : "text-muted hover:bg-surface-hover hover:text-foreground"
+        active ? "bg-accent-strong text-on-accent" : "text-muted hover:bg-surface-hover hover:text-foreground"
       }`}
     >
       {children}

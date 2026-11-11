@@ -6,7 +6,7 @@ import type { Lang } from "@/i18n";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-const BRAND = "WONJUN · PORTFOLIO";
+const BRAND = "WONJUN PORTFOLIO";
 // tagline 은 줄 단위 배열
 const TEXT: Record<Lang, { alt: string; name: string; tagline: string[]; taglineSize: number; sub: string }> = {
   ko: { alt: "오원준 포트폴리오 - 의료 IT 풀스택 개발자", name: "오원준", tagline: ["의료 IT 풀스택 개발자"], taglineSize: 68, sub: "CGM 의료기기 · Spring · Next.js · AWS" },
@@ -39,29 +39,28 @@ export async function renderOgImage(lang: Lang): Promise<ImageResponse> {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 96px",
-          background: "linear-gradient(135deg, #352a24 0%, #2a211c 60%)",
-          color: "#f5efe8",
+          background: "#e4e9f0",
+          color: "#1e2a3b",
           fontFamily: "Noto Sans KR",
         }}
       >
         {/* 글자 칸은 폭을 정해 둠 - 길면 줄바꿈되고 사진은 그대로 (안 정하면 사진이 오른쪽 밖으로 밀림) */}
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 640 }}>
-          <div style={{ fontSize: 30, fontWeight: 700, color: "#c9a88f", letterSpacing: 1 }}>{BRAND}</div>
-          <div style={{ width: 64, height: 6, background: "#d0604c", borderRadius: 3, margin: "28px 0 32px" }} />
-          <div style={{ display: "flex", flexDirection: "column", fontSize: taglineSize, fontWeight: 700, lineHeight: 1.15 }}>
+          <div style={{ fontSize: 30, fontWeight: 500, color: "#4b5565", marginBottom: 40 }}>{BRAND}</div>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: taglineSize, fontWeight: 500, lineHeight: 1.15, letterSpacing: -1.5 }}>
             {TAGLINE.map((line) => (
               <div key={line} style={{ whiteSpace: "nowrap" }}>{line}</div>
             ))}
           </div>
-          <div style={{ fontSize: 44, fontWeight: 700, marginTop: 18 }}>{NAME}</div>
-          <div style={{ fontSize: 28, fontWeight: 400, color: "#b9aa9c", marginTop: 28 }}>{SUB}</div>
+          <div style={{ fontSize: 44, fontWeight: 500, marginTop: 18 }}>{NAME}</div>
+          <div style={{ fontSize: 28, fontWeight: 400, color: "#4b5565", marginTop: 28 }}>{SUB}</div>
         </div>
         <img
           src={photoSrc}
           alt=""
           width={320}
           height={320}
-          style={{ flexShrink: 0, objectFit: "cover", objectPosition: "center 5%", borderRadius: 36, border: "4px solid rgba(245,239,232,0.12)" }}
+          style={{ flexShrink: 0, objectFit: "cover", objectPosition: "center 5%", borderRadius: 36, border: "2px solid rgba(30,42,59,0.08)" }}
         />
       </div>
     ),
@@ -69,7 +68,7 @@ export async function renderOgImage(lang: Lang): Promise<ImageResponse> {
       ...OG_SIZE,
       fonts: [
         { name: "Noto Sans KR", data: await loadFont(400, allText), weight: 400, style: "normal" },
-        { name: "Noto Sans KR", data: await loadFont(700, allText), weight: 700, style: "normal" },
+        { name: "Noto Sans KR", data: await loadFont(500, allText), weight: 500, style: "normal" },
       ],
     },
   );

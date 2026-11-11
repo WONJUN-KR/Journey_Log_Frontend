@@ -171,7 +171,7 @@ export default function ProjectsView({ lang }: { lang: Lang }) {
                     href={p.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] bg-accent-strong text-foreground px-5 text-sm font-medium transition-opacity duration-150 hover:opacity-85 max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
+                    className="inline-flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[10px] bg-accent-strong text-on-accent px-5 text-sm font-medium transition-opacity duration-150 hover:opacity-85 max-sm:min-w-0 max-sm:flex-1 max-sm:justify-center max-sm:gap-1 max-sm:px-2 max-sm:text-[13px]"
                   >
                     {t("projects.live")}
                     <ExternalLink className="size-4 shrink-0 max-sm:size-3.5 max-[359px]:hidden" />

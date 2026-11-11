@@ -211,13 +211,13 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                 className="group flex items-start justify-between gap-3 border-t border-line py-4"
               >
                 <div className="flex flex-col gap-1 min-w-0">
-                  <div className="font-medium transition-colors duration-150 group-hover:text-accent-2">{p.title}</div>
+                  <div className="font-medium">{p.title}</div>
                   <div className="text-sm tabular-nums text-muted">
                     {p.period}
                     {p.teamSize && ` · ${t("resume.teamSize", { n: p.teamSize })}`}
                   </div>
                 </div>
-                <ExternalLink className="size-4 shrink-0 text-muted transition-colors duration-150 group-hover:text-accent-2" strokeWidth={1.5} />
+                <ExternalLink className="size-4 shrink-0 text-muted transition-colors duration-150 group-hover:text-foreground" strokeWidth={1.5} />
               </a>
             </li>
           ))}
