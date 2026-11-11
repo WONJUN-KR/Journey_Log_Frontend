@@ -50,9 +50,9 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
           <span className="inline-flex items-center gap-1.5"><MapPin className="size-4" strokeWidth={1.5} />{profile.region}</span>
         </div>
         {/* PDF 저장 버튼 + 글자 링크. 인쇄물에선 줄 전체를 숨김
-            링크는 한 묶음으로 줄바꿈 - 휴대폰에서 링크 하나만 다음 줄로 떨어지지 않고 링크 셋이 버튼 아래 한 줄로 */}
+            모바일은 PDF 저장을 빼고 링크만 한 줄 - 버튼 혼자 한 줄, 링크가 다음 줄로 갈라지던 것 (휴대폰에서 PDF 저장은 거의 안 씀) */}
         <div className="col-span-2 sm:col-span-1 flex flex-wrap items-center gap-x-6 gap-y-3 print:hidden">
-          <PrintButton fileName={t("resume.pdfFile", { name: profile.name })} label={t("resume.pdf")} className={PDF_BUTTON} />
+          <PrintButton fileName={t("resume.pdfFile", { name: profile.name })} label={t("resume.pdf")} className={`${PDF_BUTTON} max-sm:hidden`} />
           <div className="flex items-center gap-x-6 max-sm:gap-x-4">
             {links.map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className={`${LINK_TEXT} whitespace-nowrap`}>

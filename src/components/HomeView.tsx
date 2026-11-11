@@ -52,20 +52,19 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
   return (
     <div className="flex flex-col gap-16 sm:gap-32 py-6">
       {/* Hero - 왼쪽 글 · 오른쪽 사진. 버튼은 주 1개(연락) + 보조 1개(GitHub), 나머지 링크는 아래 연락 칸으로
-          모바일은 큰 사진 대신 제목 오른쪽 작은 사진 - 사진만 위에 떠서 첫 화면 위쪽이 비던 것 */}
+          모바일은 큰 사진 대신 이름 오른쪽 작은 사진 - 사진만 위에 떠서 첫 화면 위쪽이 비던 것 */}
       <section className="flex flex-col-reverse sm:flex-row sm:items-center gap-8 sm:gap-12 pt-2">
         <div className="flex flex-col gap-6 min-w-0">
           {/* 모바일은 이력서처럼 이름 · 제목 왼쪽, 사진 오른쪽(3:4) */}
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col gap-3 min-w-0">
-              <h1 className="text-4xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1.06]">
-                {profile?.tagline ?? t("home.taglineFallback")}
-              </h1>
-              <p className="text-base text-muted max-sm:text-lg max-sm:font-medium max-sm:text-foreground">{t("home.greeting", { name: profile?.name ?? "WonJun" })}</p>
+              {/* 이력서 상단과 같은 순서 · 크기 - 이름이 제목, 하는 일은 그 아래 회색 */}
+              <h1 className="text-4xl sm:text-6xl font-medium tracking-[-0.03em] leading-[1.06]">{t("home.greeting", { name: profile?.name ?? "WonJun" })}</h1>
+              <p className="text-lg sm:text-xl text-muted">{profile?.tagline ?? t("home.taglineFallback")}</p>
             </div>
             {hasProfileImg && (
-              <div className="relative w-16 aspect-[3/4] shrink-0 overflow-hidden rounded-lg border border-line bg-surface sm:hidden">
-                <SafeImage src={PROFILE_IMG} alt="" width={128} height={171} sizes="64px" preload className="size-full object-cover object-[center_5%]" />
+              <div className="relative w-24 aspect-[3/4] shrink-0 overflow-hidden rounded-xl border border-line bg-surface sm:hidden">
+                <SafeImage src={PROFILE_IMG} alt="" width={192} height={256} sizes="96px" preload className="size-full object-cover object-[center_5%]" />
               </div>
             )}
           </div>
@@ -244,13 +243,19 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                   href={post.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group grid grid-cols-[10rem_minmax(0,1fr)] gap-x-6 gap-y-1 py-5 max-sm:grid-cols-1 -mx-3 rounded-lg px-3 transition-colors duration-150 hover:bg-surface-hover"
+                  // 날짜 | 제목 · 요약 | 썸네일. 모바일은 날짜 · 글을 왼쪽에 쌓고 썸네일은 오른쪽
+                  className="group grid grid-cols-[10rem_minmax(0,1fr)_auto] items-center gap-x-6 gap-y-1 py-5 max-sm:grid-cols-[minmax(0,1fr)_auto] max-sm:gap-x-4 -mx-3 rounded-lg px-3 transition-colors duration-150 hover:bg-surface-hover"
                 >
-                  {post.publishedAt ? <LocalDate iso={post.publishedAt} numeric className="whitespace-nowrap text-sm tabular-nums text-muted pt-0.5" /> : <span />}
-                  <span className="flex flex-col gap-1 min-w-0">
+                  {post.publishedAt ? <LocalDate iso={post.publishedAt} numeric className="self-start whitespace-nowrap text-sm tabular-nums text-muted pt-0.5 max-sm:col-start-1 max-sm:row-start-1" /> : <span />}
+                  <span className="flex flex-col gap-1 min-w-0 max-sm:col-start-1 max-sm:row-start-2">
                     <span className="font-medium leading-snug line-clamp-1">{post.title}</span>
                     {post.excerpt && <span className="text-sm text-muted line-clamp-2 max-sm:line-clamp-2">{post.excerpt}</span>}
                   </span>
+                  {post.thumbnail && (
+                    <span className="relative size-20 shrink-0 overflow-hidden rounded-lg border border-line bg-surface max-sm:size-16 max-sm:col-start-2 max-sm:row-span-2 max-sm:row-start-1">
+                      <SafeImage src={post.thumbnail} alt="" fill sizes="80px" className="object-cover" />
+                    </span>
+                  )}
                 </a>
               </li>
             ))}

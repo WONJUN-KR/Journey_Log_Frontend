@@ -39,6 +39,12 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
   const current = Math.min(page, totalPages);
   const visible = filtered.slice((current - 1) * PAGE_SIZE, current * PAGE_SIZE);
   const selected = seriesList.find((s) => s.id === seriesId);
+  // 시리즈 대표 그림 = 그 시리즈에서 가장 먼저 나오는(최신) 글의 썸네일
+  const seriesThumb = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const p of posts) for (const id of p.seriesIds) if (p.thumbnail && !map.has(id)) map.set(id, p.thumbnail);
+    return map;
+  }, [posts]);
   const groupStart = Math.floor((current - 1) / PAGE_GROUP) * PAGE_GROUP + 1;
   const groupEnd = Math.min(groupStart + PAGE_GROUP - 1, totalPages);
 
@@ -72,6 +78,11 @@ export default function LogBrowser({ posts, seriesList, lang = "ko" }: { posts: 
                     aria-pressed={active}
                     className={`group -mx-3 flex w-[calc(100%+1.5rem)] items-center gap-4 rounded-lg px-3 py-4 text-left transition-colors duration-150 hover:bg-surface-hover max-sm:gap-3 max-sm:py-3 ${active ? "bg-surface-hover" : ""}`}
                   >
+                    {seriesThumb.get(series.id) && (
+                      <span className="relative size-14 shrink-0 overflow-hidden rounded-lg border border-line bg-surface">
+                        <SafeImage src={seriesThumb.get(series.id)!} alt="" fill sizes="56px" className="object-cover" />
+                      </span>
+                    )}
                     <span className="w-32 shrink-0 text-sm tabular-nums text-muted max-sm:hidden">{years}</span>
                     <span className="flex min-w-0 flex-1 flex-col">
                       {years && <span className="text-sm tabular-nums text-muted sm:hidden">{years}</span>}

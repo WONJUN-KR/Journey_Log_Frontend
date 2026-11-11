@@ -34,7 +34,7 @@ export default async function LogView({ lang }: { lang: Lang }) {
   }));
 
   return (
-    <div className="flex flex-col gap-20 py-6">
+    <div className="flex flex-col gap-20 max-sm:gap-10 py-6">
       <PageHeader title={t("log.title")} />
       <LogBrowser posts={logPosts} seriesList={logSeries} lang={lang} />
     </div>
