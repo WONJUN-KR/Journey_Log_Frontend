@@ -146,8 +146,16 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                     </div>
                   </div>
                   {c.summary && <p className="max-w-[48rem] text-base leading-relaxed">{c.summary}</p>}
+                  {/* 모바일: 프로젝트 이름(" - " 앞)만 한 줄씩, 펼치기 없음 - 자세한 내용은 이력서에서. 펼칠 게 없으면 뜻이 없는 "기타" 줄은 뺀 */}
                   {c.projects && c.projects.length > 0 && (
-                    <div className="flex flex-col divide-y divide-line border-y border-line">
+                    <ul className="sm:hidden flex flex-col divide-y divide-line border-y border-line">
+                      {c.projects.filter((proj) => proj.title !== "기타").map((proj) => (
+                        <li key={proj.title} className="py-3 text-sm font-medium">{proj.title.split(" - ")[0]}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {c.projects && c.projects.length > 0 && (
+                    <div className="max-sm:hidden flex flex-col divide-y divide-line border-y border-line">
                       {c.projects.map((proj) => (
                         <details key={proj.title} className="group">
                           <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3 transition-colors duration-150 hover:text-muted [&::-webkit-details-marker]:hidden">
