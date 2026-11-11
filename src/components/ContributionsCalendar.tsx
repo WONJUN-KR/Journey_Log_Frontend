@@ -198,13 +198,10 @@ export default function ContributionsCalendar({ initialDays, initialYear = "", y
     <div className="flex flex-col gap-4">
       {header(periodLabel)}
       <div className="flex flex-col gap-2">
-        {/* 합계 · 계정 안내 - 좁아서 한 줄에 안 들어가면 안내가 다음 줄로 */}
-        <div className="flex flex-wrap items-baseline gap-x-2">
-          <span className="whitespace-nowrap text-sm text-muted">
-            <span className="text-lg font-medium tabular-nums text-foreground">{shownTotal.toLocaleString("en-US")}</span>{t("contrib.unit")}
-          </span>
-          <span className="whitespace-nowrap text-xs text-muted">{t("contrib.combined")}</span>
-        </div>
+        {/* 합계 */}
+        <span className="whitespace-nowrap text-sm text-muted">
+          <span className="text-lg font-medium tabular-nums text-foreground">{shownTotal.toLocaleString("en-US")}</span>{t("contrib.unit")}
+        </span>
         <div ref={boxRef} className={`${recent ? "overflow-hidden" : "overflow-x-auto"} transition-opacity ${loading ? "opacity-40" : ""}`}>
           <svg
             viewBox={`0 0 ${width} ${height}`}
