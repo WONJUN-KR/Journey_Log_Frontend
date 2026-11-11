@@ -35,7 +35,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
   return (
     <div className="flex flex-col gap-20 py-6">
       {/* 상단 헤더 */}
-      <header className="animate-fade-up flex flex-col gap-6 pt-8">
+      <header className="flex flex-col gap-6 pt-8">
         <div className="flex flex-col gap-3">
           <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{profile.name}</h1>
           <p className="text-lg sm:text-xl text-muted">{profile.tagline}</p>

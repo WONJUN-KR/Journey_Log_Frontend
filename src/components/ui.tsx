@@ -139,7 +139,7 @@ export function PageHeader({ eyebrow, title, description }: {
   description?: string;
 }) {
   return (
-    <section className="animate-fade-up flex flex-col gap-4 pt-8">
+    <section className="flex flex-col gap-4 pt-8">
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h1 className="text-4xl sm:text-5xl font-medium tracking-[-0.03em]">{title}</h1>
       {description && <p className="text-base sm:text-lg text-muted max-w-2xl">{description}</p>}

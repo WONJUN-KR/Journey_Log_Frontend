@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- 포트폴리오 탭 아이콘: 에스프레소 배경 + 크림색 WJ -->
-  <rect width="64" height="64" rx="14" fill="#2a211c"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" letter-spacing="-2" fill="#f5efe8">WJ</text>
+  <!-- 포트폴리오 탭 아이콘: 진한 남색 배경 + 밝은 회청색 WJ (사이트 글자 · 바탕색) -->
+  <rect width="64" height="64" rx="14" fill="#1e2a3b"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="-1" fill="#e4e9f0">WJ</text>
 </svg>
