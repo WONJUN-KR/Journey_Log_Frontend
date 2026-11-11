@@ -31,7 +31,8 @@ export default function SafeImage({ src, alt, className = "", onLoad, preload, .
       </span>
     );
   }
-  // 원형 스피너 - 굵은 stroke + round linecap(페이퍼로지 획 느낌). 트랙 espresso-700, 인디케이터 brick, 컨테이너의 45%·최대 56px
+  // 원형 스피너 - 굵은 stroke + round linecap(페이퍼로지 획 느낌). 트랙 surface-hover, 인디케이터 회색, 컨테이너의 45%·최대 56px
+  // 0.3초 뒤에 나타남 - 빠르게 뜨는 이미지에선 안 보이고 느린 네트워크에서만 보임
   const spinner = (
     <span
       aria-hidden
@@ -39,10 +40,12 @@ export default function SafeImage({ src, alt, className = "", onLoad, preload, .
         fade ? `transition-opacity duration-300 ${done ? "opacity-0" : "opacity-100"}` : ""
       }`}
     >
-      <svg viewBox="0 0 48 48" className="w-[min(56px,45%)] aspect-square motion-safe:animate-spin [animation-duration:0.9s]">
-        <circle cx="24" cy="24" r="19" fill="none" className="stroke-surface-hover" strokeWidth="6" />
-        <circle cx="24" cy="24" r="19" fill="none" className="stroke-accent" strokeWidth="6" strokeLinecap="round" strokeDasharray="36 120" />
-      </svg>
+      <span className="flex w-[min(56px,45%)] aspect-square animate-spinner-in">
+        <svg viewBox="0 0 48 48" className="size-full motion-safe:animate-spin [animation-duration:0.9s]">
+          <circle cx="24" cy="24" r="19" fill="none" className="stroke-surface-hover" strokeWidth="6" />
+          <circle cx="24" cy="24" r="19" fill="none" className="stroke-muted" strokeWidth="6" strokeLinecap="round" strokeDasharray="36 120" />
+        </svg>
+      </span>
     </span>
   );
   return (
