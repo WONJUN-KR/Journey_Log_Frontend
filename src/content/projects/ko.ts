@@ -146,8 +146,8 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
   },
   {
     slug: "eureka-2021",
-    title: "유레카 (2021)",
-    subtitle: "여행 장소 공유 커뮤니티 · 2021 국비 과정 팀 프로젝트",
+    title: "유레카",
+    subtitle: "여행 장소 공유 커뮤니티 · 국비 과정 팀 프로젝트",
     period: "2021",
     role: "3인 팀 · 풀스택",
     tagline: "혼자 알기 아까운 여행지를 사진과 함께 공유하는 JSP 커뮤니티",
