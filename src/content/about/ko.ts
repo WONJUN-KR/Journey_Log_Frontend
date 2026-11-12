@@ -161,8 +161,9 @@ export const ABOUT_KO: AboutContent = {
       id: "compuzone",
       logo: "/logos/compuzone.jpg",
       company: "(주)컴퓨존",
-      role: "컴퓨터 조립",
+      role: "PC 하드웨어 조립 · 출고 전 동작 검수",
       period: "2024.12 ~ 2025.04",
+      summary: "주문 사양별 부품 분류 · 조립 후 부팅 · 동작 테스트로 출고 품질 확인",
       sortOrder: 2,
     },
     {
