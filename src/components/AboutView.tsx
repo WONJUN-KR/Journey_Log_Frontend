@@ -134,7 +134,7 @@ export default function AboutView({ about, lang = "ko" }: { about: AboutContent;
                     ))}
                   </div>
                 )}
-                {c.stack && <StackChips items={c.stack} grouped lang={lang} />}
+                {c.stack && <StackChips items={c.stack} />}
                 {/* 자기소개서 '전체 읽기'처럼 내용 아래 버튼 하나 - 자세히 보기 ↔ 접기, 접으면 이 버튼 자리로 화면 복귀 */}
                 {/* 펼칠 프로젝트 · 기술이 없는 회사는 버튼도 없음 */}
                 {(c.projects?.length || c.stack?.length) ? <MobileMoreToggle htmlFor={`career-more-${idx}`} lang={lang} /> : null}

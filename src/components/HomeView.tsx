@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
-import { ArrowUpRight, Building2, ChevronDown, Mail } from "lucide-react";
+import { ArrowUpRight, Building2, Mail } from "lucide-react";
 import ContributionsCalendar from "@/components/ContributionsCalendar";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
-import { SectionHeader, StackChips } from "@/components/ui";
-import { CONTRIBUTIONS_EARLIEST_YEAR, detailText, getContributions, getPosts, type AboutContent } from "@/lib/api";
+import { SectionHeader } from "@/components/ui";
+import { CONTRIBUTIONS_EARLIEST_YEAR, getContributions, getPosts, type AboutContent } from "@/lib/api";
 import { getHomeHighlights } from "@/lib/about";
 import SafeImage from "@/components/SafeImage";
 import { getProjects } from "@/lib/projects";
@@ -116,7 +116,7 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
         ))}
       </section>
 
-      {/* Experience - 회사마다 위 구분선, 프로젝트는 구분선 목록(접기) */}
+      {/* Experience - 회사마다 위 구분선, 회사 · 기간 · 한 줄 요약만(프로젝트 · 기술은 이력서에서) */}
       {careers.length > 0 && (
         <section className="flex flex-col gap-8">
           <SectionHeader title={t("home.experience.title")} href={localizedPath(lang, "/resume")} linkLabel={t("home.experience.link")} />
@@ -146,37 +146,6 @@ export default async function HomeView({ about, lang }: { about: AboutContent; l
                     </div>
                   </div>
                   {c.summary && <p className="max-w-[48rem] text-base leading-relaxed">{c.summary}</p>}
-                  {/* 모바일: 프로젝트 이름(" - " 앞)만 한 줄씩, 펼치기 없음 - 자세한 내용은 이력서에서. 펼칠 게 없으면 뜻이 없는 "기타" 줄은 뺀 */}
-                  {c.projects && c.projects.length > 0 && (
-                    <ul className="sm:hidden flex flex-col divide-y divide-line border-y border-line">
-                      {c.projects.filter((proj) => proj.title !== "기타").map((proj) => (
-                        <li key={proj.title} className="py-3 text-sm font-medium">{proj.title.split(" - ")[0]}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {c.projects && c.projects.length > 0 && (
-                    <div className="max-sm:hidden flex flex-col divide-y divide-line border-y border-line">
-                      {c.projects.map((proj) => (
-                        <details key={proj.title} className="group">
-                          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3 transition-colors duration-150 hover:text-muted [&::-webkit-details-marker]:hidden">
-                            <span className="text-sm sm:text-base font-medium">{proj.title}</span>
-                            <span className="flex items-center gap-3 shrink-0">
-                              <span className="hidden sm:inline text-sm tabular-nums text-muted">{proj.period}</span>
-                              <ChevronDown className="size-4 text-muted transition-transform group-open:rotate-180" strokeWidth={1.5} />
-                            </span>
-                          </summary>
-                          <ul className="flex flex-col gap-2 pb-5 text-sm text-muted">
-                            {proj.details.map(detailText).map((d) => (
-                              <li key={d} className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:size-1 before:rounded-full before:bg-muted">
-                                {d}
-                              </li>
-                            ))}
-                          </ul>
-                        </details>
-                      ))}
-                    </div>
-                  )}
-                  {c.stack && <StackChips items={c.stack} lang={lang} />}
                 </li>
               );
             })}
