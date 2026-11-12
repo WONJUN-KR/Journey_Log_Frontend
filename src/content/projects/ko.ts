@@ -30,7 +30,7 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
       { label: "Backend", url: "https://github.com/fcde-project9/GOTCHA-BE" },
     ],
     thumbnail: "/projects/gotcha.png",
-    mobileThumbPosition: "max-sm:object-center", // 휴대폰에서 썸네일을 납작하게 자를 때 가운데 G 마크가 잘리지 않게
+    mobileThumbPosition: "max-sm:object-center", // 휴대폰에서 썸네일을 자를 때 가운데 앱 화면이 잘리지 않게
     status: "released",
     device: "laptop",
     mockup: {
@@ -82,6 +82,7 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
       { label: "Backend", url: "https://github.com/WONJUN-KR/AI-Auto-Posting-Backend" },
     ],
     logo: "/projects/ocp.png",
+    thumbnail: "/projects/mockups/ai-auto-posting/01-home.jpg",
     status: "local",
     device: "laptop",
     mockup: {
@@ -122,6 +123,7 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
     stack: ["Java", "Spring Boot", "JPA", "Querydsl", "Thymeleaf", "MySQL"],
     repos: [{ label: "Repo", url: "https://github.com/WONJUN-KR/Co-s_House" }],
     logo: "/projects/coshouse.png",
+    thumbnail: "/projects/mockups/cos-house/01-home.jpg",
     status: "local",
     device: "laptop",
     mockup: {
@@ -144,8 +146,8 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
   },
   {
     slug: "eureka-2021",
-    title: "유레카 (2021)",
-    subtitle: "여행 장소 공유 커뮤니티 · 2021 국비 과정 팀 프로젝트",
+    title: "유레카",
+    subtitle: "여행 장소 공유 커뮤니티 · 국비 과정 팀 프로젝트",
     period: "2021",
     role: "3인 팀 · 풀스택",
     tagline: "혼자 알기 아까운 여행지를 사진과 함께 공유하는 JSP 커뮤니티",
@@ -161,8 +163,7 @@ export const PROJECTS_KO: (Project & { slug: ProjectSlug })[] = [
     ],
     stack: ["Java", "Servlet", "JSP", "JDBC", "jQuery", "Oracle", "Tomcat"],
     repos: [{ label: "Repo", url: "https://github.com/WONJUN-KR/Eureka-2021" }],
-    // 원본 배너 사진(흐림·어둡게) + 원본 흰색 헤더 로고로 합성한 썸네일
-    thumbnail: "/projects/mockups/eureka-2021/thumb.jpg",
+    thumbnail: "/projects/mockups/eureka-2021/04-main-bestpick.jpg",
     status: "local",
     device: "laptop",
     mockup: {

@@ -27,7 +27,7 @@ export function rootMetadata(lang: Lang): Metadata {
 // 사이트 공통 틀 - <html> 부터 헤더 · 푸터 · 분석 도구까지
 // 클라이언트 컴포넌트가 useTranslations 로 쓰는 메시지 묶음 - 새 클라이언트 컴포넌트에서 다른 묶음을 쓰면 여기에 추가
 // (빠지면 화면에 키 이름이 그대로 나오고 콘솔에 MISSING_MESSAGE)
-const CLIENT_NAMESPACES = ["nav", "contrib", "log", "series", "gallery", "toggle", "stack"] as const;
+const CLIENT_NAMESPACES = ["nav", "contrib", "log", "series", "gallery", "toggle"] as const;
 
 export default function SiteShell({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   const messages = useMessages();
@@ -42,7 +42,7 @@ export default function SiteShell({ lang, children }: { lang: Lang; children: Re
           <nav className="max-w-5xl mx-auto flex items-center justify-between gap-3 max-[359px]:gap-2 px-4 max-[359px]:px-3 sm:px-6 h-14">
             {/* 휴대폰 폭에선 메뉴가 한 줄에 들어가도록 로고를 줄임. 360px 미만(가장 작은 폰 320px)은 여백·글자를 한 단계 더 줄임 */}
             <Link href={localizedPath(lang, "/")} className="-ml-2 shrink-0 whitespace-nowrap rounded-md px-2 py-1.5 max-[359px]:text-[15px] font-medium transition-colors hover:bg-surface-hover">
-              WONJUN<span className="hidden sm:inline">{t("nav.logoSuffix")}</span>
+              Wonjun<span className="hidden sm:inline">{t("nav.logoSuffix")}</span>
             </Link>
             <NavLinks lang={lang} />
           </nav>

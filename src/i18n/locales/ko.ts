@@ -6,7 +6,7 @@ export const ko = {
     description: "의료 IT 풀스택 개발자",
   },
   nav: {
-    logoSuffix: " PORTFOLIO",
+    logoSuffix: " Portfolio",
     resume: "Resume",
     projects: "Projects",
     log: "Log",
@@ -98,9 +98,6 @@ export const ko = {
     more: "자세히 보기",
     less: "접기",
     all: "전체 보기",
-  },
-  stack: {
-    count: "기술 스택 {n}개",
   },
   resume: {
     pdf: "PDF 저장",
